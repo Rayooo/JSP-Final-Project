@@ -7,11 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-
+<%--导航条--%>
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
@@ -19,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><i class="fa fa-leaf" aria-hidden="true"></i>学生展示平坦</a>
+                <a class="navbar-brand" href="#"><i class="fa fa-leaf" aria-hidden="true"></i>学生展示平台</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -27,8 +26,8 @@
                     <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#exampleModal">登陆</button>
                     <a type="button" class="btn btn-primary navbar-btn" href="register.jsp">注册</a>
                 </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+            </div>
+        </div>
     </div>
 </nav>
 <!--登陆框-->

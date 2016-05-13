@@ -1,0 +1,22 @@
+.commentAvatarImage{
+    width:64px;
+    height:64px;
+    line-height: 0;	/* remove line-height */
+    display: inline-block;	/* circle wraps image */
+    border-radius: 50%;	/* relative value */
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    transition: linear 0.25s;
+}
+
+#myCarousel{
+    margin-bottom: 10px;
+}
+
+#copyRight{
+    text-align: center;
+    font-size: 20px;
+}
+.thumbnail{
+    border: 0;
+}

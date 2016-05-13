@@ -6,8 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 
 <nav class="navbar navbar-default">
     <div class="container">
@@ -20,13 +19,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">社团</a>
+                <a class="navbar-brand" href="#"><i class="fa fa-leaf" aria-hidden="true"></i>学生展示平坦</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#exampleModal">登陆</button>
-                    <a type="button" class="btn btn-primary navbar-btn" href="register.html">注册</a>
+                    <a type="button" class="btn btn-primary navbar-btn" href="register.jsp">注册</a>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

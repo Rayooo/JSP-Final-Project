@@ -11,6 +11,7 @@ public class DbConnection {
 
     public Connection connection = null;
 
+    //连接数据库
     public DbConnection(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -24,6 +25,7 @@ public class DbConnection {
         }
     }
 
+    //关闭数据库
     public void closeConnection(){
         if(connection!=null){
             try {

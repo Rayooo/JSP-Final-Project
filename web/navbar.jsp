@@ -23,6 +23,12 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <%
+                        String userName = (String)session.getAttribute("userName");
+                        out.println("<button type='button' class='btn btn-primary navbar-btn' data-toggle='modal' data-target='#exampleModal'>登陆</button>");
+
+
+                    %>
                     <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#exampleModal">登陆</button>
                     <a type="button" class="btn btn-primary navbar-btn" href="register.jsp">注册</a>
                 </ul>
@@ -40,9 +46,9 @@
             </div>
             <div class="modal-body">
                 <form method="post" action="/login">
-                    <label for="userName" class="sr-only">Email address</label>
+                    <label for="userName" class="sr-only">用户名</label>
                     <input type="text" name="userName" id="userName" class="form-control" placeholder="用户名" required autofocus>
-                    <label for="password" class="sr-only">Password</label>
+                    <label for="password" class="sr-only">密码</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="密码" required>
                     <button type="submit" class="btn btn-primary">登陆</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

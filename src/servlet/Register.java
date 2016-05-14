@@ -35,8 +35,8 @@ public class Register extends HttpServlet {
         SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//24小时制
         String createTime = sdformat.format(date);
 
-        String sql = "INSERT INTO user (userName, password, name, createTime, isManager)" +
-                "VALUES('"+userName+"','"+password+"','"+name+"','"+createTime+"',"+isManager+")";
+        String sql = "INSERT INTO user (userName, password, name, createTime, isManager, headImage)" +
+                "VALUES('"+userName+"','"+password+"','"+name+"','"+createTime+"',"+isManager+",'image/headImage.png')";
         try {
             //插入数据库
             DbConnection dbConnection = new DbConnection();

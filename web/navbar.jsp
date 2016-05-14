@@ -24,8 +24,9 @@
             <div class="collapse navbar-collapse" id="navbarCollapse1">
                 <ul class="nav navbar-nav navbar-right">
                     <%
-                        String userName = (String)session.getAttribute("userName");
-                        if(userName == null){
+                        //为了命名不同,不然会冲突
+                        String userNameNavBar = (String)session.getAttribute("userName");
+                        if(userNameNavBar == null){
                             out.println("<button type='button' class='btn btn-primary navbar-btn' data-toggle='modal' data-target='#loginModal'>登陆</button>");
                             out.println("<a type='button' class='btn btn-primary navbar-btn' href='register.jsp'>注册</a>");
                         }
@@ -35,13 +36,13 @@
                                 out.println("<li class='naviButton'><a href='index.jsp'>主页</a></li>");
                                 out.println("<li class='naviButton'><a href='index.jsp'>成员管理</a></li>");
                                 out.println("<li class='naviButton'><a href='index.jsp'>新闻管理</a></li>");
-                                out.println("<li class='naviButton'><a href='index.jsp'>个人信息</a></li>");
+                                out.println("<li class='naviButton'><a href='editMyInfo.jsp'>个人信息</a></li>");
                             }
                             else{
                                 out.println("<a type='button' class='btn btn-primary navbar-btn' href='logout.jsp'>退出</a>");
                                 out.println("<li class='naviButton'><a href='index.jsp'>主页</a></li>");
                                 out.println("<li class='naviButton'><a href='index.jsp'>上传成果</a></li>");
-                                out.println("<li class='naviButton'><a href='index.jsp'>个人信息</a></li>");
+                                out.println("<li class='naviButton'><a href='editMyInfo.jsp'>个人信息</a></li>");
                             }
                         }
                     %>

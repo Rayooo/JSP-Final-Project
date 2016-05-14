@@ -12,7 +12,7 @@
     <div class="container">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarCollapse1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -21,28 +21,42 @@
                 <a class="navbar-brand" href="#"><i class="fa fa-leaf" aria-hidden="true"></i>学生展示平台</a>
             </div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="navbarCollapse1">
                 <ul class="nav navbar-nav navbar-right">
                     <%
                         String userName = (String)session.getAttribute("userName");
-                        out.println("<button type='button' class='btn btn-primary navbar-btn' data-toggle='modal' data-target='#exampleModal'>登陆</button>");
-
-
+                        if(userName == null){
+                            out.println("<button type='button' class='btn btn-primary navbar-btn' data-toggle='modal' data-target='#loginModal'>登陆</button>");
+                            out.println("<a type='button' class='btn btn-primary navbar-btn' href='register.jsp'>注册</a>");
+                        }
+                        else{
+                            if((Integer)session.getAttribute("isManager")==1){
+                                out.println("<a type='button' class='btn btn-primary navbar-btn' href='logout.jsp'>退出</a>");
+                                out.println("<li class='naviButton'><a href='index.jsp'>主页</a></li>");
+                                out.println("<li class='naviButton'><a href='index.jsp'>成员管理</a></li>");
+                                out.println("<li class='naviButton'><a href='index.jsp'>新闻管理</a></li>");
+                                out.println("<li class='naviButton'><a href='index.jsp'>个人信息</a></li>");
+                            }
+                            else{
+                                out.println("<a type='button' class='btn btn-primary navbar-btn' href='logout.jsp'>退出</a>");
+                                out.println("<li class='naviButton'><a href='index.jsp'>主页</a></li>");
+                                out.println("<li class='naviButton'><a href='index.jsp'>上传成果</a></li>");
+                                out.println("<li class='naviButton'><a href='index.jsp'>个人信息</a></li>");
+                            }
+                        }
                     %>
-                    <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#exampleModal">登陆</button>
-                    <a type="button" class="btn btn-primary navbar-btn" href="register.jsp">注册</a>
                 </ul>
             </div>
         </div>
     </div>
 </nav>
 <!--登陆框-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">登陆</h4>
+                <h3 class="modal-title text-center" id="loginModalLabel">登陆</h3>
             </div>
             <div class="modal-body">
                 <form method="post" action="/login">
@@ -50,10 +64,21 @@
                     <input type="text" name="userName" id="userName" class="form-control" placeholder="用户名" required autofocus>
                     <label for="password" class="sr-only">密码</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="密码" required>
-                    <button type="submit" class="btn btn-primary">登陆</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <div class="text-center" id="loginButton">
+                        <button type="submit" class="btn btn-success">登陆</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    #loginButton{
+        margin-top: 3%;
+    }
+    #userName{
+        margin-bottom: 3%;
+    }
+</style>

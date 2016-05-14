@@ -22,10 +22,35 @@
     <link href="css/register.css" rel="stylesheet">
 </head>
 <body>
+
 <%--<div id="particles-js">--%>
 <%--</div>--%>
 
-<%@include file="navbar.jsp"%>
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<%--导航条,这里的导航条和主页其他导航条做区分--%>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarCollapse1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.jsp"><i class="fa fa-leaf" aria-hidden="true"></i>学生展示平台</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse1">
+                <ul class="nav navbar-nav navbar-right">
+                    <a type='button' class='btn btn-primary navbar-btn' href='index.jsp'>返回</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
 
 <div class="container">
 
@@ -72,7 +97,7 @@
             </div>
         </div>
     </form>
-</div> <!-- /container -->
+</div>
 
 <script src="js/particles.js"></script>
 <script src="js/particlesSetting.js"></script>

@@ -122,7 +122,7 @@
                             <img class="media-object commentAvatarImage" src="image/headImage.png" alt="...">
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">倪倩烨</h4>
+                            <h4 class="media-heading">Ray</h4>
                             aaaaaaaaaaaaaaaaaaaaaaaa
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                             <img class="media-object commentAvatarImage" src="image/headImage.png" alt="...">
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">翁倩</h4>
+                            <h4 class="media-heading">ooo</h4>
                             aaaaaaaaaaaaaaaaaaaaaaaa
                         </div>
                     </div>

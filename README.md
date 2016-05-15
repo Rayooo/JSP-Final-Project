@@ -1,7 +1,12 @@
 # JSP-Final-Project
 JSP Final Project
 
-copyright ray 2016
+copyright Ray 2016
+
+使用了Bootstrap,Vue.js,font-awesome
+
+
+下面是创建数据库的语句
 
 CREATE DATABASE JSPFinalProject CHARACTER SET  utf8  COLLATE utf8_general_ci;
 

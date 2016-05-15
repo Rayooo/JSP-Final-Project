@@ -30,6 +30,7 @@ public class DbConnection {
         if(connection!=null){
             try {
                 connection.close();
+                System.out.println("断开数据库成功");
             } catch (SQLException e) {
                 e.printStackTrace();
             }

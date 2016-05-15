@@ -48,13 +48,14 @@
             name = resultSet.getString("name");
             introduction = resultSet.getString("introduction");
         }
+        dbConnection.closeConnection();
     }catch (SQLException e) {
         e.printStackTrace();
     }
 %>
 
 <div class="container">
-    <form class="form-register form-horizontal" id="editInfoForm" onsubmit="return check()" action="" method="post" enctype="multipart/form-data">
+    <form class="form-register form-horizontal" id="editInfoForm" onsubmit="return check()" action="/editInfo" method="post" enctype="multipart/form-data">
         <h2 class="form-signin-heading text-center">编辑信息</h2>
 
         <div class="form-group"  id="headImageDiv">
@@ -139,6 +140,14 @@
     $("body").on("change", "#uploadImage", function (){
         preview(this);
     });
+
+    function check() {
+        var userName = document.getElementById("userName").value;
+        console.log(userName);
+        return true;
+    }
+
+
 </script>
 
 <style>

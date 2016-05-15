@@ -61,10 +61,10 @@
             </div>
             <div class="modal-body">
                 <form method="post" action="/login">
-                    <label for="userName" class="sr-only">用户名</label>
-                    <input type="text" name="userName" id="userName" class="form-control" placeholder="用户名" required autofocus>
-                    <label for="password" class="sr-only">密码</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="密码" required>
+                    <label for="userNameNavBar" class="sr-only">用户名</label>
+                    <input type="text" name="userNameNavBar" id="userNameNavBar" class="form-control" placeholder="用户名" required autofocus>
+                    <label for="passwordNavBar" class="sr-only">密码</label>
+                    <input type="passwordNavBar" name="passwordNavBar" id="passwordNavBar" class="form-control" placeholder="密码" required>
                     <div class="text-center" id="loginButton">
                         <button type="submit" class="btn btn-success">登陆</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -79,7 +79,7 @@
     #loginButton{
         margin-top: 3%;
     }
-    #userName{
+    #userNameNavBar{
         margin-bottom: 3%;
     }
 </style>

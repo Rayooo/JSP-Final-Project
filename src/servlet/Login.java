@@ -22,8 +22,8 @@ public class Login extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
+        String userName = request.getParameter("userNameNavBar");
+        String password = request.getParameter("passwordNavBar");
 
         //查询数据库中是否存在该用户
         try {

@@ -31,7 +31,7 @@
 
 <%
     session.setAttribute("location","editMyInfo");
-    String userName = null,password = null,headImage = null;
+    String userName = null,password = null,headImage = null,mobile = null;
     int sex = 1;
     String name = null,introduction = null;
     try{
@@ -44,6 +44,7 @@
             userName = resultSet.getString("userName");
             password = resultSet.getString("password");
             headImage = resultSet.getString("headImage");
+            mobile = resultSet.getString("mobile");
             sex = resultSet.getInt("sex");
             name = resultSet.getString("name");
             introduction = resultSet.getString("introduction");
@@ -86,6 +87,13 @@
             <label for="name" class="col-md-3 control-label">真实姓名(必填)</label>
             <div class= "col-md-8">
                 <input type="text" id="name" name="name" class="form-control" placeholder="真实姓名" value="<%=name%>" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="mobile" class="col-md-3 control-label">手机号</label>
+            <div class= "col-md-8">
+                <input type="text" id="mobile" name="mobile" class="form-control" placeholder="手机号" value="<%=mobile==null? "":mobile%>">
             </div>
         </div>
 

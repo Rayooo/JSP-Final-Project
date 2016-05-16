@@ -35,6 +35,7 @@ public class EditInfo extends HttpServlet {
         String userName = null;
         String password = null;
         String name = null;
+        String mobile = null;
         int sex = 1;
         String introduction = null;
 
@@ -72,6 +73,9 @@ public class EditInfo extends HttpServlet {
                     }
                     else if(fieldName.equals("name")){
                         name = formitem.getString();
+                    }
+                    else if(fieldName.equals("mobile")){
+                        mobile = formitem.getString();
                     }
                     else if(fieldName.equals("sex")){
                         sex = Integer.parseInt(formitem.getString());
@@ -121,14 +125,15 @@ public class EditInfo extends HttpServlet {
             try {
                 //如果没有上传图片
                 DbConnection dbConnection = new DbConnection();
-                String sql = "UPDATE user SET userName=?,password=?,sex=?,name=?,introduction=? WHERE id=?";
+                String sql = "UPDATE user SET userName=?,password=?,sex=?,name=?,introduction=?,mobile=? WHERE id=?";
                 PreparedStatement preparedStatement = dbConnection.connection.prepareStatement(sql);
                 preparedStatement.setString(1,userName);
                 preparedStatement.setString(2,password);
                 preparedStatement.setInt(3,sex);
                 preparedStatement.setString(4,name);
                 preparedStatement.setString(5,introduction);
-                preparedStatement.setInt(6,id);
+                preparedStatement.setString(6,mobile);
+                preparedStatement.setInt(7,id);
                 int rs = preparedStatement.executeUpdate();
                 if(rs>0){
                     System.out.println("更新信息成功");
@@ -144,7 +149,7 @@ public class EditInfo extends HttpServlet {
             try {
                 //如果上传图片
                 DbConnection dbConnection = new DbConnection();
-                String sql = "UPDATE user SET userName=?,password=?,sex=?,name=?,introduction=?,headImage=? WHERE id=?";
+                String sql = "UPDATE user SET userName=?,password=?,sex=?,name=?,introduction=?,headImage=?,mobile=? WHERE id=?";
                 PreparedStatement preparedStatement = dbConnection.connection.prepareStatement(sql);
                 preparedStatement.setString(1,userName);
                 preparedStatement.setString(2,password);
@@ -152,7 +157,8 @@ public class EditInfo extends HttpServlet {
                 preparedStatement.setString(4,name);
                 preparedStatement.setString(5,introduction);
                 preparedStatement.setString(6,relativePath);
-                preparedStatement.setInt(7,id);
+                preparedStatement.setString(7,mobile);
+                preparedStatement.setInt(8,id);
                 int rs = preparedStatement.executeUpdate();
                 if(rs>0){
                     System.out.println("更新信息成功");

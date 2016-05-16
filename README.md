@@ -19,6 +19,7 @@ CREATE TABLE user
   sex SMALLINT,
   name VARCHAR(30) NOT NULL,
   createTime DATETIME NOT NULL,
+  mobile VARCHAR(11),
   introduction TEXT,
   isManager SMALLINT NOT NULL,
   isDeleted SMALLINT DEFAULT 0 NOT NULL,

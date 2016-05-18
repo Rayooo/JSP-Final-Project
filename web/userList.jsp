@@ -32,20 +32,21 @@
     try{
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
-        String sql = "SELECT id,userName,sex,name,mobile FROM user WHERE isDeleted=0";
+        String sql = "SELECT id,userName,sex,name,mobile,isManager FROM user WHERE isDeleted=0";
         ResultSet resultSet = statement.executeQuery(sql);
 
         if(resultSet != null){
             %>
         <div class='container alert alert-success text-center' role='alert'>以下是所有成员的信息</div>
         <div class='container text-center'>
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover table-bordered">
                 <tr>
                     <td>id</td>
                     <td>姓名</td>
                     <td>手机</td>
                     <td>用户名</td>
                     <td>性别</td>
+                    <td>用户类别</td>
                     <td>操作</td>
                 </tr>
 <%
@@ -55,6 +56,7 @@
                 String sex = resultSet.getInt("sex") == 1? "男":"女";
                 String name = resultSet.getString("name");
                 String mobile = resultSet.getString("mobile");
+                String isManager = resultSet.getInt("isManager") == 1? "管理员":"用户";
                 %>
                 <tr>
                     <td><%=id%></td>
@@ -62,6 +64,7 @@
                     <td><%=mobile%></td>
                     <td><%=userName%></td>
                     <td><%=sex%></td>
+                    <td><%=isManager%></td>
                     <td>
                         <a target="_blank" href="userInfo.jsp?id=<%=id%>"><i class="fa fa-child" aria-hidden="true"></i></a>
                         <a target="_blank" href="userInfoEdit.jsp?id=<%=id%>"><i class="fa fa-cog" aria-hidden="true"></i></a>

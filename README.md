@@ -101,3 +101,24 @@ CREATE TABLE achievementComment
   FOREIGN KEY (userId) REFERENCES user(id),
   FOREIGN KEY (achievementId) REFERENCES achievement(id)
 );
+
+INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
+VALUES("aa","bb","headImage",0,"Ray","2016-05-16 20:02:05","1050123","asd",1,0,0);
+
+INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
+VALUES("23e","b2b","headImage",0,"Ray2","2016-05-16 20:02:05","1050123","asd",1,0,0);
+
+INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
+VALUES("23e3","b2w2b","headImage",0,"Ray2","2016-05-16 20:02:05","1050123","asd",1,0,0);
+
+INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
+VALUES("23e3223","b2w2b","headImag2e",0,"R43ay2","2016-05-16 20:02:05","34234","asdewq",1,0,0);
+
+INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
+VALUES("23e23223","b2w2b","headImag2e",0,"R43ay2","2016-05-16 20:02:05","34234","asdewq",1,0,0);
+
+INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
+VALUES("223223","b2w2b","headImag2e",0,"R43ay2","2016-05-16 20:02:05","34234","asdewq",0,1,1);
+
+INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
+VALUES("22334","b2w2b","headImag2e",0,"R43ay2","2016-05-16 20:02:05","34234","asdewq",0,1,0);

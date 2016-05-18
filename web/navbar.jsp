@@ -35,20 +35,25 @@
                                 out.println("<a type='button' class='btn btn-primary navbar-btn' href='logout.jsp'>退出</a>");
                                 out.println("<li class='naviButton'><a href='index.jsp'>主页</a></li>");
                                 %>
-                    <li class="dropdown">
-                        <%--无法加active--%>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </li>
-                    <%
-                                out.println("<li class='naviButton active'><a href='index.jsp'>成员管理</a></li>");
-                                out.println("<li class='naviButton'><a href='index.jsp'>新闻管理</a></li>");
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">成员管理 <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">成员审核</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="userList.jsp">成员信息</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">新闻管理 <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">添加新闻</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">新闻修改</a></li>
+                                    </ul>
+                                </li>
+
+                                <%
                                 out.println("<li class='naviButton'><a href='editMyInfo.jsp'>个人信息</a></li>");
                             }
                             else{

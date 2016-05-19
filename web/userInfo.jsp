@@ -21,6 +21,36 @@
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
+    <style>
+        #editInfoForm{
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        #headImageDiv{
+            width: 80%;
+            margin: auto;
+            margin-bottom: 5%;
+        }
+        #headImageDiv2{
+            width: 80%;
+            margin-left: 25%;
+        }
+        #buttonDiv{
+            margin-top: 5%;
+            margin-bottom: 20%;
+        }
+        #preview{
+            width:200px;
+            height:200px;
+            line-height: 0;	/* remove line-height */
+            display: inline-block;	/* circle wraps image */
+            border-radius: 50%;	/* relative value */
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            transition: linear 0.25s;
+        }
+    </style>
+
 </head>
 <body>
 <%@include file="navbar.jsp"%>
@@ -146,32 +176,4 @@
 
 </script>
 
-<style>
-    #editInfoForm{
-        max-width: 550px;
-        margin: 0 auto;
-    }
-    #headImageDiv{
-        width: 80%;
-        margin: auto;
-        margin-bottom: 5%;
-    }
-    #headImageDiv2{
-        width: 80%;
-        margin-left: 25%;
-    }
-    #buttonDiv{
-        margin-top: 5%;
-        margin-bottom: 20%;
-    }
-    #preview{
-        width:200px;
-        height:200px;
-        line-height: 0;	/* remove line-height */
-        display: inline-block;	/* circle wraps image */
-        border-radius: 50%;	/* relative value */
-        -moz-border-radius: 50%;
-        -webkit-border-radius: 50%;
-        transition: linear 0.25s;
-    }
-</style>
+

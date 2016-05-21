@@ -22,6 +22,8 @@ Created by IntelliJ IDEA.
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link href="font-awesome/css/font-awesome.css">
+    <script src="sweetalert/dist/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="sweetalert/dist/sweetalert.css">
 </head>
 <body>
 
@@ -30,7 +32,7 @@ Created by IntelliJ IDEA.
 <%
     session.setAttribute("location","userList");
     //记录有多少页
-    int count = 0;
+    double count = 0;
     try {
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
@@ -38,7 +40,7 @@ Created by IntelliJ IDEA.
         ResultSet resultSet = statement.executeQuery(sql);
         if(resultSet != null){
             resultSet.next();
-            count = resultSet.getInt("count(id)")/2;
+            count = Math.ceil(resultSet.getInt("count(id)")/5.0);
         }
     }catch (SQLException e) {
         e.printStackTrace();
@@ -107,7 +109,7 @@ Created by IntelliJ IDEA.
             $("#paging" + currentPage).addClass("active");
             $.post("userListTable.jsp", {page:currentPage}, function (data) {
                 $("#userListTable").html(data);
-            })
+            });
             checkPreviousAndNext();
         }
     });
@@ -119,11 +121,12 @@ Created by IntelliJ IDEA.
             $("#paging" + currentPage).addClass("active");
             $.post("userListTable.jsp", {page:currentPage}, function (data) {
                 $("#userListTable").html(data);
-            })
+            });
             checkPreviousAndNext();
         }
+    });
 
-    })
+
 
 </script>
 

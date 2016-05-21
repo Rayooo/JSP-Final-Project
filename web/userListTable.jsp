@@ -16,7 +16,7 @@
     try{
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
-        String sql = "SELECT id,userName,sex,name,mobile,isManager FROM user WHERE isDeleted=0 LIMIT "+ Integer.toString((pageCount-1)*2) +",2";//(页数-1)*每页条数,每页条数
+        String sql = "SELECT id,userName,sex,name,mobile,isManager FROM user WHERE isDeleted=0 LIMIT "+ Integer.toString((pageCount-1)*5) +",5";//(页数-1)*每页条数,每页条数
         ResultSet resultSet = statement.executeQuery(sql);
 
         if(resultSet != null){
@@ -42,7 +42,7 @@
                     String mobile = resultSet.getString("mobile");
                     String isManager = resultSet.getInt("isManager") == 1? "管理员":"用户";
                     %>
-                <tr>
+                <tr id="tr<%=id%>">
                     <td><%=id%></td>
                     <td><%=name%></td>
                     <td><%=mobile%></td>
@@ -52,7 +52,7 @@
                     <td>
                         <a target="_blank" href="userInfo.jsp?id=<%=id%>"><i class="fa fa-child" aria-hidden="true"></i></a>
                         <a target="_blank" href="userInfoEdit.jsp?id=<%=id%>"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        <a class="delete" id="delete<%=id%>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                     </td>
                 </tr>
         <%
@@ -74,3 +74,28 @@
             e.printStackTrace();
         }
 %>
+<script>
+    $(".delete").click(function () {
+        var userId = this.id.replace(/delete/,"");
+        swal({
+            title: "警告",
+            text: "您确定要删除此用户?",
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: "取消",
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "删除",
+            closeOnConfirm: false
+        }, function(){
+            $.post("deleteUser.jsp",{userId:userId},function (data) {
+                if(data == "success"){
+                    swal("成功", "已删除该用户", "success");
+                    $("#tr"+userId).remove();
+                }
+                else{
+                    swal("失败", "服务器异常", "error");
+                }
+            })
+        });
+    })
+</script>

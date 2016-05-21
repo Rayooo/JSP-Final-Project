@@ -16,7 +16,7 @@
     try{
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
-        String sql = "SELECT id,userName,sex,name,mobile,isManager FROM user WHERE isDeleted=0 LIMIT "+ Integer.toString((pageCount-1)*5) +",5";//(页数-1)*每页条数,每页条数
+        String sql = "SELECT id,userName,sex,name,mobile,isManager,isPassed FROM user WHERE isDeleted=0 LIMIT "+ Integer.toString((pageCount-1)*5) +",5";//(页数-1)*每页条数,每页条数
         ResultSet resultSet = statement.executeQuery(sql);
 
         if(resultSet != null){
@@ -31,6 +31,7 @@
                     <td>用户名</td>
                     <td>性别</td>
                     <td>用户类别</td>
+                    <td>是否通过验证</td>
                     <td>操作</td>
                 </tr>
                 <%
@@ -41,14 +42,22 @@
                     String name = resultSet.getString("name");
                     String mobile = resultSet.getString("mobile");
                     String isManager = resultSet.getInt("isManager") == 1? "管理员":"用户";
-                    %>
-                <tr id="tr<%=id%>">
+                    String isPassed = resultSet.getInt("isPassed") == 1? "通过":"未通过";
+                    if(isPassed.equals("未通过")){
+                        out.println("<tr id='tr"+id+"' class='danger'>");
+                    }
+                    else{
+                        out.println("<tr id='tr"+id+"'>");
+                    }
+          %>
+
                     <td><%=id%></td>
                     <td><%=name%></td>
                     <td><%=mobile%></td>
                     <td><%=userName%></td>
                     <td><%=sex%></td>
                     <td><%=isManager%></td>
+                    <td><%=isPassed%></td>
                     <td>
                         <a target="_blank" href="userInfo.jsp?id=<%=id%>"><i class="fa fa-child" aria-hidden="true"></i></a>
                         <a target="_blank" href="userInfoEdit.jsp?id=<%=id%>"><i class="fa fa-cog" aria-hidden="true"></i></a>
@@ -56,9 +65,9 @@
                     </td>
                 </tr>
         <%
-                    }
-                    out.println("</table>");
-                    out.println("</div>");
+                }
+                out.println("</table>");
+                out.println("</div>");
             }
             else{
                 out.println("<div class='container alert alert-warning text-center' role='alert'>未查询到信息</div>");

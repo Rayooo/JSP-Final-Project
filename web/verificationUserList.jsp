@@ -1,12 +1,11 @@
 <%@ page import="dbConnection.DbConnection" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.ResultSet" %>
-<%--
-Created by IntelliJ IDEA.
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.SQLException" %><%--
+  Created by IntelliJ IDEA.
   User: Ray
-  Date: 16/5/17
-  Time: 21:55
+  Date: 16/5/18
+  Time: 19:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -15,28 +14,23 @@ Created by IntelliJ IDEA.
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>成员信息</title>
-    <!-- Bootstrap -->
+    <title>审核成员</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <link href="font-awesome/css/font-awesome.css">
     <script src="sweetalert/dist/sweetalert-dev.js"></script>
     <link rel="stylesheet" href="sweetalert/dist/sweetalert.css">
 </head>
 <body>
-
 <%@include file="navbar.jsp"%>
 <%@include file="confirmationManager.jsp"%>
 <%
-    session.setAttribute("location","userList");
-    //记录有多少页
+    //记录多少页
     double count = 0;
     try {
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
-        String sql = "SELECT count(id) FROM user WHERE isDeleted=0";
+        String sql = "SELECT count(id) FROM user WHERE isDeleted=0 AND isPassed=0";
         ResultSet resultSet = statement.executeQuery(sql);
         if(resultSet != null){
             resultSet.next();
@@ -46,7 +40,6 @@ Created by IntelliJ IDEA.
         e.printStackTrace();
     }
 %>
-
 <%--内容--%>
 <div id="userListTable"></div>
 
@@ -86,7 +79,7 @@ Created by IntelliJ IDEA.
     }
 
     $(document).ready(function () {
-        $.post("userListTable.jsp",{page:1},function (data) {
+        $.post("verificationUserListTable.jsp",{page:1},function (data) {
             $("#userListTable").html(data);
             $("#previous").addClass("disabled");
         })
@@ -96,7 +89,7 @@ Created by IntelliJ IDEA.
         $(".paging").removeClass("active");
         $("#paging"+this.innerHTML).addClass("active");
         currentPage = parseInt(this.innerHTML);
-        $.post("userListTable.jsp",{page:this.innerHTML},function (data) {
+        $.post("verificationUserListTable.jsp",{page:this.innerHTML},function (data) {
             $("#userListTable").html(data);
         });
         checkPreviousAndNext();
@@ -107,7 +100,7 @@ Created by IntelliJ IDEA.
             currentPage -= 1;
             $(".paging").removeClass("active");
             $("#paging" + currentPage).addClass("active");
-            $.post("userListTable.jsp", {page:currentPage}, function (data) {
+            $.post("verificationUserListTable.jsp", {page:currentPage}, function (data) {
                 $("#userListTable").html(data);
             });
             checkPreviousAndNext();
@@ -119,7 +112,7 @@ Created by IntelliJ IDEA.
             console.log(currentPage);
             $(".paging").removeClass("active");
             $("#paging" + currentPage).addClass("active");
-            $.post("userListTable.jsp", {page:currentPage}, function (data) {
+            $.post("verificationUserListTable.jsp", {page:currentPage}, function (data) {
                 $("#userListTable").html(data);
             });
             checkPreviousAndNext();
@@ -127,6 +120,7 @@ Created by IntelliJ IDEA.
     });
 
 </script>
+
 
 
 </body>

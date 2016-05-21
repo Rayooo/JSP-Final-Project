@@ -65,21 +65,65 @@ Created by IntelliJ IDEA.
 </nav>
 
 <script>
+    var currentPage = 1;
+    //检查是否为最前面或最后页,如果是,则禁用按钮
+    function checkPreviousAndNext() {
+        if(currentPage == 1){
+            $("#previous").addClass("disabled");
+        }
+        else{
+            $("#previous").removeClass("disabled");
+        }
+
+        if(currentPage == <%=count%>){
+            $("#next").addClass("disabled");
+        }
+        else{
+            $("#next").removeClass("disabled");
+        }
+    }
+
     $(document).ready(function () {
         $.post("userListTable.jsp",{page:1},function (data) {
             $("#userListTable").html(data);
+            $("#previous").addClass("disabled");
         })
     });
 
     $(".pagingA").click(function () {
         $(".paging").removeClass("active");
         $("#paging"+this.innerHTML).addClass("active");
+        currentPage = parseInt(this.innerHTML);
         $.post("userListTable.jsp",{page:this.innerHTML},function (data) {
             $("#userListTable").html(data);
-        })
+        });
+        checkPreviousAndNext();
     });
 
+    $("#previous").click(function () {
+        if(currentPage > 1){
+            currentPage -= 1;
+            $(".paging").removeClass("active");
+            $("#paging" + currentPage).addClass("active");
+            $.post("userListTable.jsp", {page:currentPage}, function (data) {
+                $("#userListTable").html(data);
+            })
+            checkPreviousAndNext();
+        }
+    });
+    $("#next").click(function () {
+        if(currentPage < <%=count%>){
+            currentPage += 1;
+            console.log(currentPage);
+            $(".paging").removeClass("active");
+            $("#paging" + currentPage).addClass("active");
+            $.post("userListTable.jsp", {page:currentPage}, function (data) {
+                $("#userListTable").html(data);
+            })
+            checkPreviousAndNext();
+        }
 
+    })
 
 </script>
 

@@ -24,7 +24,7 @@ public class Login extends HttpServlet {
 
         String userName = request.getParameter("userNameNavBar");
         String password = request.getParameter("passwordNavBar");
-
+        int isPassed = 0;
         //查询数据库中是否存在该用户
         try {
             DbConnection dbConnection = new DbConnection();
@@ -35,23 +35,40 @@ public class Login extends HttpServlet {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
-                HttpSession session = request.getSession();
-                session.setAttribute("userId",resultSet.getInt("id"));
-                session.setAttribute("userName",resultSet.getString("userName"));
-                session.setAttribute("headImage",resultSet.getString("headImage"));
-                session.setAttribute("name",resultSet.getString("name"));
-                session.setAttribute("isManager",resultSet.getInt("isManager"));
-                session.setAttribute("isPassed",resultSet.getInt("isPassed"));
+                isPassed = resultSet.getInt("isPassed");
+                if(isPassed == 1){
+                    HttpSession session = request.getSession();
+                    session.setAttribute("userId",resultSet.getInt("id"));
+                    session.setAttribute("userName",resultSet.getString("userName"));
+                    session.setAttribute("headImage",resultSet.getString("headImage"));
+                    session.setAttribute("name",resultSet.getString("name"));
+                    session.setAttribute("isManager",resultSet.getInt("isManager"));
+                    session.setAttribute("isPassed",resultSet.getInt("isPassed"));
+                }
             }
             else{
                 //登录失败跳转
-                System.out.println("登录失败");
+                request.setAttribute("message","您输入的帐号密码错误");
+                request.setAttribute("isError",true);
+                request.getRequestDispatcher("loginErrorPage.jsp").forward(request, response);
             }
+
             dbConnection.closeConnection();
-            response.sendRedirect("index.jsp");
+
+            if(isPassed == 1){
+                response.sendRedirect("index.jsp");
+            }
+            else{
+                request.setAttribute("message","您未通过管理员验证,请联系管理员");
+                request.setAttribute("isError",false);
+                request.getRequestDispatcher("loginErrorPage.jsp").forward(request, response);
+            }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            request.setAttribute("message","服务器异常");
+            request.setAttribute("isError",true);
+            request.getRequestDispatcher("loginErrorPage.jsp").forward(request, response);
+//            e.printStackTrace();
         }
 
     }

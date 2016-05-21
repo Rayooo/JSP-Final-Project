@@ -60,7 +60,7 @@ public class EditInfo extends HttpServlet {
             } catch (FileUploadException e) {
                 request.setAttribute("message","修改信息失败");
                 request.setAttribute("isError",true);
-                request.getRequestDispatcher("message.jsp").forward(request, response);
+                request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
                 e.printStackTrace();
             }
 
@@ -121,7 +121,7 @@ public class EditInfo extends HttpServlet {
                         isError = true;
                         request.setAttribute("message","修改信息失败");
                         request.setAttribute("isError",true);
-                        request.getRequestDispatcher("message.jsp").forward(request, response);
+                        request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
                         e.printStackTrace();
                     }
 
@@ -152,12 +152,12 @@ public class EditInfo extends HttpServlet {
 
                 request.setAttribute("message",message);
                 request.setAttribute("isError",false);
-                request.getRequestDispatcher("message.jsp").forward(request, response);
+                request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
 
             } catch (SQLException e) {
                 request.setAttribute("message","修改信息失败");
                 request.setAttribute("isError",true);
-                request.getRequestDispatcher("message.jsp").forward(request, response);
+                request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
                 e.printStackTrace();
             }
         }
@@ -183,12 +183,12 @@ public class EditInfo extends HttpServlet {
 
                 request.setAttribute("message",message);
                 request.setAttribute("isError",false);
-                request.getRequestDispatcher("message.jsp").forward(request, response);
+                request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
 
             } catch (SQLException e) {
                 request.setAttribute("message","修改信息失败");
                 request.setAttribute("isError",true);
-                request.getRequestDispatcher("message.jsp").forward(request, response);
+                request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
                 e.printStackTrace();
             }
         }

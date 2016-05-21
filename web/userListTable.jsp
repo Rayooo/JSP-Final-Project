@@ -16,7 +16,7 @@
     try{
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
-        String sql = "SELECT id,userName,sex,name,mobile,isManager FROM user WHERE isDeleted=0 LIMIT "+ Integer.toString((pageCount-1)*2) +",2";
+        String sql = "SELECT id,userName,sex,name,mobile,isManager FROM user WHERE isDeleted=0 LIMIT "+ Integer.toString((pageCount-1)*2) +",2";//(页数-1)*每页条数,每页条数
         ResultSet resultSet = statement.executeQuery(sql);
 
         if(resultSet != null){

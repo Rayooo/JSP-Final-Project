@@ -6,6 +6,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,12 +39,12 @@ public class EditInfo extends HttpServlet {
         String mobile = null;
         int sex = 1;
         String introduction = null;
-
+        int id = 0;
         //文件信息
         String suffix = null;
         String fileDir = getServletContext().getRealPath("/upload");
         String relativePath = null;
-        String message = "文件上传成功";
+        String message = "修改信息成功";
         String address = "";
         boolean isError = false;
 
@@ -57,6 +58,9 @@ public class EditInfo extends HttpServlet {
             try {
                 formLists = upload.parseRequest(request);
             } catch (FileUploadException e) {
+                request.setAttribute("message","修改信息失败");
+                request.setAttribute("isError",true);
+                request.getRequestDispatcher("message.jsp").forward(request, response);
                 e.printStackTrace();
             }
 
@@ -82,6 +86,9 @@ public class EditInfo extends HttpServlet {
                     }
                     else if(fieldName.equals("introduction")){
                         introduction = formitem.getString();
+                    }
+                    else if(fieldName.equals("userId")){
+                        id = Integer.parseInt(formitem.getString());
                     }
                 }
                 else{
@@ -112,6 +119,9 @@ public class EditInfo extends HttpServlet {
                         formitem.write(saveFile);   //向文件写数据
                     } catch (Exception e) {
                         isError = true;
+                        request.setAttribute("message","修改信息失败");
+                        request.setAttribute("isError",true);
+                        request.getRequestDispatcher("message.jsp").forward(request, response);
                         e.printStackTrace();
                     }
 
@@ -119,8 +129,8 @@ public class EditInfo extends HttpServlet {
             }
 
         }
-        HttpSession session = request.getSession();
-        int id = (Integer)session.getAttribute("userId");
+//        HttpSession session = request.getSession();
+//        int id = (Integer)session.getAttribute("userId");
         if(relativePath == null){
             try {
                 //如果没有上传图片
@@ -139,9 +149,15 @@ public class EditInfo extends HttpServlet {
                     System.out.println("更新信息成功");
                 }
                 dbConnection.closeConnection();
-                response.sendRedirect("index.jsp");
+
+                request.setAttribute("message",message);
+                request.setAttribute("isError",false);
+                request.getRequestDispatcher("message.jsp").forward(request, response);
 
             } catch (SQLException e) {
+                request.setAttribute("message","修改信息失败");
+                request.setAttribute("isError",true);
+                request.getRequestDispatcher("message.jsp").forward(request, response);
                 e.printStackTrace();
             }
         }
@@ -164,9 +180,15 @@ public class EditInfo extends HttpServlet {
                     System.out.println("更新信息成功");
                 }
                 dbConnection.closeConnection();
-                response.sendRedirect("index.jsp");
+
+                request.setAttribute("message",message);
+                request.setAttribute("isError",false);
+                request.getRequestDispatcher("message.jsp").forward(request, response);
 
             } catch (SQLException e) {
+                request.setAttribute("message","修改信息失败");
+                request.setAttribute("isError",true);
+                request.getRequestDispatcher("message.jsp").forward(request, response);
                 e.printStackTrace();
             }
         }

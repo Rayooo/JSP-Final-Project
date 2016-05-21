@@ -64,6 +64,7 @@
     String userName = null,password = null,headImage = null,mobile = null;
     int sex = 1;
     String name = null,introduction = null;
+    int userId = 0;
     try{
         DbConnection dbConnection = new DbConnection();
         int id = (Integer) session.getAttribute("userId");
@@ -78,6 +79,7 @@
             sex = resultSet.getInt("sex");
             name = resultSet.getString("name");
             introduction = resultSet.getString("introduction");
+            userId = resultSet.getInt("id");
         }
         if(resultSet != null)
             resultSet.close();
@@ -102,6 +104,12 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label for="userId" class="col-md-3 control-label">用户ID</label>
+            <div class= "col-md-8">
+                <input type="text" id="userId" name="userId" class="form-control" placeholder="用户ID" value="<%=userId%>" readonly>
+            </div>
+        </div>
 
         <div class="form-group">
             <label for="userName" class="col-md-3 control-label">用户名(必填)</label>

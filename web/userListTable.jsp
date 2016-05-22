@@ -96,7 +96,7 @@
             confirmButtonText: "删除",
             closeOnConfirm: false
         }, function(){
-            $.post("deleteUser.jsp",{userId:userId},function (data) {
+            $.post("/deleteUser",{userId:userId},function (data) {
                 if(data == "success"){
                     swal("成功", "已删除该用户", "success");
                     $("#tr"+userId).remove();

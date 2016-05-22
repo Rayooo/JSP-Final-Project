@@ -70,7 +70,7 @@
     $(".pass").click(function () {
         console.log("AAA");
         var userId = this.id.replace(/pass/,"");
-        $.post("verificationUserDeal.jsp",{userId:userId},function (data) {
+        $.post("/verificationUser",{userId:userId},function (data) {
             if(data == "success"){
                 swal("成功", "该用户已通过验证", "success");
                 $("#tr"+userId).addClass("success");

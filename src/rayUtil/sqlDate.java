@@ -12,3 +12,4 @@ public class SqlDate {
         return sdformat.format(date);
     }
 }
+

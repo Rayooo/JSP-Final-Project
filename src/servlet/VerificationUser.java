@@ -28,16 +28,14 @@ public class VerificationUser extends HttpServlet {
             Statement statement = dbConnection.connection.createStatement();
             String sql = "UPDATE user SET isPassed=1 WHERE id="+ userId;
             int rs = statement.executeUpdate(sql);
+            PrintWriter writer = response.getWriter();
             if(rs > 0){
-                PrintWriter writer = response.getWriter();
                 writer.print("success");
-                writer.flush();
             }
             else{
-                PrintWriter writer = response.getWriter();
                 writer.print("error");
-                writer.flush();
             }
+            writer.flush();
         }
         catch (SQLException e) {
             PrintWriter writer = response.getWriter();

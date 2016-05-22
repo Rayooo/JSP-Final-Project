@@ -50,19 +50,31 @@
 
 <script>
     $("#btn").click(function () {
-        //method2 getting the content by id of a particular textarea
-//        alert(tinymce.get('newsTextArea').getContent());
         var newsContent = tinymce.get('newsTextArea').getContent();
         var userId = <%=(Integer)session.getAttribute("userId")%>;
         var newsTitle = $("#newsTitle").val();
-        $.post("/addNews", {newsContent:newsContent,userId:userId,newsTitle:newsTitle}, function (data) {
-            if(data == "success"){
-                swal("成功", "成功发表该文章","success");
-            }
-            else{
-                swal("失败", "服务器异常", "error");
-            }
-        })
+        if(!newsContent || !newsTitle){
+            swal("警告", "请填写完整标题或内容", "warning");
+        }
+        else{
+            $.post("/addNews", {newsContent:newsContent,userId:userId,newsTitle:newsTitle}, function (data) {
+                if(data == "success"){
+                    swal({
+                        title: "成功",
+                        text: "成功发表该文章",
+                        type: "success",
+                        confirmButtonColor: "#79c9e0",
+                        confirmButtonText: "确定",
+                        closeOnConfirm: false
+                    }, function(){
+                        window.location.href = "index.jsp";
+                    });
+                }
+                else{
+                    swal("失败", "服务器异常", "error");
+                }
+            })
+        }
     })
 </script>
 

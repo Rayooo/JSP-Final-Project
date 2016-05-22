@@ -31,12 +31,11 @@ public class DeleteUser extends HttpServlet {
             PrintWriter writer = response.getWriter();
             if(rs > 0){
                 writer.print("success");
-                writer.flush();
             }
             else{
                 writer.print("error");
-                writer.flush();
             }
+            writer.flush();
         }
         catch (SQLException e) {
 //        e.printStackTrace();

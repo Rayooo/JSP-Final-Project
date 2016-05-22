@@ -1,8 +1,6 @@
 package servlet;
 
 import dbConnection.DbConnection;
-import rayUtil.Confirmation;
-import rayUtil.SqlDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -20,7 +20,7 @@
 
         if(resultSet != null){
 %>
-            <div class='container alert alert-warning text-center' role='alert'>以下是所有新闻的信息</div>
+            <div class='container alert alert-success text-center' role='alert'>以下是所有新闻的信息</div>
             <div class='container text-center'>
                 <table class="table table-striped table-hover table-bordered">
                     <tr>
@@ -38,7 +38,8 @@
                         <td><%=title%></td>
                         <td><%=createTime%></td>
                         <td>
-                            <a class="edit" id="edit<%=id%>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a target="_blank" href="newsDetail.jsp?newsId=<%=id%>"><i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
+                            <a target="_blank" href="newsEdit.jsp?newsId=<%=id%>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             <a class="delete" id="delete<%=id%>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         </td>
                     </tr>

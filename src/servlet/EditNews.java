@@ -16,32 +16,34 @@ import java.sql.Statement;
 /**
  * Created by Ray on 16/5/22.
  */
-
-//将user中isPass的属性改成1,验证用户模块
-@WebServlet(name = "VerificationUser",urlPatterns = {"/verificationUser"})
-public class VerificationUser extends HttpServlet {
+@WebServlet(name = "EditNews",urlPatterns = {"/editNews"})
+public class EditNews extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(!Confirmation.isManager(request))
+        if(!Confirmation.isManager(request)){
             return;
+        }
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
 
-        String userId = request.getParameter("userId");
+        String title = request.getParameter("newsTitle");
+        String content = request.getParameter("newsContent");
+        String newsId = request.getParameter("newsId");
+
         try {
             DbConnection dbConnection = new DbConnection();
             Statement statement = dbConnection.connection.createStatement();
-            String sql = "UPDATE user SET isPassed=1 WHERE id="+ userId;
+            String sql = "UPDATE news SET title='"+title+"',content='"+content+"' WHERE isDeleted=0 AND id="+newsId;
             int rs = statement.executeUpdate(sql);
             PrintWriter writer = response.getWriter();
             if(rs > 0){
                 writer.print("success");
-            }
-            else{
+            }else{
                 writer.print("error");
             }
             writer.flush();
-        }
-        catch (SQLException e) {
+        }catch (SQLException e){
+            e.printStackTrace();
             PrintWriter writer = response.getWriter();
-            writer.print("error");
             writer.flush();
         }
     }

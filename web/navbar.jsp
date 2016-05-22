@@ -49,7 +49,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="addNews.jsp">添加新闻</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="#">新闻修改</a></li>
+                                        <li><a href="newsList.jsp">新闻修改</a></li>
                                     </ul>
                                 </li>
 

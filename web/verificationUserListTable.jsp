@@ -12,11 +12,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="confirmationManager.jsp"%>
 <%
-    int pageCount = Integer.parseInt(request.getParameter("page"));
+    int currentPage = Integer.parseInt(request.getParameter("page"));
     try {
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
-        String sql = "SELECT id,userName,sex,name,mobile,isManager FROM user WHERE isPassed=0 LIMIT "+ Integer.toString((pageCount-1)*5) +",5";//(页数-1)*每页条数,每页条数
+        String sql = "SELECT id,userName,sex,name,mobile,isManager FROM user WHERE isPassed=0 ORDER BY id DESC LIMIT "+ Integer.toString((currentPage-1)*5) +",5";//(页数-1)*每页条数,每页条数
         ResultSet resultSet = statement.executeQuery(sql);
 
         if(resultSet != null){

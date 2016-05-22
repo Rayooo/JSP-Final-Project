@@ -88,7 +88,7 @@ Created by IntelliJ IDEA.
     $(document).ready(function () {
         $.post("userListTable.jsp",{page:1},function (data) {
             $("#userListTable").html(data);
-            $("#previous").addClass("disabled");
+            checkPreviousAndNext();
         })
     });
 

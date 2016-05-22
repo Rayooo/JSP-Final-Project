@@ -81,7 +81,7 @@
     $(document).ready(function () {
         $.post("verificationUserListTable.jsp",{page:1},function (data) {
             $("#userListTable").html(data);
-            $("#previous").addClass("disabled");
+            checkPreviousAndNext();
         })
     });
 

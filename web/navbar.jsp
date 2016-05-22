@@ -47,7 +47,7 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">新闻管理 <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">添加新闻</a></li>
+                                        <li><a href="addNews.jsp">添加新闻</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="#">新闻修改</a></li>
                                     </ul>

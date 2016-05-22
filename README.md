@@ -45,23 +45,23 @@ CREATE TABLE user
 CREATE TABLE achievement
 (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  userName VARCHAR(30),
+  userId INT,
   title VARCHAR(255) NOT NULL,
   content TEXT NOT NULL,
   isDeleted INT DEFAULT 0,
   createTime DATETIME,
-  FOREIGN KEY (userName) REFERENCES user(userName)
+  FOREIGN KEY (userId) REFERENCES user(id)
 );
 
 CREATE TABLE news
 (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  userName VARCHAR(30),
+  userId INT,
   title VARCHAR(255) NOT NULL,
   content TEXT NOT NULL,
   isDeleted INT DEFAULT 0,
   createTime DATETIME,
-  FOREIGN KEY (userName) REFERENCES user(userName)
+  FOREIGN KEY (userId) REFERENCES user(id)
 );
 
 CREATE TABLE newsPhoto

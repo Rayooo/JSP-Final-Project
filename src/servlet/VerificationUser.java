@@ -1,6 +1,7 @@
 package servlet;
 
 import dbConnection.DbConnection;
+import rayUtil.Confirmation;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,9 @@ import java.sql.Statement;
 @WebServlet(name = "VerificationUser",urlPatterns = {"/verificationUser"})
 public class VerificationUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(!Confirmation.isManager(request))
+            return;
+
         String userId = request.getParameter("userId");
         try {
             DbConnection dbConnection = new DbConnection();
@@ -27,18 +31,18 @@ public class VerificationUser extends HttpServlet {
             if(rs > 0){
                 PrintWriter writer = response.getWriter();
                 writer.print("success");
-                writer.close();
+                writer.flush();
             }
             else{
                 PrintWriter writer = response.getWriter();
                 writer.print("error");
-                writer.close();
+                writer.flush();
             }
         }
         catch (SQLException e) {
             PrintWriter writer = response.getWriter();
             writer.print("error");
-            writer.close();
+            writer.flush();
         }
     }
 

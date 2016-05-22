@@ -1,4 +1,7 @@
-
+<%@ page import="dbConnection.DbConnection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.ResultSet" %>
 <%--
   Created by IntelliJ IDEA.
   User: Ray
@@ -73,13 +76,24 @@
                     </form>
 
                     <div class="list-group">
-                        <a href="news.html" class="list-group-item">超链接新闻标题</a>
-                        <a href="news.html" class="list-group-item">超链接新闻标题</a>
-                        <a href="news.html" class="list-group-item">超链接新闻标题</a>
-                        <a href="news.html" class="list-group-item">超链接新闻标题</a>
+                        <%
+                            try {
+                                DbConnection dbConnection = new DbConnection();
+                                Statement statement = dbConnection.connection.createStatement();
+                                String sql = "SELECT id,title,createTime FROM news";
+                                ResultSet resultSet = statement.executeQuery(sql);
+                                if(resultSet != null){
+                                    while (resultSet.next()){
+                        %>
+                                    <a href="newsDetail.jsp?newsId=<%=resultSet.getInt("id")%>" class="list-group-item"><%=resultSet.getString("title")%><span style="float: right"><%=resultSet.getDate("createTime")%>  <%=resultSet.getTime("createTime")%></span></a>
+                        <%
+                                    }
+                                }
+                            }catch (SQLException e){
+                                e.printStackTrace();
+                            }
+                        %>
                     </div>
-
-                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
                 </div>
             </div>
         </div>
@@ -101,6 +115,9 @@
             </div>
         </div>
     </div>
+
+
+
     <div class="row">
         <div class="col-sm-12 col-md-12">
             <div class="thumbnail">
@@ -144,7 +161,6 @@
                             aaaaaaaaaaaaaaaaaaaaaaaa
                         </div>
                     </div>
-                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
                 </div>
             </div>
         </div>

@@ -3,13 +3,13 @@ JSP Final Project
 
 copyright Ray 2016
 
-使用了Bootstrap,Vue.js,font-awesome
+使用了Bootstrap,Vue.js,font-awesome,sweetAlert,TinyMCE
 
 管理员功能:
 
 1.新闻管理:查询所有新闻,实现搜索,删 改 新闻,添加新闻
 
-2.成员管理:成员,管理员注册审核,做一张表列出。成员信息(已完成),能够查询,修改,删除
+2.成员管理:成员,管理员注册审核,做一张表列出(已完成)。成员信息(已完成),能够查询,修改,删除
 
 3.个人信息修改,(已完成)
 

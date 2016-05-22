@@ -41,6 +41,7 @@ public class AddNews extends HttpServlet {
             }
             writer.flush();
         }catch (SQLException e){
+            e.printStackTrace();
             PrintWriter writer = response.getWriter();
             writer.print("error");
             writer.flush();

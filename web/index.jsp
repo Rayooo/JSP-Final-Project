@@ -80,7 +80,7 @@
                             try {
                                 DbConnection dbConnection = new DbConnection();
                                 Statement statement = dbConnection.connection.createStatement();
-                                String sql = "SELECT id,title,createTime FROM news ORDER BY id DESC ";
+                                String sql = "SELECT id,title,createTime FROM news WHERE isDeleted=0 ORDER BY id DESC ";
                                 ResultSet resultSet = statement.executeQuery(sql);
                                 if(resultSet != null){
                                     while (resultSet.next()){

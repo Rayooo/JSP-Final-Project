@@ -18,7 +18,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+    <script src="sweetalert/dist/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="sweetalert/dist/sweetalert.css">
 </head>
 <body>
 <%@include file="navbar.jsp"%>

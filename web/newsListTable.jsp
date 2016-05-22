@@ -45,8 +45,11 @@
                     </tr>
 <%
             }
-            out.println("</table>");
-            out.println("</div>");
+            %>
+
+                </table>
+            </div>
+<%
         }
         else{
             out.println("<div class='container alert alert-warning text-center' role='alert'>未查询到信息</div>");
@@ -61,6 +64,32 @@
     }catch (SQLException e){
         e.printStackTrace();
     }
-
-
 %>
+<script>
+    $(".delete").click(function () {
+        var newsId = this.id.replace(/delete/,"");
+        swal({
+            title: "警告",
+            text: "您确定要删除此新闻?",
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: "取消",
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "删除",
+            closeOnConfirm: false
+        }, function(){
+            $.post("/deleteNews",{newsId:newsId},function (data) {
+                if(data == "success"){
+                    swal("成功", "已删除该新闻", "success");
+                    $("#tr"+newsId).addClass("danger");
+                }
+                else{
+                    swal("失败", "服务器异常", "error");
+                }
+            })
+        });
+
+
+    });
+
+</script>

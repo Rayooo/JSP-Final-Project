@@ -68,7 +68,6 @@
 %>
 <script>
     $(".pass").click(function () {
-        console.log("AAA");
         var userId = this.id.replace(/pass/,"");
         $.post("/verificationUser",{userId:userId},function (data) {
             if(data == "success"){

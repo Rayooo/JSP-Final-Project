@@ -28,7 +28,7 @@ import java.util.Random;
 @WebServlet(name = "EditInfo",urlPatterns = {"/editInfo"})
 public class EditInfo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(Confirmation.isLogin(request))
+        if(!Confirmation.isLogin(request))
             return;
 
         request.setCharacterEncoding("UTF-8");
@@ -60,10 +60,10 @@ public class EditInfo extends HttpServlet {
             try {
                 formLists = upload.parseRequest(request);
             } catch (FileUploadException e) {
+                e.printStackTrace();
                 request.setAttribute("message","修改信息失败");
                 request.setAttribute("isError",true);
                 request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
-                e.printStackTrace();
             }
 
             Iterator iter = formLists.iterator();
@@ -120,11 +120,11 @@ public class EditInfo extends HttpServlet {
                     try {
                         formitem.write(saveFile);   //向文件写数据
                     } catch (Exception e) {
+                        e.printStackTrace();
                         isError = true;
                         request.setAttribute("message","修改信息失败");
                         request.setAttribute("isError",true);
                         request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
-                        e.printStackTrace();
                     }
 
                 }
@@ -157,10 +157,10 @@ public class EditInfo extends HttpServlet {
                 request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
 
             } catch (SQLException e) {
+                e.printStackTrace();
                 request.setAttribute("message","修改信息失败");
                 request.setAttribute("isError",true);
                 request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
-                e.printStackTrace();
             }
         }
         else{
@@ -188,10 +188,10 @@ public class EditInfo extends HttpServlet {
                 request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
 
             } catch (SQLException e) {
+                e.printStackTrace();
                 request.setAttribute("message","修改信息失败");
                 request.setAttribute("isError",true);
                 request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
-                e.printStackTrace();
             }
         }
     }

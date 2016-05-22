@@ -89,6 +89,7 @@
                         <%
                                     }
                                 }
+                                dbConnection.closeConnection();
                             }catch (SQLException e){
                                 e.printStackTrace();
                             }
@@ -97,6 +98,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="col-sm-6 col-md-6">
             <div class="thumbnail">
                 <div class="caption">
@@ -125,46 +128,38 @@
                     <h3>成员介绍</h3>
 
                     <!--媒体对象,一头像一评论-->
-                    <div class="media">
-                        <div class="media-left media-middle">
-                            <img class="media-object commentAvatarImage" src="image/headImage.png" alt="...">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">陈枭磊</h4>
-                            aaaaaaaaaaaaaaaaaaaaaaaa
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-left media-middle">
-                            <img class="media-object commentAvatarImage" src="image/headImage.png" alt="...">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">Ray</h4>
-                            aaaaaaaaaaaaaaaaaaaaaaaa
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-left media-middle">
-                            <img class="media-object commentAvatarImage" src="image/headImage.png" alt="...">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">ooo</h4>
-                            aaaaaaaaaaaaaaaaaaaaaaaa
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-left media-middle">
-                            <img class="media-object commentAvatarImage" src="image/headImage.png" alt="...">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">A</h4>
-                            aaaaaaaaaaaaaaaaaaaaaaaa
-                        </div>
-                    </div>
+                    <%
+                        try {
+                            DbConnection dbConnection = new DbConnection();
+                            Statement statement = dbConnection.connection.createStatement();
+                            String sql = "SELECT name,headImage,introduction FROM user WHERE isDeleted=0 AND isPassed=1 AND isManager=0";
+                            ResultSet resultSet = statement.executeQuery(sql);
+                            if(resultSet != null){
+                                while (resultSet.next()){
+                                    %>
+                                        <div class="media">
+                                            <div class="media-left media-middle">
+                                                <img class="media-object commentAvatarImage" src="<%=resultSet.getString("headImage")%>" alt="...">
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><%=resultSet.getString("name")%></h4>
+                                                <%=resultSet.getString("introduction") == null? "":resultSet.getString("introduction")%>
+                                            </div>
+                                        </div>
+                    <%
+                                }
+                            }
+                            dbConnection.closeConnection();
+                        }catch (SQLException e){
+                            e.printStackTrace();
+                        }
+                    %>
+
                 </div>
             </div>
         </div>
     </div>
+    
 </div>
 
 </body>

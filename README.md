@@ -85,6 +85,7 @@ CREATE TABLE photo
   userId INT NOT NULL ,
   description VARCHAR(100),
   url VARCHAR(50) NOT NULL,
+  isDeleted INT DEFAULT 0,
   createTime DATETIME NOT NULL,
   FOREIGN KEY (userId) REFERENCES user(id)
 );
@@ -95,6 +96,7 @@ CREATE TABLE file
   userId INT NOT NULL ,
   description VARCHAR(100),
   url VARCHAR(50) NOT NULL ,
+  isDeleted INT DEFAULT 0,
   createTime DATETIME NOT NULL ,
   FOREIGN KEY (userId) REFERENCES user(id)
 );

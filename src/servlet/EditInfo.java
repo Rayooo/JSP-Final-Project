@@ -72,25 +72,25 @@ public class EditInfo extends HttpServlet {
                 if(formitem.isFormField()){
                     String fieldName = formitem.getFieldName();
                     if(fieldName.equals("userName")){
-                        userName = formitem.getString();
+                        userName = formitem.getString("UTF-8");
                     }
                     else if(fieldName.equals("password")){
-                        password = formitem.getString();
+                        password = formitem.getString("UTF-8");
                     }
                     else if(fieldName.equals("name")){
-                        name = formitem.getString();
+                        name = formitem.getString("UTF-8");
                     }
                     else if(fieldName.equals("mobile")){
-                        mobile = formitem.getString();
+                        mobile = formitem.getString("UTF-8");
                     }
                     else if(fieldName.equals("sex")){
-                        sex = Integer.parseInt(formitem.getString());
+                        sex = Integer.parseInt(formitem.getString("UTF-8"));
                     }
                     else if(fieldName.equals("introduction")){
-                        introduction = formitem.getString();
+                        introduction = formitem.getString("UTF-8");
                     }
                     else if(fieldName.equals("userId")){
-                        id = Integer.parseInt(formitem.getString());
+                        id = Integer.parseInt(formitem.getString("UTF-8"));
                     }
                 }
                 else{

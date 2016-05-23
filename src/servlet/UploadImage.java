@@ -102,7 +102,7 @@ public class UploadImage extends HttpServlet {
                 else{
                     String fieldName = formItem.getFieldName();
                     if(fieldName.equals("description")){
-                        description = formItem.getString();
+                        description = formItem.getString("UTF-8");
                     }
                 }
             }

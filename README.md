@@ -24,6 +24,21 @@ copyright Ray 2016
 
 下面是创建数据库的语句
 
+user记录管理员和用户
+
+achievement记录用户上传的成果
+
+news记录管理员创建的新闻
+
+newsComment和achievementComment记录新闻和成果的评价
+
+photo记录用户管理员上传的图片
+
+file记录用户管理员上传的文件
+
+以上两个一般在新闻和成果中引用
+
+
 CREATE DATABASE JSPFinalProject CHARACTER SET  utf8  COLLATE utf8_general_ci;
 
 CREATE TABLE user
@@ -64,20 +79,24 @@ CREATE TABLE news
   FOREIGN KEY (userId) REFERENCES user(id)
 );
 
-CREATE TABLE newsPhoto
+CREATE TABLE photo
 (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  url VARCHAR(255) NOT NULL,
-  newsId INT,
-  FOREIGN KEY (newsId) REFERENCES news(id)
+  userId INT NOT NULL ,
+  description VARCHAR(100),
+  url VARCHAR(50) NOT NULL,
+  createTime DATETIME NOT NULL,
+  FOREIGN KEY (userId) REFERENCES user(id)
 );
 
-CREATE TABLE achievementPhoto
+CREATE TABLE file
 (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  url VARCHAR(255) NOT NULL,
-  achievementId INT,
-  FOREIGN KEY (achievementId) REFERENCES achievement(id)
+  userId INT NOT NULL ,
+  description VARCHAR(100),
+  url VARCHAR(50) NOT NULL ,
+  createTime DATETIME NOT NULL ,
+  FOREIGN KEY (userId) REFERENCES user(id)
 );
 
 CREATE TABLE newsComment

@@ -104,7 +104,7 @@ public class EditInfo extends HttpServlet {
                     String adjunctsize = Long.toString(formitem.getSize());
                     if((fileName == null) || (fileName.equals("")) && adjunctsize.equals("0"))
                         continue;
-                    //MacOSX地址分割符/
+
                     suffix = fileName.substring(fileName.lastIndexOf(".")+1,fileName.length());
 
                     //文件名 年月日时分秒+5位随机数

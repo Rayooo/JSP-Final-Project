@@ -53,6 +53,15 @@
                                     </ul>
                                 </li>
 
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">资源<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="photoList.jsp">图片库</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">文件库</a></li>
+                                    </ul>
+                                </li>
+
                                 <%
                                 out.println("<li class='naviButton'><a href='editMyInfo.jsp' target='_blank'>个人信息</a></li>");
                             }
@@ -60,6 +69,16 @@
                                 out.println("<a type='button' class='btn btn-primary navbar-btn' href='logout.jsp'>退出</a>");
                                 out.println("<li class='naviButton'><a href='index.jsp'>主页</a></li>");
                                 out.println("<li class='naviButton'><a href='index.jsp'>上传成果</a></li>");
+                                %>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">资源<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="photoList.jsp">图片库</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">文件库</a></li>
+                                    </ul>
+                                </li>
+                    <%
                                 out.println("<li class='naviButton'><a href='editMyInfo.jsp' target='_blank'>个人信息</a></li>");
                             }
                         }

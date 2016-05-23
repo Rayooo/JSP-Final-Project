@@ -22,7 +22,14 @@
         tinymce.init({
             selector: '#newsTextArea',
             language: 'zh_CN',
-            height: 400
+            height: 400,
+            plugins: [
+                'advlist autolink link image lists charmap preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars fullscreen insertdatetime nonbreaking',
+                'save table contextmenu directionality template paste textcolor'
+            ],
+            content_css: 'css/content.css',
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview fullpage | forecolor backcolor emoticons'
         });
     </script>
 </head>

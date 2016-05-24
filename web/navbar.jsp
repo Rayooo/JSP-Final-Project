@@ -58,7 +58,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="photoList.jsp">图片库</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="#">文件库</a></li>
+                                        <li><a href="fileList.jsp">文件库</a></li>
                                     </ul>
                                 </li>
 
@@ -75,7 +75,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="photoList.jsp">图片库</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="#">文件库</a></li>
+                                        <li><a href="fileList.jsp">文件库</a></li>
                                     </ul>
                                 </li>
                     <%

@@ -61,8 +61,7 @@
 %>
 
 <%--内容--%>
-<div class="container" id="photoListTable">
-</div>
+<div class="container" id="photoListTable"></div>
 
 <%--分页--%>
 <nav class="text-center">
@@ -91,7 +90,7 @@
             $("#previous").removeClass("disabled");
         }
 
-        if(currentPage == <%=count%>){
+        if(currentPage >= <%=count%>){
             $("#next").addClass("disabled");
         }
         else{

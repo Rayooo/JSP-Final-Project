@@ -42,7 +42,7 @@ public class UploadImage extends HttpServlet {
 
         //文件信息
         String suffix = null;   //后缀名
-        String fileDir = getServletContext().getRealPath("/upload");
+        String fileDir = getServletContext().getRealPath("/upload/photo");
         String relativePath = null;
         String message = "上传图片成功";
         String address = "";
@@ -89,7 +89,7 @@ public class UploadImage extends HttpServlet {
                     int rannum = (int) (random.nextDouble() * (99999 - 10000 + 1)) + 10000;// 获取5位随机数
                     String fileNameRandom = simpleDateFormat.format(now) + Integer.toString(rannum) + "." + suffix;
 
-                    relativePath = "upload/" + fileNameRandom;
+                    relativePath = "upload/photo/" + fileNameRandom;
                     address = fileDir + "/" + fileNameRandom;   //文件上传地址
                     File saveFile = new File(address);
                     try {

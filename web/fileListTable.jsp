@@ -18,9 +18,10 @@
         Statement statement = dbConnection.connection.createStatement();
         String sql = "SELECT * FROM file  WHERE isDeleted=0 ORDER BY id DESC LIMIT "+ Integer.toString((currentPage-1)*10) +",10";//(页数-1)*每页条数,每页条数
         ResultSet resultSet = statement.executeQuery(sql);
-
+        int fileCount = 1;
         if (resultSet != null){
             while (resultSet.next()){
+                int fileId = resultSet.getInt("id");
                 String originalFileName = resultSet.getString("fileName");
                 String url = resultSet.getString("url");
                 String createTime = resultSet.getDate("createTime") + " " + resultSet.getTime("createTime");
@@ -37,11 +38,28 @@
                     userResultSet.next();
                     uploadFileUserName = userResultSet.getString("name");
                 }
-                %>
+                if(fileCount % 2 == 0){
+                    out.println("<div class='row'>");
+                }
+                String[] fileNameArr = originalFileName.split("\\.");
+                String suffix = fileNameArr[fileNameArr.length - 1];
+%>
                 <div class="media col-md-6" style="margin-top: 0">
                     <div class="media-left">
                         <a href="#">
-                            <img class="media-object" src="image/code.png" alt="...">
+                            <%
+                                if(suffix.equals("avi") || suffix.equals("doc") ||
+                                        suffix.equals("html") || suffix.equals("js") ||
+                                        suffix.equals("mp3") || suffix.equals("mp4") ||
+                                        suffix.equals("pdf") || suffix.equals("xls") ||
+                                        suffix.equals("zip")){
+                                    out.print("<img class='media-object' src='image/"+suffix+".png' alt='...'>");
+                                }
+                                else {
+                                    out.print("<img class='media-object' src='image/file.png' alt='...'>");
+                                }
+                            %>
+                            <%--<img class="media-object" src="image/file.png" alt="...">--%>
                         </a>
                     </div>
                     <div class="media-body">
@@ -65,6 +83,10 @@
                     userStatement.close();
                 }
                 userConnection.closeConnection();
+                if(fileCount % 2 == 0){
+                    out.println("</div>");
+                }
+                fileCount++;
             }
         }
 

@@ -60,47 +60,6 @@
     }
 %>
 
-
-<div class="container">
-    <div class="media col-md-6">
-        <div class="media-left">
-            <a href="#">
-                <img class="media-object" src="image/code.png" alt="...">
-            </a>
-        </div>
-        <div class="media-body">
-            <h4 class="media-heading">文件名</h4>
-            <p>上传者</p>
-            <p>描述</p>
-            <p>引用链接</p>
-            <p>上传时间</p>
-            <p>
-                <button class="btn btn-success">下载</button>
-                <button class="btn btn-danger">删除</button>
-            </p>
-        </div>
-    </div>
-
-    <div class="media col-md-6" style="margin-top: 0">
-        <div class="media-left">
-            <a href="#">
-                <img class="media-object" src="image/code.png" alt="...">
-            </a>
-        </div>
-        <div class="media-body">
-            <h4 class="media-heading">文件名</h4>
-            <p>上传者</p>
-            <p>描述</p>
-            <p>引用链接</p>
-            <p>上传时间</p>
-            <p>
-                <button class="btn btn-success">下载</button>
-                <button class="btn btn-danger">删除</button>
-            </p>
-        </div>
-    </div>
-</div>
-
 <%--内容--%>
 <div class="container" id="fileListTable"></div>
 

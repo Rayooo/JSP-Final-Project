@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -40,6 +41,7 @@ public class UploadFile extends HttpServlet {
         String description = null;
 
         //文件信息
+        String originalFileName = null;
         String suffix = null;   //后缀名
         String fileDir = getServletContext().getRealPath("/upload/file");
         String relativePath = null;
@@ -70,7 +72,7 @@ public class UploadFile extends HttpServlet {
                 FileItem formItem = (FileItem) iterator.next();
                 if(!formItem.isFormField()){
                     String fileName = formItem.getName();
-
+                    originalFileName = fileName;
                     String adjunctsize = Long.toString(formItem.getSize());
                     if((fileName == null) || (fileName.equals("")) && adjunctsize.equals("0"))
                         continue;
@@ -108,8 +110,8 @@ public class UploadFile extends HttpServlet {
             try {
                 //如果上传图片
                 DbConnection dbConnection = new DbConnection();
-                String sql = "INSERT INTO file (userId, description, url, createTime) " +
-                        "VALUES ("+Integer.toString(userId)+",'"+description+"','"+relativePath+"','"+ SqlDate.getSQLDateTime()+"') ";
+                String sql = "INSERT INTO file (userId, description, url, createTime, fileName) " +
+                        "VALUES ("+Integer.toString(userId)+",'"+description+"','"+relativePath+"','"+ SqlDate.getSQLDateTime()+"','"+originalFileName+"')";
                 Statement statement = dbConnection.connection.createStatement();
                 int rs = statement.executeUpdate(sql);
                 if(rs>0){

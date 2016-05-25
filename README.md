@@ -97,6 +97,7 @@ CREATE TABLE file
   description VARCHAR(100),
   url VARCHAR(50) NOT NULL ,
   isDeleted INT DEFAULT 0,
+  fileName VARCHAR(100),
   createTime DATETIME NOT NULL ,
   FOREIGN KEY (userId) REFERENCES user(id)
 );

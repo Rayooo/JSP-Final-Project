@@ -16,6 +16,9 @@
     try {
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
+        DbConnection userConnection = new DbConnection();
+        Statement userStatement = userConnection.connection.createStatement();
+
         String sql = "SELECT * FROM file  WHERE isDeleted=0 ORDER BY id DESC LIMIT "+ Integer.toString((currentPage-1)*10) +",10";//(页数-1)*每页条数,每页条数
         ResultSet resultSet = statement.executeQuery(sql);
         int fileCount = 1;
@@ -29,8 +32,7 @@
 
                 String uploadFileUserId = Integer.toString(resultSet.getInt("userId"));
 
-                DbConnection userConnection = new DbConnection();
-                Statement userStatement = userConnection.connection.createStatement();
+
                 String userSql = "SELECT name FROM user WHERE id="+uploadFileUserId;
                 ResultSet userResultSet = userStatement.executeQuery(userSql);
                 String uploadFileUserName = "";
@@ -80,13 +82,6 @@
                     </div>
                 </div>
 <%
-                if(userResultSet != null){
-                    userResultSet.close();
-                }
-                if(userStatement != null){
-                    userStatement.close();
-                }
-                userConnection.closeConnection();
                 if(fileCount % 2 == 0){
                     out.println("</div>");
                 }

@@ -60,9 +60,11 @@ public class UploadImage extends HttpServlet {
             }
             catch (FileUploadException e){
                 e.printStackTrace();
+                isError = true;
                 request.setAttribute("message","上传图片失败");
-                request.setAttribute("isError",true);
+                request.setAttribute("isError", true);
                 request.getRequestDispatcher("uploadImageMessage.jsp").forward(request, response);
+                return;
             }
 
             Iterator iterator = formLists.iterator();
@@ -96,6 +98,7 @@ public class UploadImage extends HttpServlet {
                         formItem.write(saveFile);   //向文件写数据
                     } catch (Exception e) {
                         e.printStackTrace();
+                        message = "上传图片失败";
                         isError = true;
                     }
                 }
@@ -122,7 +125,7 @@ public class UploadImage extends HttpServlet {
                 dbConnection.closeConnection();
 
                 request.setAttribute("message",message);
-                request.setAttribute("isError",false);
+                request.setAttribute("isError",isError);
                 request.getRequestDispatcher("uploadImageMessage.jsp").forward(request, response);
 
             } catch (SQLException e) {

@@ -30,7 +30,7 @@
                         <div class="caption">
                             <p>描述: <%=resultSet.getString("description").equals("")? "无" :resultSet.getString("description")%></p>
                             <p>上传时间: <%=resultSet.getDate("createTime")%>  <%=resultSet.getTime("createTime")%></p>
-                            <p>url: <%=resultSet.getString("url")%></p>
+                            <p>引用链接: <%=resultSet.getString("url")%></p>
                             <%
                                 if(resultSet.getInt("userId")==(Integer)session.getAttribute("userId") || (Integer)session.getAttribute("isManager") == 1){
                                     out.print("<p><button class='btn btn-danger deleteButton' id='delete"+resultSet.getInt("id")+"'>删除</button></p>");

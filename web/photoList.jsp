@@ -30,7 +30,7 @@
     <form class="form-horizontal" method="post" action="/uploadImage" enctype="multipart/form-data">
         <div class="row" style="margin-top: 3%">
             <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 3%">
-                <input class="form-control" type="text" name="description" placeholder="可照片填写描述">
+                <input class="form-control" type="text" name="description" placeholder="可填写照片描述">
             </div>
             <div class="col-xs-7 col-sm-7 col-md-7" style="padding-top: 1%">
                 <input type="file" style="float: right" accept="image/*" name="uploadImage" id="uploadImage" required>

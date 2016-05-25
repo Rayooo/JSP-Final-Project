@@ -94,7 +94,7 @@
             <div class="col-md-6" id="headImageDiv2">
                 <img id="preview" src="<%=headImage%>" alt="...">
                 <div class="caption">
-                    <input type="file" name="image" id="uploadImage">
+                    <input type="file" accept="image/*" name="image" id="uploadImage">
                 </div>
             </div>
         </div>

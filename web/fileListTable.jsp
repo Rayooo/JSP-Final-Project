@@ -71,7 +71,11 @@
                         <p>
                             <%--<button class="btn btn-success">下载</button>--%>
                             <a class="btn btn-success" download="<%=resultSet.getString("fileName")%>" href="<%=resultSet.getString("url")%>">下载</a>
-                            <button class="btn btn-danger">删除</button>
+                            <%
+                                if(resultSet.getInt("userId")==(Integer)session.getAttribute("userId") || (Integer)session.getAttribute("isManager") == 1){
+                                    out.print("<button class='btn btn-danger deleteButton' id='delete"+fileId+"'>删除</button>");
+                                }
+                            %>
                         </p>
                     </div>
                 </div>
@@ -94,3 +98,32 @@
         e.printStackTrace();
     }
 %>
+
+<script>
+    $(".deleteButton").click(function () {
+        var fileId = this.id.replace(/delete/,"");
+        swal({
+            title: "警告",
+            text: "您确定要删除此文件?",
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: "取消",
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "删除",
+            closeOnConfirm: false
+        }, function(){
+            $.post("/deleteFile",{fileId:fileId},function (data) {
+                if(data == "success"){
+                    swal("成功", "已删除该文件", "success");
+                    var deleteButton = $("#delete"+fileId);
+                    deleteButton.addClass("disabled");
+                    deleteButton.html("已删除");
+                    deleteButton.unbind("click");
+                }
+                else{
+                    swal("失败", data, "error");
+                }
+            })
+        });
+    })
+</script>

@@ -19,6 +19,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="sweetalert/dist/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="sweetalert/dist/sweetalert.css">
 </head>
 <body>
 <%@include file="navbar.jsp"%>
@@ -65,25 +67,59 @@
 </div>
 
 
-<div class="row container" id="comment">
-    <div class="col-sm-12 col-md-12">
-        <div class="thumbnail">
-            <div class="caption">
-                <h3>评论</h3>
-                <!--媒体对象,一头像一评论-->
-                <div class="media">
-                    <div class="media-left media-middle">
-                        <img class="media-object commentAvatarImage" src="image/5.png" alt="...">
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">评论</h4>
-                        aaaaaaaaaaaaaaaaaaaaaaaa
+<div class="container">
+    <div class="row" id="comment">
+        <div class="col-sm-12 col-md-12">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>评论</h3>
+                    <!--媒体对象,一头像一评论-->
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <img class="media-object commentAvatarImage" src="image/5.png" alt="...">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">评论</h4>
+                            aaaaaaaaaaaaaaaaaaaaaaaa
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="container" style="margin-bottom: 10%">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control" placeholder="说一句吧" id="newsComment">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="addComment">评论</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#addComment").click(function () {
+        if(<%=(String)session.getAttribute("userName") == null%>){
+            //没有登录
+            swal("评论失败", "请先登录", "warning");
+            return;
+        }
+        var newsId = <%=newsId%>;
+        var newsComment = $("#newsComment").val();
+        $.post("/addNewsComment",{newsId:newsId,newsComment:newsComment},function (data) {
+            if(data == "success"){
+                swal("成功", "添加评论成功", "success");
+            }
+            else{
+                swal("失败", "添加评论失败", "error");
+            }
+        })
+    })
+</script>
 
 
 </body>

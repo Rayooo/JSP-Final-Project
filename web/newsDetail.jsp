@@ -78,7 +78,7 @@
     <a id="next" type="button" class="btn btn-info btn-lg" style="float: right">（大按钮）Large button</a>
 </div>
 
-
+<%--评论--%>
 <div class="container">
     <div class="row" id="comment">
         <div class="col-sm-12 col-md-12">
@@ -86,49 +86,72 @@
                 <div class="caption">
                     <h3>评论</h3>
 <%
+//    先判断有没有评论
+                    boolean isExistComment = false;
                     try {
-                        DbConnection dbConnection = new DbConnection();
-                        Statement statement = dbConnection.connection.createStatement();
-                        DbConnection userDbConnection = new DbConnection();
-                        Statement userStatement = userDbConnection.connection.createStatement();
-
-                        String sql = "SELECT *,count(id) FROM newsComment WHERE newsId="+newsId;
-                        ResultSet resultSet = statement.executeQuery(sql);
-                        if(resultSet != null){
-                            while (resultSet.next()){
-                                if(resultSet.getInt("count(id)") == 0){
-                                    out.print("<div class='alert alert-info' role='alert'>暂时还没有评论,快来添加第一个评论吧</div>");
-                                }
-
-                                String userSql = "SELECT name,headImage FROM user WHERE id="+resultSet.getString("userId");
-                                ResultSet userResultSet = userStatement.executeQuery(userSql);
-                                if(userResultSet != null){
-                                    userResultSet.next();
-                                    String commentUserName = userResultSet.getString("name");
-                                    String commentHeadImage = userResultSet.getString("headImage");
-                                    String newsComment = resultSet.getString("content");
-                                    String commentCreateTime = resultSet.getDate("createTime")+" "+resultSet.getTime("createTime");
-                                    %>
-
-                                    <!--媒体对象,一头像一评论-->
-                                    <div class="media" style="margin-top: 3%;margin-bottom: 3%">
-                                        <div class="media-left media-middle">
-                                            <img class="media-object commentAvatarImage" src="<%=commentHeadImage%>" alt="...">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading"><%=commentUserName%></h4>
-                                            <%=commentCreateTime%><br>
-                                            <%=newsComment%>
-                                        </div>
-                                    </div>
-
-                        <%
-                                }
-                            }
+                        DbConnection existCommentDbConnection = new DbConnection();
+                        Statement existCommentStatement = existCommentDbConnection.connection.createStatement();
+                        String exitsCommentSql = "SELECT count(id) FROM newsComment WHERE newsId="+newsId;
+                        ResultSet existCommentResultSet = existCommentStatement.executeQuery(exitsCommentSql);
+                        if(existCommentResultSet != null){
+                            existCommentResultSet.next();
+                            isExistComment = existCommentResultSet.getInt("count(id)") > 0;
                         }
                     }catch (SQLException e){
                         e.printStackTrace();
                     }
+//    如果没有评论则输出提示语句,有评论则输出内容
+                    if(!isExistComment){
+                        out.print("<div class='alert alert-info' role='alert'>暂时还没有评论,快来添加第一个评论吧</div>");
+                    }else{
+                        try {
+                            DbConnection dbConnection = new DbConnection();
+                            Statement statement = dbConnection.connection.createStatement();
+                            DbConnection userDbConnection = new DbConnection();
+                            Statement userStatement = userDbConnection.connection.createStatement();
+
+                            String sql = "SELECT * FROM newsComment WHERE newsId="+newsId;
+                            ResultSet resultSet = statement.executeQuery(sql);
+                            if(resultSet != null){
+                                while (resultSet.next()){
+
+                                    int commentUserId = resultSet.getInt("userId");
+                                    String userSql = "SELECT name,headImage FROM user WHERE id="+Integer.toString(commentUserId);
+                                    ResultSet userResultSet = userStatement.executeQuery(userSql);
+                                    if(userResultSet != null){
+                                        userResultSet.next();
+                                        String commentUserName = userResultSet.getString("name");
+                                        String commentHeadImage = userResultSet.getString("headImage");
+                                        String newsComment = resultSet.getString("content");
+                                        String commentCreateTime = resultSet.getDate("createTime")+" "+resultSet.getTime("createTime");
+%>
+
+                                        <!--媒体对象,一头像一评论-->
+                                        <div class="media" style="margin-top: 3%;margin-bottom: 3%">
+                                            <div class="media-left media-middle">
+                                                <img class="media-object commentAvatarImage" src="<%=commentHeadImage%>" alt="...">
+                                            </div>
+                                            <div class="media-body">
+                                                <%
+                                                  if(session.getAttribute("userName")!= null &&( commentUserId == (Integer)session.getAttribute("userId") || 1 == (Integer)session.getAttribute("isManager"))){
+                                                        out.print("<button class='btn btn-danger' style='float: right'>删除</button>");
+                                                    }
+                                                %>
+                                                <h4 class="media-heading"><%=commentUserName%></h4>
+                                                <%=commentCreateTime%><br>
+                                                <%=newsComment%>
+                                            </div>
+                                        </div>
+
+                    <%
+                                        }
+                                    }
+                                }
+                            }catch (SQLException e){
+                                e.printStackTrace();
+                            }
+                    }
+
 %>
                 </div>
             </div>
@@ -137,12 +160,7 @@
 </div>
 
 
-
-
-
-
-
-<%--评论框--%>
+<%--添加评论框--%>
 <div class="container" style="margin-bottom: 10%">
     <div class="row">
         <div class="col-lg-12">

@@ -70,7 +70,7 @@
             $("#previous").removeClass("disabled");
         }
 
-        if(currentPage == <%=count%>){
+        if(currentPage >= <%=count%>){
             $("#next").addClass("disabled");
         }
         else{

@@ -82,7 +82,7 @@
 <div class="container">
     <div class="row" id="comment">
         <div class="col-sm-12 col-md-12">
-            <div class="thumbnail">
+            <div class="thumbnail col-md-12">
                 <div class="caption">
                     <h3>评论</h3>
 <%
@@ -91,7 +91,7 @@
                     try {
                         DbConnection existCommentDbConnection = new DbConnection();
                         Statement existCommentStatement = existCommentDbConnection.connection.createStatement();
-                        String exitsCommentSql = "SELECT count(id) FROM newsComment WHERE newsId="+newsId;
+                        String exitsCommentSql = "SELECT count(id) FROM newsComment WHERE isDeleted=0 AND newsId="+newsId;
                         ResultSet existCommentResultSet = existCommentStatement.executeQuery(exitsCommentSql);
                         if(existCommentResultSet != null){
                             existCommentResultSet.next();
@@ -110,11 +110,11 @@
                             DbConnection userDbConnection = new DbConnection();
                             Statement userStatement = userDbConnection.connection.createStatement();
 
-                            String sql = "SELECT * FROM newsComment WHERE newsId="+newsId;
+                            String sql = "SELECT * FROM newsComment WHERE isDeleted=0 AND newsId="+newsId;
                             ResultSet resultSet = statement.executeQuery(sql);
                             if(resultSet != null){
                                 while (resultSet.next()){
-
+                                    int commentId = resultSet.getInt("id");
                                     int commentUserId = resultSet.getInt("userId");
                                     String userSql = "SELECT name,headImage FROM user WHERE id="+Integer.toString(commentUserId);
                                     ResultSet userResultSet = userStatement.executeQuery(userSql);
@@ -127,19 +127,19 @@
 %>
 
                                         <!--媒体对象,一头像一评论-->
-                                        <div class="media" style="margin-top: 3%;margin-bottom: 3%">
+                                        <div class="media" style="margin-top: 3%;margin-bottom: 3%" id="comment<%=commentId%>">
                                             <div class="media-left media-middle">
                                                 <img class="media-object commentAvatarImage" src="<%=commentHeadImage%>" alt="...">
                                             </div>
                                             <div class="media-body">
                                                 <%
                                                   if(session.getAttribute("userName")!= null &&( commentUserId == (Integer)session.getAttribute("userId") || 1 == (Integer)session.getAttribute("isManager"))){
-                                                        out.print("<button class='btn btn-danger' style='float: right'>删除</button>");
+                                                        out.print("<button class='btn btn-danger deleteButton' id='delete"+commentId+"' style='float: right'>删除</button>");
                                                     }
                                                 %>
                                                 <h4 class="media-heading"><%=commentUserName%></h4>
                                                 <%=commentCreateTime%><br>
-                                                <%=newsComment%>
+                                                <div style="word-wrap:break-word;word-break:break-all; "><%=newsComment%></div>
                                             </div>
                                         </div>
 
@@ -174,8 +174,39 @@
     </div>
 </div>
 <script>
+    //删除评论
+    $(".deleteButton").click(function () {
+        var newsCommentId = this.id.replace(/delete/,"");
+        swal({
+            title: "警告",
+            text: "您确定要删除此评论?",
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: "取消",
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "删除",
+            closeOnConfirm: false
+        }, function(){
+            $.post("/deleteNewsComment",{newsCommentId:newsCommentId},function (data) {
+                if(data == "success"){
+                    swal("成功", "已删除该评论", "success");
+                    var deleteButton = $("#delete"+newsCommentId);
+                    deleteButton.addClass("disabled");
+                    deleteButton.html("已删除");
+                    deleteButton.unbind("click");
+                    $("#comment"+newsCommentId).remove();
+                }
+                else{
+                    swal("失败", data, "error");
+                }
+            })
+        });
+    })
+
+
+    //添加评论
     $("#addComment").click(function () {
-        if(<%=(String)session.getAttribute("userName") == null%>){
+        if(<%=session.getAttribute("userName") == null%>){
             //没有登录
             swal("评论失败", "请先登录", "warning");
             return;

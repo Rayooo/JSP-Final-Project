@@ -64,7 +64,7 @@ CREATE TABLE achievement
   userId INT,
   title VARCHAR(255) NOT NULL,
   content TEXT NOT NULL,
-  isDeleted INT DEFAULT 0,
+  isDeleted SMALLINT DEFAULT 0,
   createTime DATETIME,
   FOREIGN KEY (userId) REFERENCES user(id)
 );
@@ -75,7 +75,7 @@ CREATE TABLE news
   userId INT,
   title VARCHAR(255) NOT NULL,
   content TEXT NOT NULL,
-  isDeleted INT DEFAULT 0,
+  isDeleted SMALLINT DEFAULT 0,
   createTime DATETIME,
   FOREIGN KEY (userId) REFERENCES user(id)
 );
@@ -86,7 +86,7 @@ CREATE TABLE photo
   userId INT NOT NULL ,
   description VARCHAR(100),
   url VARCHAR(50) NOT NULL,
-  isDeleted INT DEFAULT 0,
+  isDeleted SMALLINT DEFAULT 0,
   createTime DATETIME NOT NULL,
   FOREIGN KEY (userId) REFERENCES user(id)
 );
@@ -97,7 +97,7 @@ CREATE TABLE file
   userId INT NOT NULL ,
   description VARCHAR(100),
   url VARCHAR(50) NOT NULL ,
-  isDeleted INT DEFAULT 0,
+  isDeleted SMALLINT DEFAULT 0,
   fileName VARCHAR(100),
   createTime DATETIME NOT NULL ,
   FOREIGN KEY (userId) REFERENCES user(id)
@@ -110,6 +110,7 @@ CREATE TABLE newsComment
   userId INT,
   newsId INT,
   createTime DATETIME,
+  isDeleted SMALLINT DEFAULT 0 NOT NULL,
   FOREIGN KEY (userId) REFERENCES user(id),
   FOREIGN KEY (newsId) REFERENCES news(id)
 );
@@ -121,6 +122,7 @@ CREATE TABLE achievementComment
   userId INT,
   achievementId INT,
   createTime DATETIME,
+  isDeleted SMALLINT DEFAULT 0 NOT NULL,
   FOREIGN KEY (userId) REFERENCES user(id),
   FOREIGN KEY (achievementId) REFERENCES achievement(id)
 );

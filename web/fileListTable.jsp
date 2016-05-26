@@ -54,7 +54,8 @@
                                         suffix.equals("html") || suffix.equals("js") ||
                                         suffix.equals("mp3") || suffix.equals("mp4") ||
                                         suffix.equals("pdf") || suffix.equals("xls") ||
-                                        suffix.equals("zip")){
+                                        suffix.equals("zip") || suffix.equals("docx") ||
+                                        suffix.equals("xlsx")){
                                     out.print("<img class='media-object' src='image/"+suffix+".png' alt='...'>");
                                 }
                                 else {

@@ -74,8 +74,8 @@
 <div class="container"><%=newsContent%></div>
 
 <div class="container" style="margin-top: 5%;margin-bottom: 5%">
-    <a id="previous" type="button" class="btn btn-info btn-lg">（大按钮）Large button</a>
-    <a id="next" type="button" class="btn btn-info btn-lg" style="float: right">（大按钮）Large button</a>
+    <a id="previousNews" type="button" class="btn btn-info btn-lg">上一篇</a>
+    <a id="nextNews" type="button" class="btn btn-info btn-lg" style="float: right">下一篇</a>
 </div>
 
 <%--评论--%>
@@ -174,6 +174,37 @@
     </div>
 </div>
 <script>
+    //前一篇新闻
+    $("#previousNews").click(function () {
+        $.post("/previousNextNews",{choice:"previous",currentNewsId:'<%=newsId%>'},function (data) {
+            if(data != "noNews" && data != "null"){
+                location.href = "newsDetail.jsp?newsId="+data;
+            }
+            else if(data == "noNews"){
+                swal("警告", "没有文章了", "warning");
+            }
+            else if(data == "null"){
+                swal("失败", "发生错误", "error");
+            }
+        })
+    });
+
+    //后一篇新闻
+    $("#nextNews").click(function () {
+        $.post("/previousNextNews",{choice:"next",currentNewsId:'<%=newsId%>'},function (data) {
+            if(data != "noNews" && data != "null"){
+                location.href = "newsDetail.jsp?newsId="+data;
+            }
+            else if(data == "noNews"){
+                swal("警告", "这是最后一篇文章或者", "warning");
+            }
+            else if(data == "null"){
+                swal("失败", "发生错误", "error");
+            }
+        })
+    });
+
+
     //删除评论
     $(".deleteButton").click(function () {
         var newsCommentId = this.id.replace(/delete/,"");

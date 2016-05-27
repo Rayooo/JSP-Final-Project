@@ -31,6 +31,9 @@ public class Register extends HttpServlet {
         if(choiceManager != null && choiceManager[0].equals("manager"))
             isManager = 1;
 
+        boolean isError = false;
+        String message = "提交注册成功,请等待管理员的审核";
+
         java.util.Date date = new java.util.Date();
         SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//24小时制
         String createTime = sdformat.format(date);
@@ -42,16 +45,24 @@ public class Register extends HttpServlet {
             DbConnection dbConnection = new DbConnection();
             Statement statement = dbConnection.connection.createStatement();
             int rs = statement.executeUpdate(sql);
-            if(rs > 0)
-                System.out.println("插入用户成功");
-            else
-                throw new SQLException("错误");
+            if(rs > 0){
+                isError = false;
+            }
+            else{
+                isError = true;
+                message = "存在相同的用户名,请修改用户名后重新提交";
+            }
             dbConnection.closeConnection();
-            response.sendRedirect("index.jsp");
+
+            request.setAttribute("message",message);
+            request.setAttribute("isError",isError);
+            request.getRequestDispatcher("registerMessage.jsp").forward(request, response);
+
         } catch (SQLException e) {
-            //TODO 跳转到错误页面
-            System.out.println("插入失败");
             e.printStackTrace();
+            request.setAttribute("message","存在相同的用户名,请修改用户名后重新提交");
+            request.setAttribute("isError",true);
+            request.getRequestDispatcher("registerMessage.jsp").forward(request, response);
         }
 
 

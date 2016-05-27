@@ -66,14 +66,14 @@
         <div class="col-sm-6 col-md-6">
             <div class="thumbnail">
                 <div class="caption">
-                    <h3>新闻展示</h3>
+                    <h3>新闻展示 <button class="btn btn-default" style="float: right">更多</button></h3>
 
-                    <form role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
+                    <%--<form role="search">--%>
+                        <%--<div class="form-group">--%>
+                            <%--<input type="text" class="form-control" placeholder="Search">--%>
+                        <%--</div>--%>
+                        <%--<button type="submit" class="btn btn-default">Submit</button>--%>
+                    <%--</form>--%>
 
                     <div class="list-group">
                         <%

@@ -78,16 +78,16 @@
 <div class="jumbotron" id="jumbotron">
     <div class="container" id="welcome">
         <h1>Welcome</h1>
-        <a>新闻</a><br>
-        <a>成果展示</a><br>
-        <a>个人介绍</a><br>
+        <a href="#newsA" style="font-size: 25px">新闻</a><br>
+        <a href="#achievementA" style="font-size: 25px">成果展示</a><br>
+        <a href="#introductionA" style="font-size: 25px">个人介绍</a><br>
     </div>
     <img src="image/indexBackground.jpg" class="img-responsive">
 </div>
 
 
 <div class="container">
-    <div class="row">
+    <div class="row" id="newsA">
         <div class="col-sm-12 col-md-12">
             <div class="thumbnail">
                 <div class="caption">
@@ -118,7 +118,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="achievementA">
         <div class="col-sm-12 col-md-12">
             <div class="thumbnail">
                 <div class="caption">
@@ -140,7 +140,7 @@
 
 
 
-    <div class="row">
+    <div class="row" id="introductionA">
         <div class="col-sm-12 col-md-12">
             <div class="thumbnail">
                 <div class="caption">

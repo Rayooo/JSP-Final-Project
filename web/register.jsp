@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <script src="sweetalert/dist/sweetalert-dev.js"></script>
     <link rel="stylesheet" href="sweetalert/dist/sweetalert.css">
+    <script src="js/vue.js"></script>
     <style>
         body {
             margin: 0;
@@ -63,8 +64,6 @@
 </head>
 <body>
 
-<%--<div id="particles-js">--%>
-<%--</div>--%>
 
 <%--彩色魔方--%>
 <div id="containerCube"></div>
@@ -100,34 +99,37 @@
 
 
 
-<div class="container" style="color: white">
+<div class="container" style="color: white" id="vue">
 
     <h1 class="form-signin-heading">欢迎您的到来</h1>
-    <form class="form-horizontal" method="post" action="" onsubmit="return check();">
+    <form class="form-horizontal" method="post" action="/register" onsubmit="return check();">
         <div class="form-group">
             <label for="userName" class="col-sm-3 control-label">用户名</label>
-            <div class="col-sm-9 has-success">
-                <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名" required>
+            <div class="col-sm-9 " v-bind:class="{'has-success':isOkUserName}">
+                <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名" v-model="userName" required>
                 <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right: 10px"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="password" class="col-sm-3 control-label">密码</label>
-            <div class="col-sm-9">
-                <input type="password" class="form-control" id="password" name="password" placeholder="密码" required>
+            <div class="col-sm-9" v-bind:class="{'has-success':isOkPassword}">
+                <input type="password" class="form-control" id="password" name="password" placeholder="密码" v-model="password" required>
+                <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right: 10px"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="password2" class="col-sm-3 control-label">重复密码</label>
-            <div class="col-sm-9">
-                <input type="password" class="form-control" id="password2" placeholder="重复密码" required>
+            <div class="col-sm-9" v-bind:class="{'has-success':isOkPassword2}">
+                <input type="password" class="form-control" id="password2" placeholder="重复密码" v-model="password2" required>
+                <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right: 10px"></span>
             </div>
         </div>
 
         <div class="form-group">
             <label for="name" class="col-sm-3 control-label">真实姓名</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" id="name" name="name" placeholder="真实姓名" required>
+            <div class="col-sm-9" v-bind:class="{'has-success':isOkRealName}">
+                <input type="text" class="form-control" id="name" name="name" placeholder="真实姓名" v-model="realName" required>
+                <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right: 10px"></span>
             </div>
         </div>
 
@@ -148,20 +150,42 @@
     </form>
 </div>
 
-<%--<script src="js/particles.js"></script>--%>
-<%--<script src="js/particlesSetting.js"></script>--%>
 
 <script>
     function check() {
-        var password1 = $('#password').val();
-        var password2 = $('#password2').val();
-        if(password1 != password2){
-            swal("输入密码不一致", "请重新输入", "warning");
-            return false;
-        }else{
+        if(registerData.isOkUserName && registerData.isOkPassword2 && registerData.isOkRealName){
             return true;
+        }else{
+            swal("表单信息有误,请重新更改后重新提交", "请重新输入", "warning");
+            return false;
         }
     }
+
+    var registerData = new Vue({
+        el: "#vue",
+        data:{
+            userName: "",
+            password: "",
+            password2: "",
+            realName : ""
+        },
+        computed:{
+            isOkUserName: function () {
+                return this.userName.length > 7 && this.userName.length < 15;
+            },
+            isOkPassword: function () {
+                return this.password.length > 7 && this.password.length < 15;
+            },
+            isOkPassword2: function () {
+                return this.password == this.password2 && this.password2.length > 7;
+            },
+            isOkRealName : function () {
+                return this.realName.length > 1 && this.realName.length < 15
+            }
+        }
+    })
+
+
 </script>
 
 <%--彩色魔方--%>

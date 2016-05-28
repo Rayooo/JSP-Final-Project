@@ -101,7 +101,7 @@
                     <label for="userNameNavBar" class="sr-only">用户名</label>
                     <input type="text" name="userNameNavBar" id="userNameNavBar" class="form-control" placeholder="用户名" required autofocus>
                     <label for="passwordNavBar" class="sr-only">密码</label>
-                    <input type="passwordNavBar" name="passwordNavBar" id="passwordNavBar" class="form-control" placeholder="密码" required>
+                    <input type="password" name="passwordNavBar" id="passwordNavBar" class="form-control" placeholder="密码" required>
                     <div class="text-center" id="loginButton">
                         <button type="submit" class="btn btn-success">登陆</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

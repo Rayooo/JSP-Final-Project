@@ -91,7 +91,7 @@
         <div class="col-sm-12 col-md-12">
             <div class="thumbnail">
                 <div class="caption">
-                    <h3>新闻展示 <a class="btn btn-default" style="float: right" href="searchNews.jsp">更多</a></h3>
+                    <h3>新闻展示 <a class="btn btn-default" style="float: right" href="searchNews.jsp">所有新闻</a></h3>
 
                     <div class="list-group">
                         <%

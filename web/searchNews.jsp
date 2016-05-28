@@ -20,6 +20,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="sweetalert/dist/sweetalert-dev.js"></script>
     <link rel="stylesheet" href="sweetalert/dist/sweetalert.css">
+    <script src="js/vue.js"></script>
 </head>
 <body>
 <%@include file="navbar.jsp"%>
@@ -28,7 +29,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="请输入新闻标题" id="searchNews">
+                <input type="text" class="form-control" placeholder="请输入新闻标题" id="searchNews" v-model="newsTitle">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" id="searchButton">搜索</button>
                 </span>
@@ -138,9 +139,25 @@
     });
 
     //搜索
-    $("#searchButton").click(function () {
-        var newsTitle = $("#searchNews").val();
-        $.post("searchNewsData.jsp",{newsTitle:newsTitle},function (data) {
+//    $("#searchButton").click(function () {
+//        var newsTitle = $("#searchNews").val();
+//        $.post("searchNewsData.jsp",{newsTitle:newsTitle},function (data) {
+//            if(data != ""){
+//                $("#newsListTable").hide();
+//                $("#footerNav").hide();
+//                $("#searchResult").html(data);
+//            }
+//        })
+//    })
+    //Vue优化查询,但是服务器压力会变大
+    var searchVue = new Vue({
+        el:"#searchNews",
+        data:{
+            newsTitle: ""
+        }
+    });
+    searchVue.$watch('newsTitle',function (val) {
+        $.post("searchNewsData.jsp",{newsTitle:val},function (data) {
             if(data != ""){
                 $("#newsListTable").hide();
                 $("#footerNav").hide();
@@ -148,6 +165,7 @@
             }
         })
     })
+
 
 </script>
 

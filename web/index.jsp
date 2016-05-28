@@ -22,7 +22,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <link href="css/index.css" rel="stylesheet">
     <style>
         .commentAvatarImage{
             width:64px;
@@ -92,21 +91,14 @@
         <div class="col-sm-12 col-md-12">
             <div class="thumbnail">
                 <div class="caption">
-                    <h3>新闻展示 <button class="btn btn-default" style="float: right">更多</button></h3>
-
-                    <%--<form role="search">--%>
-                        <%--<div class="form-group">--%>
-                            <%--<input type="text" class="form-control" placeholder="Search">--%>
-                        <%--</div>--%>
-                        <%--<button type="submit" class="btn btn-default">Submit</button>--%>
-                    <%--</form>--%>
+                    <h3>新闻展示 <a class="btn btn-default" style="float: right" href="searchNews.jsp">更多</a></h3>
 
                     <div class="list-group">
                         <%
                             try {
                                 DbConnection dbConnection = new DbConnection();
                                 Statement statement = dbConnection.connection.createStatement();
-                                String sql = "SELECT id,title,createTime FROM news WHERE isDeleted=0 ORDER BY id DESC ";
+                                String sql = "SELECT id,title,createTime FROM news WHERE isDeleted=0 ORDER BY id DESC LIMIT 10";
                                 ResultSet resultSet = statement.executeQuery(sql);
                                 if(resultSet != null){
                                     while (resultSet.next()){

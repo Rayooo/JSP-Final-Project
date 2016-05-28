@@ -75,7 +75,7 @@
             if(resultSet !=null)
                 resultSet.close();
             if(statement != null)
-                resultSet.close();
+                statement.close();
 
             dbConnection.closeConnection();
         }

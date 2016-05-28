@@ -196,7 +196,7 @@
                 location.href = "newsDetail.jsp?newsId="+data;
             }
             else if(data == "noNews"){
-                swal("警告", "这是最后一篇文章或者", "warning");
+                swal("警告", "没有文章了", "warning");
             }
             else if(data == "null"){
                 swal("失败", "发生错误", "error");
@@ -232,7 +232,7 @@
                 }
             })
         });
-    })
+    });
 
 
     //添加评论

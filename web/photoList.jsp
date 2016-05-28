@@ -55,6 +55,7 @@
             resultSet.next();
             count = Math.ceil(resultSet.getInt("count(id)")/9.0);
         }
+        dbConnection.closeConnection();
     }catch (SQLException e) {
         e.printStackTrace();
     }

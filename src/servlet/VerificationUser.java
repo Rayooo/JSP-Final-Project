@@ -38,6 +38,7 @@ public class VerificationUser extends HttpServlet {
                 writer.print("error");
             }
             writer.flush();
+            dbConnection.closeConnection();
         }
         catch (SQLException e) {
             PrintWriter writer = response.getWriter();

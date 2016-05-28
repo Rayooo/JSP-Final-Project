@@ -44,7 +44,7 @@
         else{
             out.println("<div class='container alert alert-warning text-center' role='alert'>未查询到信息</div>");
         }
-
+        dbConnection.closeConnection();
     }catch (SQLException e){
         e.printStackTrace();
     }

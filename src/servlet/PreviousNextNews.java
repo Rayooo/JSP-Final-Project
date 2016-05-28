@@ -46,6 +46,7 @@ public class PreviousNextNews extends HttpServlet {
             PrintWriter writer = response.getWriter();
             writer.print(returnNewsId);
             writer.flush();
+            dbConnection.closeConnection();
         }catch (SQLException e){
             e.printStackTrace();
             PrintWriter writer = response.getWriter();

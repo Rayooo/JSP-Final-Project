@@ -53,7 +53,7 @@
             title = resultSet.getString("title");
             content = resultSet.getString("content");
         }
-
+        dbConnection.closeConnection();
     }catch (SQLException e){
         e.printStackTrace();
     }

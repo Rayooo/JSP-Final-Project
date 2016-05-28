@@ -47,6 +47,7 @@
             }
 
         }
+        dbConnection.closeConnection();
     }catch (SQLException e){
         e.printStackTrace();
     }

@@ -44,6 +44,7 @@ public class DeletePhoto extends HttpServlet {
                         canDelete = true;
                     }
                 }
+                dbConnection.closeConnection();
             }catch (SQLException e){
                 e.printStackTrace();
                 PrintWriter writer = response.getWriter();
@@ -65,6 +66,7 @@ public class DeletePhoto extends HttpServlet {
                     writer.print("删除失败");
                 }
                 writer.flush();
+                dbConnection.closeConnection();
             }catch (SQLException e){
                 e.printStackTrace();
                 PrintWriter writer = response.getWriter();

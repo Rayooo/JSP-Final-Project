@@ -148,7 +148,7 @@ public class EditInfo extends HttpServlet {
                 preparedStatement.setInt(7,id);
                 int rs = preparedStatement.executeUpdate();
                 if(rs>0){
-                    System.out.println("更新信息成功");
+                    isError = false;
                 }
                 dbConnection.closeConnection();
 
@@ -179,7 +179,7 @@ public class EditInfo extends HttpServlet {
                 preparedStatement.setInt(8,id);
                 int rs = preparedStatement.executeUpdate();
                 if(rs>0){
-                    System.out.println("更新信息成功");
+                    isError = false;
                 }
                 dbConnection.closeConnection();
 

@@ -72,6 +72,7 @@
             createTime = String.valueOf(resultSet.getTime("createTime"));
             createDate = String.valueOf(resultSet.getDate("createTime"));
         }
+        dbConnection.closeConnection();
     }catch (SQLException e){
         e.printStackTrace();
     }
@@ -115,6 +116,7 @@
                             existCommentResultSet.next();
                             isExistComment = existCommentResultSet.getInt("count(id)") > 0;
                         }
+                        existCommentDbConnection.closeConnection();
                     }catch (SQLException e){
                         e.printStackTrace();
                     }
@@ -165,6 +167,8 @@
                                         }
                                     }
                                 }
+                                dbConnection.closeConnection();
+                                userDbConnection.closeConnection();
                             }catch (SQLException e){
                                 e.printStackTrace();
                             }

@@ -36,6 +36,7 @@
             resultSet.next();
             count = Math.ceil(resultSet.getInt("count(id)")/5.0);
         }
+        dbConnection.closeConnection();
     }catch (SQLException e) {
         e.printStackTrace();
     }

@@ -45,6 +45,7 @@ public class DeleteFile extends HttpServlet {
                         canDelete = true;
                     }
                 }
+                dbConnection.closeConnection();
             }catch (SQLException e){
                 e.printStackTrace();
                 PrintWriter writer = response.getWriter();
@@ -66,6 +67,7 @@ public class DeleteFile extends HttpServlet {
                     writer.print("删除失败");
                 }
                 writer.flush();
+                dbConnection.closeConnection();
             }catch (SQLException e){
                 e.printStackTrace();
                 PrintWriter writer = response.getWriter();

@@ -40,6 +40,7 @@ public class AddNews extends HttpServlet {
                 writer.print("error");
             }
             writer.flush();
+            dbConnection.closeConnection();
         }catch (SQLException e){
             e.printStackTrace();
             PrintWriter writer = response.getWriter();

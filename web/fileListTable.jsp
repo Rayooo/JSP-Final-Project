@@ -89,7 +89,8 @@
                 fileCount++;
             }
         }
-
+        dbConnection.closeConnection();
+        userConnection.closeConnection();
     }catch (SQLException e){
         e.printStackTrace();
     }

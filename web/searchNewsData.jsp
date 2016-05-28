@@ -14,7 +14,7 @@
     try {
         DbConnection dbconnection = new DbConnection();
         Statement statement = dbconnection.connection.createStatement();
-        String sql = "SELECT * FROM news WHERE title LIKE '%"+ newsTitle +"%'";
+        String sql = "SELECT * FROM news WHERE isDeleted=0 AND title LIKE '%"+ newsTitle +"%'";
         ResultSet resultSet = statement.executeQuery(sql);
 
         if(resultSet != null){
@@ -42,7 +42,7 @@
         else{
             out.println("<div class='container alert alert-warning text-center' role='alert'>未查询到信息</div>");
         }
-
+        dbconnection.closeConnection();
     }catch (SQLException e){
         e.printStackTrace();
     }

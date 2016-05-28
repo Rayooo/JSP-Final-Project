@@ -32,9 +32,27 @@
             -webkit-border-radius: 50%;
             transition: linear 0.25s;
         }
+        #canvas{
+            width: 100%;
+            height: 100%;
+            position:fixed;
+            z-index:-1;
+        }
+        #newsBackground{
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .thumbnail{
+            border: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
     </style>
 </head>
 <body>
+
+<%--彩带背景--%>
+<canvas id="canvas"></canvas>
+<script src="js/ribbon.js"></script>
+
 <%@include file="navbar.jsp"%>
 <%
     String newsId = request.getParameter("newsId");
@@ -71,7 +89,7 @@
 </div>
 
 <%--新闻内容--%>
-<div class="container"><%=newsContent%></div>
+<div class="container" id="newsBackground"><%=newsContent%></div>
 
 <div class="container" style="margin-top: 5%;margin-bottom: 5%">
     <a id="previousNews" type="button" class="btn btn-info btn-lg">上一篇</a>

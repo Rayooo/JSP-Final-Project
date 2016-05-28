@@ -91,7 +91,7 @@
         <div class="col-sm-12 col-md-12">
             <div class="thumbnail">
                 <div class="caption">
-                    <h3>新闻展示 <a class="btn btn-default" style="float: right" href="searchNews.jsp">所有新闻</a></h3>
+                    <h3>新闻展示 <a class="btn btn-info" style="float: right" href="searchNews.jsp">所有新闻</a></h3>
 
                     <div class="list-group">
                         <%
@@ -122,17 +122,28 @@
         <div class="col-sm-12 col-md-12">
             <div class="thumbnail">
                 <div class="caption">
-
-                    <h3>成果展示</h3>
+                    <h3>成果展示 <a class="btn btn-info" style="float: right" href="searchNews.jsp">所有成果</a></h3>
 
                     <div class="list-group">
-                        <a href="#" class="list-group-item">超链接成果展示</a>
-                        <a href="#" class="list-group-item">超链接成果展示</a>
-                        <a href="#" class="list-group-item">超链接成果展示</a>
-                        <a href="#" class="list-group-item">超链接成果展示</a>
+                        <%
+                            try {
+                                DbConnection dbConnection = new DbConnection();
+                                Statement statement = dbConnection.connection.createStatement();
+                                String sql = "SELECT id,title,createTime FROM achievement WHERE isDeleted=0 ORDER BY id DESC LIMIT 10";
+                                ResultSet resultSet = statement.executeQuery(sql);
+                                if(resultSet != null){
+                                    while (resultSet.next()){
+                        %>
+                        <a href="achievementDetail.jsp?achievementId=<%=resultSet.getInt("id")%>" class="list-group-item"><%=resultSet.getString("title")%><span style="float: right"><%=resultSet.getDate("createTime")%>  <%=resultSet.getTime("createTime")%></span></a>
+                        <%
+                                    }
+                                }
+                                dbConnection.closeConnection();
+                            }catch (SQLException e){
+                                e.printStackTrace();
+                            }
+                        %>
                     </div>
-
-                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
                 </div>
             </div>
         </div>

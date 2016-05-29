@@ -266,23 +266,28 @@
         }
         var newsId = <%=newsId%>;
         var newsComment = $("#newsComment").val();
-        $.post("/addNewsComment",{newsId:newsId,newsComment:newsComment},function (data) {
-            if(data == "success"){
-                swal({
-                    title: "成功",
-                    text: "添加评论成功",
-                    type: "success",
-                    confirmButtonColor: "#79c9e0",
-                    confirmButtonText: "确定",
-                    closeOnConfirm: false
-                }, function(){
-                    location.reload();
-                });
-            }
-            else{
-                swal("失败", "添加评论失败", "error");
-            }
-        })
+        if(newsComment.length>0){
+            $.post("/addNewsComment",{newsId:newsId,newsComment:newsComment},function (data) {
+                if(data == "success"){
+                    swal({
+                        title: "成功",
+                        text: "添加评论成功",
+                        type: "success",
+                        confirmButtonColor: "#79c9e0",
+                        confirmButtonText: "确定",
+                        closeOnConfirm: false
+                    }, function(){
+                        location.reload();
+                    });
+                }
+                else{
+                    swal("失败", "添加评论失败", "error");
+                }
+            })
+        }else{
+            swal("评论失败", "请填写评论内容", "warning");
+        }
+
     })
 </script>
 

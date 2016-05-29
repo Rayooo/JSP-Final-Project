@@ -239,7 +239,7 @@
             confirmButtonText: "删除",
             closeOnConfirm: false
         }, function(){
-            $.post("/deleteachievementComment",{achievementCommentId:achievementCommentId},function (data) {
+            $.post("/deleteAchievementComment",{achievementCommentId:achievementCommentId},function (data) {
                 if(data == "success"){
                     swal("成功", "已删除该评论", "success");
                     var deleteButton = $("#delete"+achievementCommentId);
@@ -265,23 +265,28 @@
         }
         var achievementId = <%=achievementId%>;
         var achievementComment = $("#achievementComment").val();
-        $.post("/addachievementComment",{achievementId:achievementId,achievementComment:achievementComment},function (data) {
-            if(data == "success"){
-                swal({
-                    title: "成功",
-                    text: "添加评论成功",
-                    type: "success",
-                    confirmButtonColor: "#79c9e0",
-                    confirmButtonText: "确定",
-                    closeOnConfirm: false
-                }, function(){
-                    location.reload();
-                });
-            }
-            else{
-                swal("失败", "添加评论失败", "error");
-            }
-        })
+        if(achievementComment.length > 0){
+            $.post("/addAchievementComment",{achievementId:achievementId,achievementComment:achievementComment},function (data) {
+                if(data == "success"){
+                    swal({
+                        title: "成功",
+                        text: "添加评论成功",
+                        type: "success",
+                        confirmButtonColor: "#79c9e0",
+                        confirmButtonText: "确定",
+                        closeOnConfirm: false
+                    }, function(){
+                        location.reload();
+                    });
+                }
+                else{
+                    swal("失败", "添加评论失败", "error");
+                }
+            })
+        }else{
+            swal("评论失败", "请填写评论内容", "warning");
+        }
+
     })
 </script>
 

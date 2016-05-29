@@ -132,7 +132,7 @@
 
                             String sql = "SELECT * FROM newsComment WHERE isDeleted=0 AND newsId="+newsId;
                             ResultSet resultSet = statement.executeQuery(sql);
-                            if(resultSet != null){
+                            if(resultSet != null && newsTitle != null){
                                 while (resultSet.next()){
                                     int commentId = resultSet.getInt("id");
                                     int commentUserId = resultSet.getInt("userId");

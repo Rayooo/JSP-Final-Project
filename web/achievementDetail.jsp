@@ -133,7 +133,7 @@
 
                                 String sql = "SELECT * FROM achievementComment WHERE isDeleted=0 AND achievementId="+achievementId;
                                 ResultSet resultSet = statement.executeQuery(sql);
-                                if(resultSet != null){
+                                if(resultSet != null && achievementTitle != null){
                                     while (resultSet.next()){
                                         int commentId = resultSet.getInt("id");
                                         int commentUserId = resultSet.getInt("userId");

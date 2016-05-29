@@ -1,11 +1,11 @@
 <%@ page import="dbConnection.DbConnection" %>
 <%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.SQLException" %>
-<%@ page import="java.sql.ResultSet" %><%--
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: Ray
-  Date: 16/5/22
-  Time: 19:59
+  Date: 16/5/29
+  Time: 14:53
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>重新编辑新闻</title>
+    <title>重新编辑成果</title>
     <script src="sweetalert/dist/sweetalert-dev.js"></script>
     <link rel="stylesheet" href="sweetalert/dist/sweetalert.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +23,7 @@
     <script src="tinymce/tinymce.js"></script>
     <script>
         tinymce.init({
-            selector: '#newsTextArea',
+            selector: '#achievementTextArea',
             language: 'zh_CN',
             height: 400,
             plugins: [
@@ -38,39 +38,58 @@
 </head>
 <body>
 <%@include file="navbar.jsp"%>
-<%@include file="confirmationManager.jsp"%>
+<%@include file="confirmationUser.jsp"%>
 <%
-    String newsId = request.getParameter("newsId");
+    String achievementId = request.getParameter("achievementId");
     String title = null;
     String content = null;
+    Integer achievementUserId = null;
     try {
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
-        String sql = "SELECT * FROM news WHERE isDeleted=0 AND id="+newsId;
+        String sql = "SELECT * FROM achievement WHERE isDeleted=0 AND id="+achievementId;
         ResultSet resultSet = statement.executeQuery(sql);
         if(resultSet != null){
             resultSet.next();
             title = resultSet.getString("title");
             content = resultSet.getString("content");
+            achievementUserId = resultSet.getInt("userId");
         }
         dbConnection.closeConnection();
     }catch (SQLException e){
         e.printStackTrace();
     }
+    //如果编辑成果的人和成果作者不同,则不能编辑,管理员也不能
+    if(!(session.getAttribute("userId")).equals(achievementUserId)){
+        %>
+        <script>
+            swal({
+                title: "对不起",
+                text: "您不能编辑该新闻",
+                type: "error",
+                confirmButtonColor: "#79c9e0",
+                confirmButtonText: "确定",
+                closeOnConfirm: false
+            }, function(){
+                window.close();
+            });
+        </script>
+<%
+    }
 %>
-
 
 <div class="container text-center">
 
     <div class="form-horizontal">
         <div class="form-group" style="max-width: 70%;margin: auto;margin-top: 5%;margin-bottom: 5%">
             <div class="col-md-12">
-                <input type="text" class="form-control" id="newsTitle" placeholder="新闻标题" value="<%=title%>">
+                <input type="text" class="form-control" id="achievementTitle" placeholder="标题" value="<%=title%>">
             </div>
         </div>
     </div>
 
-    <div id="newsTextArea"><%=content%></div>
+    <div id="achievementTextArea"><%=content%></div>
+
 
     <div style="margin-top: 3%;margin-bottom: 3%">
         <button class="btn btn-primary btn-lg" id="btn">提交</button>
@@ -81,17 +100,17 @@
 
 <script>
     $("#btn").click(function () {
-        var newsContent = tinymce.get('newsTextArea').getContent();
-        var newsTitle = $("#newsTitle").val();
-        var newsId = <%=newsId%>;
-        if(!newsContent || !newsTitle){
+        var achievementContent = tinymce.get('achievementTextArea').getContent();
+        var achievementTitle = $("#achievementTitle").val();
+        var achievementId = <%=achievementId%>;
+        if(!achievementContent || !achievementTitle){
             swal("警告", "请填写完整标题或内容", "warning");
         }
-        else if(!newsId){
-            swal("错误", "未获取到新闻ID","error");
+        else if(!achievementId){
+            swal("错误", "未获取到成果ID","error");
         }
         else{
-            $.post("/editNews", {newsContent:newsContent,newsId:newsId,newsTitle:newsTitle}, function (data) {
+            $.post("/editAchievement", {achievementContent:achievementContent,achievementId:achievementId,achievementTitle:achievementTitle}, function (data) {
                 if(data == "success"){
                     swal({
                         title: "成功",
@@ -105,7 +124,7 @@
                     });
                 }
                 else{
-                    swal("失败", "服务器异常", "error");
+                    swal("失败", data, "error");
                 }
             })
         }
@@ -114,6 +133,9 @@
         window.close();
     })
 </script>
+
+
+
 
 
 </body>

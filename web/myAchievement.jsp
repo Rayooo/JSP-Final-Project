@@ -29,7 +29,7 @@
     try {
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
-        String sql = "SELECT * FROM achievement WHERE userId="+userId+" ORDER BY id DESC ";
+        String sql = "SELECT * FROM achievement WHERE isDeleted=0 AND userId="+userId+" ORDER BY id DESC ";
         ResultSet resultSet = statement.executeQuery(sql);
         if(resultSet != null){
             %>
@@ -91,7 +91,7 @@
                     $("#tr"+achievementId).addClass("danger");
                 }
                 else{
-                    swal("失败", "服务器异常", "error");
+                    swal("失败", data, "error");
                 }
             })
         });

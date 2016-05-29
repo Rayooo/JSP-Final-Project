@@ -74,7 +74,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="addAchievement.jsp">发表</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="myAchievement.jsp">我的成果</a></li>
+                                        <li><a href="myAchievementList.jsp">我的成果</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">

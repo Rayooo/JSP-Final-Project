@@ -78,9 +78,9 @@
 <div class="jumbotron" id="jumbotron">
     <div class="container" id="welcome">
         <h1>Welcome</h1>
-        <a href="#newsA" style="font-size: 25px">新闻</a><br>
-        <a href="#achievementA" style="font-size: 25px">成果展示</a><br>
-        <a href="#introductionA" style="font-size: 25px">个人介绍</a><br>
+        <a href="#newsA" style="font-size: 25px;color: #a6e22d">新闻</a><br>
+        <a href="#achievementA" style="font-size: 25px;color: #a6e22d">成果展示</a><br>
+        <a href="#introductionA" style="font-size: 25px;color: #a6e22d">个人介绍</a><br>
     </div>
     <img src="image/indexBackground.jpg" class="img-responsive">
 </div>
@@ -134,7 +134,7 @@
                                 if(resultSet != null){
                                     while (resultSet.next()){
                         %>
-                        <a href="achievementDetail.jsp?achievementId=<%=resultSet.getInt("id")%>" class="list-group-item"><%=resultSet.getString("title")%><span style="float: right"><%=resultSet.getDate("createTime")%>  <%=resultSet.getTime("createTime")%></span></a>
+                                        <a href="achievementDetail.jsp?achievementId=<%=resultSet.getInt("id")%>" class="list-group-item"><%=resultSet.getString("title")%><span style="float: right"><%=resultSet.getDate("createTime")%>  <%=resultSet.getTime("createTime")%></span></a>
                         <%
                                     }
                                 }

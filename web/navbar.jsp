@@ -41,6 +41,8 @@
                                         <li><a href="verificationUserList.jsp">成员审核</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="userList.jsp">成员信息</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="achievementList.jsp">成果管理</a></li>
                                     </ul>
                                 </li>
 

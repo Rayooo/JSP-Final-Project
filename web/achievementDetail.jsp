@@ -200,11 +200,11 @@
 <script>
     //前一篇成果
     $("#previousachievement").click(function () {
-        $.post("/previousNextachievement",{choice:"previous",currentachievementId:'<%=achievementId%>'},function (data) {
-            if(data != "noachievement" && data != "null"){
+        $.post("/previousNextAchievement",{choice:"previous",currentAchievementId:'<%=achievementId%>'},function (data) {
+            if(data != "noAchievement" && data != "null"){
                 location.href = "achievementDetail.jsp?achievementId="+data;
             }
-            else if(data == "noachievement"){
+            else if(data == "noAchievement"){
                 swal("警告", "没有文章了", "warning");
             }
             else if(data == "null"){
@@ -215,11 +215,11 @@
 
     //后一篇成果
     $("#nextachievement").click(function () {
-        $.post("/previousNextachievement",{choice:"next",currentachievementId:'<%=achievementId%>'},function (data) {
-            if(data != "noachievement" && data != "null"){
+        $.post("/previousNextAchievement",{choice:"next",currentAchievementId:'<%=achievementId%>'},function (data) {
+            if(data != "noAchievement" && data != "null"){
                 location.href = "achievementDetail.jsp?achievementId="+data;
             }
-            else if(data == "noachievement"){
+            else if(data == "noAchievement"){
                 swal("警告", "没有文章了", "warning");
             }
             else if(data == "null"){

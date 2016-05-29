@@ -59,6 +59,7 @@
     String achievementContent = null;
     String createDate = null;
     String createTime = null;
+    Integer achievementAuthor = null;
     try {
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
@@ -70,6 +71,7 @@
             achievementContent = resultSet.getString("content");
             createTime = String.valueOf(resultSet.getTime("createTime"));
             createDate = String.valueOf(resultSet.getDate("createTime"));
+            achievementAuthor = resultSet.getInt("userId");
         }
         dbConnection.closeConnection();
     }catch (SQLException e){
@@ -152,7 +154,8 @@
                                                 </div>
                                                 <div class="media-body">
                                                     <%
-                                                        if(session.getAttribute("userName")!= null &&( commentUserId == (Integer)session.getAttribute("userId") || 1 == (Integer)session.getAttribute("isManager"))){
+                                                        //管理员和发布该成果的用户有权删除所有评论,其余的用户指能删除自己的评论
+                                                        if(session.getAttribute("userName")!= null &&( commentUserId == (Integer)session.getAttribute("userId") || 1 == (Integer)session.getAttribute("isManager") || achievementAuthor.equals((Integer) session.getAttribute("userId")))){
                                                             out.print("<button class='btn btn-danger deleteButton' id='delete"+commentId+"' style='float: right'>删除</button>");
                                                         }
                                                     %>
@@ -239,7 +242,7 @@
             confirmButtonText: "删除",
             closeOnConfirm: false
         }, function(){
-            $.post("/deleteAchievementComment",{achievementCommentId:achievementCommentId},function (data) {
+            $.post("/deleteAchievementComment",{achievementCommentId:achievementCommentId,achievementAuthor:'<%=achievementAuthor%>'},function (data) {
                 if(data == "success"){
                     swal("成功", "已删除该评论", "success");
                     var deleteButton = $("#delete"+achievementCommentId);

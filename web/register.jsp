@@ -105,31 +105,35 @@
     <form class="form-horizontal" method="post" action="/register" onsubmit="return check();">
         <div class="form-group">
             <label for="userName" class="col-sm-3 control-label">用户名</label>
-            <div class="col-sm-9 " v-bind:class="{'has-success':isOkUserName}">
+            <div class="col-sm-9 " v-bind:class="{'has-success':isOkUserName,'has-error':isErrorUserName}">
                 <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名" v-model="userName" required>
-                <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right: 10px"></span>
+                <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right: 10px" v-show="isOkUserName"></span>
+                <span class="glyphicon glyphicon-remove form-control-feedback" style="margin-right: 10px" v-show="isErrorUserName"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="password" class="col-sm-3 control-label">密码</label>
-            <div class="col-sm-9" v-bind:class="{'has-success':isOkPassword}">
+            <div class="col-sm-9" v-bind:class="{'has-success':isOkPassword,'has-error':isErrorPassword}">
                 <input type="password" class="form-control" id="password" name="password" placeholder="密码" v-model="password" required>
-                <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right: 10px"></span>
+                <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right: 10px" v-show="isOkPassword"></span>
+                <span class="glyphicon glyphicon-remove form-control-feedback" style="margin-right: 10px" v-show="isErrorPassword"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="password2" class="col-sm-3 control-label">重复密码</label>
-            <div class="col-sm-9" v-bind:class="{'has-success':isOkPassword2}">
+            <div class="col-sm-9" v-bind:class="{'has-success':isOkPassword2,'has-error':isErrorPassword2}">
                 <input type="password" class="form-control" id="password2" placeholder="重复密码" v-model="password2" required>
-                <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right: 10px"></span>
+                <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right: 10px" v-show="isOkPassword2"></span>
+                <span class="glyphicon glyphicon-remove form-control-feedback" style="margin-right: 10px" v-show="isErrorPassword2"></span>
             </div>
         </div>
 
         <div class="form-group">
             <label for="name" class="col-sm-3 control-label">真实姓名</label>
-            <div class="col-sm-9" v-bind:class="{'has-success':isOkRealName}">
+            <div class="col-sm-9" v-bind:class="{'has-success':isOkRealName,'has-error':isErrorRealName}">
                 <input type="text" class="form-control" id="name" name="name" placeholder="真实姓名" v-model="realName" required>
-                <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right: 10px"></span>
+                <span class="glyphicon glyphicon-ok form-control-feedback" style="margin-right: 10px" v-if="isOkRealName"></span>
+                <span class="glyphicon glyphicon-remove form-control-feedback" style="margin-right: 10px" v-show="isErrorRealName"></span>
             </div>
         </div>
 
@@ -173,14 +177,26 @@
             isOkUserName: function () {
                 return this.userName.length > 7 && this.userName.length < 15;
             },
+            isErrorUserName: function () {
+                return (this.userName.length >= 1 && this.userName.length <= 7) || this.userName.length >= 15;
+            },
             isOkPassword: function () {
                 return this.password.length > 7 && this.password.length < 15;
+            },
+            isErrorPassword: function () {
+                return (this.password.length >= 1 && this.password.length <= 7) || this.password.length >= 15;
             },
             isOkPassword2: function () {
                 return this.password == this.password2 && this.password2.length > 7;
             },
+            isErrorPassword2: function () {
+                return this.password2.length >= 1 && (this.password != this.password2 ||this.isErrorPassword);
+            },
             isOkRealName : function () {
-                return this.realName.length > 1 && this.realName.length < 15
+                return this.realName.length > 1 && this.realName.length < 15;
+            },
+            isErrorRealName: function () {
+                return this.realName.length == 1 || this.realName.length >= 15;
             }
         }
     })

@@ -89,11 +89,11 @@
 <div class="container">
     <div class="row" id="newsA">
         <div class="col-sm-12 col-md-12">
-            <div class="thumbnail">
+            <div class="thumbnail" style="background-color: rgba(255, 255, 255, 0.6);">
                 <div class="caption">
                     <h3>新闻展示 <a class="btn btn-info" style="float: right" href="searchNews.jsp">所有新闻</a></h3>
 
-                    <div class="list-group">
+                    <div class="list-group" style="margin-top: 2%">
                         <%
                             try {
                                 DbConnection dbConnection = new DbConnection();
@@ -120,11 +120,11 @@
 
     <div class="row" id="achievementA">
         <div class="col-sm-12 col-md-12">
-            <div class="thumbnail">
+            <div class="thumbnail"  style="background-color: rgba(255, 255, 255, 0.6);">
                 <div class="caption">
-                    <h3>成果展示 <a class="btn btn-info" style="float: right" href="searchNews.jsp">所有成果</a></h3>
+                    <h3>成果展示 <a class="btn btn-info" style="float: right" href="searchAchievement.jsp">所有成果</a></h3>
 
-                    <div class="list-group">
+                    <div class="list-group" style="margin-top: 2%" >
                         <%
                             try {
                                 DbConnection dbConnection = new DbConnection();
@@ -153,7 +153,7 @@
 
     <div class="row" id="introductionA">
         <div class="col-sm-12 col-md-12">
-            <div class="thumbnail">
+            <div class="thumbnail" style="background-color: rgba(255, 255, 255, 0.9);">
                 <div class="caption">
                     <h3>成员介绍</h3>
 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,6 +26,7 @@ public class Login extends HttpServlet {
         String userName = request.getParameter("userNameNavBar");
         String password = request.getParameter("passwordNavBar");
         int isPassed = 0;
+        PrintWriter writer = response.getWriter();
         //查询数据库中是否存在该用户
         try {
             DbConnection dbConnection = new DbConnection();
@@ -44,31 +46,23 @@ public class Login extends HttpServlet {
                     session.setAttribute("name",resultSet.getString("name"));
                     session.setAttribute("isManager",resultSet.getInt("isManager"));
                     session.setAttribute("isPassed",resultSet.getInt("isPassed"));
+                    writer.print("success");
+                }
+                else{
+                    writer.print("您未通过管理员验证,请联系管理员");
                 }
             }
             else{
                 //登录失败跳转
-                request.setAttribute("message","您输入的帐号密码错误");
-                request.setAttribute("isError",true);
-                request.getRequestDispatcher("loginErrorPage.jsp").forward(request, response);
+                writer.print("您输入的帐号密码错误");
             }
-
+            writer.flush();
             dbConnection.closeConnection();
 
-            if(isPassed == 1){
-                response.sendRedirect("index.jsp");
-            }
-            else{
-                request.setAttribute("message","您未通过管理员验证,请联系管理员");
-                request.setAttribute("isError",false);
-                request.getRequestDispatcher("loginErrorPage.jsp").forward(request, response);
-            }
-
         } catch (SQLException e) {
-            request.setAttribute("message","服务器异常");
-            request.setAttribute("isError",true);
-            request.getRequestDispatcher("loginErrorPage.jsp").forward(request, response);
-//            e.printStackTrace();
+            writer.print("服务器异常");
+            writer.flush();
+            e.printStackTrace();
         }
 
     }

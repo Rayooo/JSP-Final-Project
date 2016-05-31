@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<script src="sweetalert/dist/sweetalert-dev.js"></script>
+<link rel="stylesheet" href="sweetalert/dist/sweetalert.css">
 <%--导航条--%>
 <nav class="navbar navbar-default">
     <div class="container">
@@ -106,13 +108,13 @@
                 <h3 class="modal-title text-center" id="loginModalLabel">登陆</h3>
             </div>
             <div class="modal-body">
-                <form method="post" action="/login">
+                <form method="post">
                     <label for="userNameNavBar" class="sr-only">用户名</label>
                     <input type="text" name="userNameNavBar" id="userNameNavBar" class="form-control" placeholder="用户名" required autofocus>
                     <label for="passwordNavBar" class="sr-only">密码</label>
                     <input type="password" name="passwordNavBar" id="passwordNavBar" class="form-control" placeholder="密码" required>
-                    <div class="text-center" id="loginButton">
-                        <button type="submit" class="btn btn-success">登陆</button>
+                    <div class="text-center" id="loginButtons">
+                        <button type="button" class="btn btn-success" id="loginButton">登陆</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                     </div>
                 </form>
@@ -122,10 +124,26 @@
 </div>
 
 <style>
-    #loginButton{
+    #loginButtons{
         margin-top: 3%;
     }
     #userNameNavBar{
         margin-bottom: 3%;
     }
 </style>
+<script>
+    $("#loginButton").click(function () {
+        var userName = $("#userNameNavBar").val();
+        var password = $("#passwordNavBar").val();
+        if( !!userName && !!password){
+            $.post("/login",{userNameNavBar:userName,passwordNavBar:password},function (data) {
+                if(data == "success"){
+                    location.reload();
+                }
+                else{
+                    swal("错误",data,"warning");
+                }
+            })
+        }
+    })
+</script>

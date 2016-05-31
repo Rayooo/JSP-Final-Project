@@ -42,16 +42,6 @@
     </form>
 </div>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
-
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <img src="image/indexBackground.jpg" style="max-width: 100%">
-        </div>
-    </div>
-</div>
-
 <%
     //记录有多少页
     double count = 0;

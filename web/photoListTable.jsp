@@ -52,6 +52,17 @@
         e.printStackTrace();
     }
 %>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="modalImage">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <img id="bigImage" src="" style="max-width: 100%">
+        </div>
+    </div>
+</div>
+
+
+
 <script>
     $(".deleteButton").click(function () {
         var photoId = this.id.replace(/delete/,"");
@@ -78,5 +89,11 @@
                 }
             })
         });
+    });
+
+    $("img").click(function () {
+        $("#bigImage").attr("src",this.src);
+        $("#modalImage").modal("show")
     })
+
 </script>

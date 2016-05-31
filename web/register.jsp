@@ -175,14 +175,16 @@
             userName: "",
             password: "",
             password2: "",
-            realName : ""
+            realName : "",
+            duplicationUserName: false
         },
         computed:{
             isOkUserName: function () {
-                return this.userName.length > 7 && this.userName.length < 15;
+                console.log(this.duplicationUserName);
+                return this.userName.length > 7 && this.userName.length < 15 && !this.duplicationUserName;
             },
             isErrorUserName: function () {
-                return (this.userName.length >= 1 && this.userName.length <= 7) || this.userName.length >= 15;
+                return (this.userName.length >= 1 && this.userName.length <= 7) || this.userName.length >= 15 || this.duplicationUserName;
             },
             isOkPassword: function () {
                 return this.password.length > 7 && this.password.length < 15;
@@ -202,6 +204,17 @@
             isErrorRealName: function () {
                 return this.realName.length == 1 || this.realName.length >= 15;
             }
+        }
+    });
+    registerData.$watch('userName',function (val) {
+        if(val.length > 7 && val.length < 15){
+            $.post("/duplicationUserName",{userName:val},function (data) {
+                if(data == "error"){
+                    registerData.duplicationUserName = true;
+                }else{
+                    registerData.duplicationUserName = false;
+                }
+            })
         }
     })
 

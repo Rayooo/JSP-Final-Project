@@ -65,14 +65,18 @@
 <body>
 
 
-<%--彩色魔方--%>
-<div id="containerCube"></div>
-
+<%--小鸟--%>
+<div id="container"></div>
 <script src="js/three.js"></script>
-
 <script src="js/Detector.js"></script>
-
-
+<script src="js/Projector.js"></script>
+<script src="js/CanvasRenderer.js"></script>
+<script src="js/stats.min.js"></script>
+<script src="js/Bird.js"></script>
+<script src="js/brids.js"></script>
+<script>
+    $("canvas")[0].remove();
+</script>
 
 <%--导航条,这里的导航条和主页其他导航条做区分--%>
 <nav class="navbar navbar-default">
@@ -99,7 +103,7 @@
 
 
 
-<div class="container" style="color: white" id="vue">
+<div class="container" id="vue">
 
     <h1 class="form-signin-heading">欢迎您的到来</h1>
     <form class="form-horizontal" method="post" action="/register" onsubmit="return check();">
@@ -204,8 +208,6 @@
 
 </script>
 
-<%--彩色魔方--%>
-<script src="js/cube.js"></script>
 
 </body>
 </html>

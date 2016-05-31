@@ -4,7 +4,6 @@ JSP Final Project
 copyright Ray 2016
 
 
-管理员能够删除用户的成果
 成果搜索模块
 其余信息表单验证模块
 
@@ -51,6 +50,8 @@ file记录用户管理员上传的文件
 
 
 CREATE DATABASE JSPFinalProject CHARACTER SET  utf8  COLLATE utf8_general_ci;
+
+USE JSPFinalProject;
 
 CREATE TABLE user
 (
@@ -136,6 +137,12 @@ CREATE TABLE achievementComment
   FOREIGN KEY (userId) REFERENCES user(id),
   FOREIGN KEY (achievementId) REFERENCES achievement(id)
 );
+
+INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
+VALUES("3","1","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",1,0,1);
+
+INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
+VALUES("4","2","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",0,0,1);
 
 INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
 VALUES("aa","bb","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",1,0,0);

@@ -73,7 +73,7 @@
                         <p>上传时间:<%=createTime%></p>
                         <p>
                             <%--<button class="btn btn-success">下载</button>--%>
-                            <a class="btn btn-success" download="<%=resultSet.getString("fileName")%>" href="<%=resultSet.getString("url")%>">下载</a>
+                            <a class="btn btn-success" id="download<%=fileId%>" download="<%=resultSet.getString("fileName")%>" href="<%=resultSet.getString("url")%>">下载</a>
                             <%
                                 if(resultSet.getInt("userId")==(Integer)session.getAttribute("userId") || (Integer)session.getAttribute("isManager") == 1){
                                     out.print("<button class='btn btn-danger deleteButton' id='delete"+fileId+"'>删除</button>");
@@ -116,6 +116,7 @@
                     deleteButton.addClass("disabled");
                     deleteButton.html("已删除");
                     deleteButton.unbind("click");
+                    $("#download"+fileId).remove();
                 }
                 else{
                     swal("失败", data, "error");

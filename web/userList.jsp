@@ -21,6 +21,7 @@ Created by IntelliJ IDEA.
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/vue.js"></script>
     <link href="font-awesome/css/font-awesome.css">
     <script src="sweetalert/dist/sweetalert-dev.js"></script>
     <link rel="stylesheet" href="sweetalert/dist/sweetalert.css">
@@ -51,11 +52,28 @@ Created by IntelliJ IDEA.
     }
 %>
 
+<%--搜索用户--%>
+<div class="container" style="margin-bottom: 2%">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control" placeholder="请输入用户名或用户真实姓名" id="searchUser" v-model="userInfo">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="searchButton">搜索</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--搜索结果,一开始不显示--%>
+<div id="searchResult"></div>
+
 <%--内容--%>
 <div id="userListTable"></div>
 
 <%--分页--%>
-<nav class="text-center">
+<nav class="text-center" id="footerNav">
     <ul class="pagination pagination-lg" style="cursor:pointer">
         <li id="previous"><a aria-label="Previous">&laquo;</a></li>
 
@@ -129,6 +147,34 @@ Created by IntelliJ IDEA.
             checkPreviousAndNext();
         }
     });
+
+
+
+    //搜索
+    var searchVue = new Vue({
+        el:"#searchUser",
+        data:{
+            userInfo: ""
+        }
+    });
+    searchVue.$watch('userInfo',function (val) {
+        if(val.length > 0){
+            $.post("searchUserData.jsp",{userInfo:val},function (data) {
+                if(data != ""){
+                    var searchResult = $("#searchResult");
+                    searchResult.show();
+                    $("#userListTable").hide();
+                    $("#footerNav").hide();
+                    searchResult.html(data);
+                }
+            })
+        }else{
+            $("#searchResult").hide();
+            $("#userListTable").show();
+            $("#footerNav").show();
+        }
+
+    })
 
 </script>
 

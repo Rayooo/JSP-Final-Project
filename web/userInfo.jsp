@@ -97,42 +97,42 @@
         <div class="form-group">
             <label for="userId" class="col-md-3 control-label">用户ID</label>
             <div class= "col-md-8">
-                <input type="text" id="userId" name="userId" class="form-control" placeholder="用户ID" value="<%=userId%>" readonly>
+                <input type="text" id="userId" name="userId" class="form-control" value="<%=userId%>" readonly>
             </div>
         </div>
 
         <div class="form-group">
             <label for="userName" class="col-md-3 control-label">用户名</label>
             <div class= "col-md-8">
-                <input type="text" id="userName" name="userName" class="form-control" placeholder="用户名" value="<%=userName%>" readonly>
+                <input type="text" id="userName" name="userName" class="form-control" value="<%=userName%>" readonly>
             </div>
         </div>
 
         <div class="form-group">
             <label for="name" class="col-md-3 control-label">真实姓名</label>
             <div class= "col-md-8">
-                <input type="text" id="name" name="name" class="form-control" placeholder="真实姓名" value="<%=name%>" readonly>
+                <input type="text" id="name" name="name" class="form-control" value="<%=name%>" readonly>
             </div>
         </div>
 
         <div class="form-group">
             <label for="mobile" class="col-md-3 control-label">手机号</label>
             <div class= "col-md-8">
-                <input type="text" id="mobile" name="mobile" class="form-control" placeholder="手机号" value="<%=mobile==null? "":mobile%>" readonly>
+                <input type="text" id="mobile" name="mobile" class="form-control" value="<%=mobile==null? "":mobile%>" readonly>
             </div>
         </div>
 
         <div class="form-group">
             <label for="sex" class="col-md-3 control-label">性别</label>
             <div class= "col-md-8">
-                <input type="text" id="sex" name="sex" class="form-control" placeholder="性别" value="<%=sex==1?"男":"女"%>" readonly>
+                <input type="text" id="sex" name="sex" class="form-control" value="<%=sex==1?"男":"女"%>" readonly>
             </div>
         </div>
 
         <div class="form-group">
             <label for="introduction" class="col-md-3 control-label">自我介绍</label>
             <div class= "col-md-8">
-                <textarea type="text" id="introduction" name="introduction" class="form-control" placeholder="自我介绍" readonly><%=introduction==null? "":introduction%></textarea>
+                <textarea type="text" id="introduction" name="introduction" class="form-control" readonly><%=introduction==null? "":introduction%></textarea>
             </div>
         </div>
 

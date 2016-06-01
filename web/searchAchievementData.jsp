@@ -27,7 +27,7 @@
 
         if(resultSet != null){
 %>
-            <div class='container alert alert-success text-center' role='alert'>以下是新闻标题带有 <span class="text-primary"><%=achievementTitle%></span> 的信息</div>
+            <div class='container alert alert-success text-center' role='alert'>以下是成果标题带有 <span class="text-primary"><%=achievementTitle%></span> 的信息</div>
             <div class='container text-center'>
                 <table class="table table-hover">
                 <%

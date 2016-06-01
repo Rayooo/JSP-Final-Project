@@ -158,13 +158,22 @@
         }
     });
     searchVue.$watch('achievementTitle',function (val) {
-        $.post("searchAchievementData.jsp",{achievementTitle:val},function (data) {
-            if(data != ""){
-                $("#achievementListTable").hide();
-                $("#footerNav").hide();
-                $("#searchResult").html(data);
-            }
-        })
+        if(val.length > 0){
+            $.post("searchAchievementData.jsp",{achievementTitle:val},function (data) {
+                if(data != ""){
+                    var searchResult = $("#searchResult");
+                    searchResult.show();
+                    $("#achievementListTable").hide();
+                    $("#footerNav").hide();
+                    searchResult.html(data);
+                }
+            })
+        }else{
+            $("#searchResult").hide();
+            $("#achievementListTable").show();
+            $("#footerNav").show();
+        }
+
     })
 
 

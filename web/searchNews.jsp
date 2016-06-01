@@ -158,13 +158,22 @@
         }
     });
     searchVue.$watch('newsTitle',function (val) {
-        $.post("searchNewsData.jsp",{newsTitle:val},function (data) {
-            if(data != ""){
-                $("#newsListTable").hide();
-                $("#footerNav").hide();
-                $("#searchResult").html(data);
-            }
-        })
+        if(val.length > 0){
+            $.post("searchNewsData.jsp",{newsTitle:val},function (data) {
+                if(data != ""){
+                    var searchResult = $("#searchResult");
+                    searchResult.show();
+                    $("#newsListTable").hide();
+                    $("#footerNav").hide();
+                    searchResult.html(data);
+                }
+            })
+        }
+        else{
+            $("#searchResult").hide();
+            $("#newsListTable").show();
+            $("#footerNav").show();
+        }
     })
 
 

@@ -6,7 +6,7 @@ copyright Ray 2016
 
 
 
-使用了Bootstrap,Vue.js,font-awesome,sweetAlert,TinyMCE
+使用了Bootstrap,Vue.js,sweetAlert,TinyMCE,jQuery和三个Canvas背景
 
 管理员功能:
 

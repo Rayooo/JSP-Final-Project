@@ -44,7 +44,7 @@
                     String isManager = resultSet.getInt("isManager") == 1? "管理员":"用户";
                     String isPassed = resultSet.getInt("isPassed") == 1? "通过":"未通过";
                     if(isPassed.equals("未通过")){
-                        out.println("<tr id='tr"+id+"' class='danger'>");
+                        out.println("<tr id='tr"+id+"' class='warning'>");
                     }
                     else{
                         out.println("<tr id='tr"+id+"'>");

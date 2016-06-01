@@ -64,7 +64,7 @@
 
 <%--分页--%>
 <nav class="text-center" id="footerNav">
-    <ul class="pagination pagination-lg">
+    <ul class="pagination pagination-lg" style="cursor:pointer">
         <li id="previous"><a aria-label="Previous">&laquo;</a></li>
 
         <li class="active paging" id="paging1"><a class="pagingA">1</a></li>

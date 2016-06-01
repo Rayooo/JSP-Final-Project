@@ -68,7 +68,6 @@
         if(resultSet.next()){
             userId = resultSet.getInt("id");
             userName = resultSet.getString("userName");
-            password = resultSet.getString("password");
             headImage = resultSet.getString("headImage");
             mobile = resultSet.getString("mobile");
             sex = resultSet.getInt("sex");
@@ -106,13 +105,6 @@
             <label for="userName" class="col-md-3 control-label">用户名</label>
             <div class= "col-md-8">
                 <input type="text" id="userName" name="userName" class="form-control" placeholder="用户名" value="<%=userName%>" readonly>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="password" class="col-md-3 control-label">密码</label>
-            <div class= "col-md-8">
-                <input type="text" id="password" name="password" class="form-control" placeholder="密码" value="<%=password%>" readonly>
             </div>
         </div>
 

@@ -13,10 +13,11 @@
 <%@include file="confirmationManager.jsp"%>
 <%
     int currentPage = Integer.parseInt(request.getParameter("page"));
+    int currentUserId = (Integer)session.getAttribute("userId");
     try{
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
-        String sql = "SELECT id,userName,sex,name,mobile,isManager,isPassed FROM user WHERE isDeleted=0 LIMIT "+ Integer.toString((currentPage-1)*5) +",5";//(页数-1)*每页条数,每页条数
+        String sql = "SELECT id,userName,sex,name,mobile,isManager,isPassed FROM user WHERE id!="+currentUserId+" AND isDeleted=0 LIMIT "+ Integer.toString((currentPage-1)*5) +",5";//(页数-1)*每页条数,每页条数
         ResultSet resultSet = statement.executeQuery(sql);
 
         if(resultSet != null){

@@ -120,7 +120,7 @@
                         confirmButtonText: "确定",
                         closeOnConfirm: false
                     }, function(){
-                        window.close();
+                        history.back();
                     });
                 }
                 else{
@@ -130,7 +130,7 @@
         }
     });
     $("#cancel").click(function () {
-        window.close();
+        history.back();
     })
 </script>
 

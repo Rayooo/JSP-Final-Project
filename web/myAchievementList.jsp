@@ -51,8 +51,8 @@
                         <td style="cursor:pointer" class="tdTitle" id="tdTitle<%=id%>"><%=title%></td>
                         <td><%=createTime%></td>
                         <td>
-                            <a target="_blank" href="achievementDetail.jsp?achievementId=<%=id%>"><i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
-                            <a target="_blank" href="achievementEdit.jsp?achievementId=<%=id%>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a href="achievementDetail.jsp?achievementId=<%=id%>"><i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
+                            <a href="achievementEdit.jsp?achievementId=<%=id%>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             <a class="delete" id="delete<%=id%>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         </td>
                     </tr>
@@ -99,7 +99,7 @@
 
     $(".tdTitle").click(function () {
         var achievementId = this.id.replace(/tdTitle/,"");
-        window.open("achievementDetail.jsp?achievementId="+achievementId);
+        window.location.href = "achievementDetail.jsp?achievementId="+achievementId;
     })
 
 </script>

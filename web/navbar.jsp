@@ -35,9 +35,9 @@
                         else{
                             if((Integer)session.getAttribute("isManager")==1){
                                 out.println("<a type='button' class='btn btn-primary navbar-btn' href='logout.jsp'>退出</a>");
-                                out.println("<li class='naviButton'><a href='index.jsp'>主页</a></li>");
+                                out.println("<li class='naviButton' id='navIndex'><a href='index.jsp'>主页</a></li>");
                                 %>
-                                <li class="dropdown">
+                                <li class="dropdown" id="navUser">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">成员管理 <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="verificationUserList.jsp">成员审核</a></li>
@@ -48,7 +48,7 @@
                                     </ul>
                                 </li>
 
-                                <li class="dropdown">
+                                <li class="dropdown" id="navNews">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">新闻管理 <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="addNews.jsp">添加新闻</a></li>
@@ -57,7 +57,7 @@
                                     </ul>
                                 </li>
 
-                                <li class="dropdown">
+                                <li class="dropdown" id="navShare">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">资源<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="photoList.jsp">图片库</a></li>
@@ -67,21 +67,21 @@
                                 </li>
 
                                 <%
-                                out.println("<li class='naviButton'><a href='editMyInfo.jsp' target='_blank'>个人信息</a></li>");
+                                out.println("<li class='naviButton' id='navMyInfo'><a href='editMyInfo.jsp'>个人信息</a></li>");
                             }
                             else{
                                 out.println("<a type='button' class='btn btn-primary navbar-btn' href='logout.jsp'>退出</a>");
-                                out.println("<li class='naviButton'><a href='index.jsp'>主页</a></li>");
+                                out.println("<li class='naviButton' id='navIndex'><a href='index.jsp'>主页</a></li>");
                                 %>
-                                <li class="dropdown">
+                                <li class="dropdown" id="navAchievement">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">成果<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="addAchievement.jsp">发表</a></li>
+                                        <li><a href="addAchievement.jsp">发表成果</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="myAchievementList.jsp">我的成果</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown">
+                                <li class="dropdown" id="navShare">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">资源<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="photoList.jsp">图片库</a></li>
@@ -90,7 +90,7 @@
                                     </ul>
                                 </li>
                     <%
-                                out.println("<li class='naviButton'><a href='editMyInfo.jsp' target='_blank'>个人信息</a></li>");
+                                out.println("<li class='naviButton' id='navMyInfo'><a href='editMyInfo.jsp'>个人信息</a></li>");
                             }
                         }
                     %>
@@ -145,5 +145,35 @@
                 }
             })
         }
+    });
+
+    $(function () {
+        //获取url最后一个参数
+        var url= window.location.href;
+        var rawIndex = url.substring(url.lastIndexOf('/'));
+        var indexArr = rawIndex.split('?');
+        //地址栏最后一个值如 /index.jsp
+        var location = indexArr[0];
+        console.log(location);
+        if(location == "/" || location == "/index.jsp"){
+            $("#navIndex").addClass("active");
+        }
+        else if(location == "/editMyInfo.jsp"){
+            $("#navMyInfo").addClass("active");
+        }
+        else if(location == "/verificationUserList.jsp" || location == "/userList.jsp" || location == "/achievementList.jsp" || location == "/userInfoEdit.jsp" || location == "/userInfo.jsp"){
+            $("#navUser").addClass("active");
+        }
+        else if(location == "/addNews.jsp" || location == "/newsList.jsp" || location == "/newsEdit.jsp"){
+            $("#navNews").addClass("active");
+        }
+        else if(location == "/photoList.jsp" || location == "/fileList.jsp"){
+            $("#navShare").addClass("active");
+        }
+        else if(location == "/addAchievement.jsp" || location == "/myAchievementList.jsp" || location == "/achievementEdit.jsp"){
+            $("#navAchievement").addClass("active");
+        }
     })
+
+
 </script>

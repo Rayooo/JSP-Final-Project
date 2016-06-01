@@ -183,7 +183,7 @@
 
         <div class="text-center" id="buttonDiv">
             <button class="btn btn-lg btn-primary" type="submit">确定</button>
-            <a class="btn btn-lg btn-default" type="button" onclick="window.close();">取消</a>
+            <a class="btn btn-lg btn-default" type="button" onclick="history.back();">取消</a>
         </div>
 
     </form>

@@ -72,9 +72,7 @@
 <script src="js/particles.js"></script>
 <script src="js/particlesSetting.js"></script>
 <%@ include file="navbar.jsp"%>
-<%
-    session.setAttribute("location","index");
-%>
+
 <div class="jumbotron" id="jumbotron">
     <div class="container" id="welcome">
         <h1>Welcome</h1>
@@ -164,7 +162,7 @@
                             DbConnection userDbconnection = new DbConnection();
 
                             Statement statement = dbConnection.connection.createStatement();
-                            String sql = "SELECT userId,count(id) FROM achievement GROUP BY userId ORDER BY count(id) DESC";
+                            String sql = "SELECT userId,count(id) FROM achievement WHERE isDeleted=0 GROUP BY userId ORDER BY count(id) DESC";
                             ResultSet resultSet = statement.executeQuery(sql);
                             if(resultSet != null){
                                 while (resultSet.next()){

@@ -57,7 +57,7 @@ Created by IntelliJ IDEA.
     <div class="row">
         <div class="col-lg-12">
             <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="请输入用户名或用户真实姓名" id="searchUser" v-model="userInfo">
+                <input type="text" class="form-control" placeholder="请输入用户名或用户真实姓名进行搜索" id="searchUser" v-model="userInfo">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" id="searchButton">搜索</button>
                 </span>

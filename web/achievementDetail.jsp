@@ -1,7 +1,8 @@
 <%@ page import="dbConnection.DbConnection" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%--
   Created by IntelliJ IDEA.
   User: Ray
   Date: 16/5/28
@@ -27,6 +28,16 @@
             line-height: 0;	
             display: inline-block;	
             border-radius: 50%;	
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            transition: linear 0.25s;
+        }
+        .authorAvatarImage{
+            width:120px;
+            height:120px;
+            line-height: 0;
+            display: inline-block;
+            border-radius: 50%;
             -moz-border-radius: 50%;
             -webkit-border-radius: 50%;
             transition: linear 0.25s;
@@ -77,15 +88,33 @@
     }catch (SQLException e){
         e.printStackTrace();
     }
+    String authorName = null;
+    String authorImage = null;
+    try {
+        DbConnection dbConnection = new DbConnection();
+        Statement statement = dbConnection.connection.createStatement();
+        String sql = "SELECT headImage,name FROM user WHERE id="+achievementAuthor;
+        ResultSet resultSet = statement.executeQuery(sql);
+        if(resultSet != null){
+            resultSet.next();
+            authorImage = resultSet.getString("headImage");
+            authorName = resultSet.getString("name");
+        }
+        dbConnection.closeConnection();
+    }catch (SQLException e){
+        e.printStackTrace();
+    }
 %>
 <%--成果标题--%>
 <div class="container text-center">
     <div class="title">
         <h1><%=achievementTitle%></h1>
+        <img class="authorAvatarImage" src="<%=authorImage%>">
+        <h4><%=authorName%></h4>
         <div>
-        <span class="post-time">发表于
-            <span><%=createDate%> <%=createTime%></span>
-        </span>
+            <span class="post-time">发表于
+                <span><%=createDate%> <%=createTime%></span>
+            </span>
         </div>
     </div>
 </div>

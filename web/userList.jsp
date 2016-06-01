@@ -30,7 +30,7 @@ Created by IntelliJ IDEA.
 <%@include file="navbar.jsp"%>
 <%@include file="confirmationManager.jsp"%>
 <%
-    session.setAttribute("location","userList");
+
     //记录有多少页
     double count = 0;
     try {
@@ -41,6 +41,9 @@ Created by IntelliJ IDEA.
         if(resultSet != null){
             resultSet.next();
             count = Math.ceil(resultSet.getInt("count(id)")/5.0);
+            if(count > 0){
+                count--;
+            }
         }
         dbConnection.closeConnection();
     }catch (SQLException e) {

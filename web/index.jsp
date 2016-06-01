@@ -155,35 +155,52 @@
         <div class="col-sm-12 col-md-12">
             <div class="thumbnail" style="background-color: rgba(255, 255, 255, 0.9);">
                 <div class="caption">
-                    <h3>成员介绍</h3>
-
-                    <!--媒体对象,一头像一评论-->
+                    <h3>活跃成员(按发布成果数排序)</h3>
                     <%
+                        //按照成员发布成果数量排序
+                        int countActiveUser = 0;
                         try {
                             DbConnection dbConnection = new DbConnection();
+                            DbConnection userDbconnection = new DbConnection();
+
                             Statement statement = dbConnection.connection.createStatement();
-                            String sql = "SELECT name,headImage,introduction FROM user WHERE isDeleted=0 AND isPassed=1 AND isManager=0";
+                            String sql = "SELECT userId,count(id) FROM achievement GROUP BY userId ORDER BY count(id) DESC";
                             ResultSet resultSet = statement.executeQuery(sql);
                             if(resultSet != null){
                                 while (resultSet.next()){
-                                    %>
-                                        <div class="media">
-                                            <div class="media-left media-middle">
-                                                <img class="media-object commentAvatarImage" src="<%=resultSet.getString("headImage")%>" alt="...">
+                                    Statement userStatement = userDbconnection.connection.createStatement();
+                                    String userSql = "SELECT name,headImage,introduction FROM user WHERE isDeleted=0 AND isManager=0 AND isPassed=1 AND id="+resultSet.getString("userId");
+                                    ResultSet userResultSet = userStatement.executeQuery(userSql);
+                                    if(userResultSet != null){
+                                        if(userResultSet.next()){
+                                            countActiveUser++;
+                                            if(countActiveUser > 10)
+                                                break;
+                                            %>
+                                            <div class="media" style="margin-top: 3%">
+                                                <div class="media-left media-middle">
+                                                    <img class="media-object commentAvatarImage" src="<%=userResultSet.getString("headImage")%>">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading"><%=userResultSet.getString("name")%></h4>
+                                                    <h5>发表成果数:<%=resultSet.getInt("count(id)")%></h5>
+                                                    <%=userResultSet.getString("introduction") == null? "":userResultSet.getString("introduction")%>
+                                                </div>
                                             </div>
-                                            <div class="media-body">
-                                                <h4 class="media-heading"><%=resultSet.getString("name")%></h4>
-                                                <%=resultSet.getString("introduction") == null? "":resultSet.getString("introduction")%>
-                                            </div>
-                                        </div>
-                    <%
+                                            <%
+                                        }
+                                    }
+
                                 }
                             }
+                            userDbconnection.closeConnection();
                             dbConnection.closeConnection();
                         }catch (SQLException e){
                             e.printStackTrace();
                         }
+
                     %>
+
 
                 </div>
             </div>

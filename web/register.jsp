@@ -180,7 +180,6 @@
         },
         computed:{
             isOkUserName: function () {
-                console.log(this.duplicationUserName);
                 return this.userName.length > 7 && this.userName.length < 15 && !this.duplicationUserName;
             },
             isErrorUserName: function () {
@@ -209,11 +208,7 @@
     registerData.$watch('userName',function (val) {
         if(val.length > 7 && val.length < 15){
             $.post("/duplicationUserName",{userName:val},function (data) {
-                if(data == "error"){
-                    registerData.duplicationUserName = true;
-                }else{
-                    registerData.duplicationUserName = false;
-                }
+                registerData.duplicationUserName = data == "error";
             })
         }
     })

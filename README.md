@@ -4,11 +4,6 @@ JSP Final Project
 copyright Ray 2016
 
 
-成果搜索模块
-其余信息表单验证模块
-
-
-
 
 使用了Bootstrap,Vue.js,font-awesome,sweetAlert,TinyMCE
 

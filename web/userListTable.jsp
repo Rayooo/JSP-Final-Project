@@ -53,7 +53,7 @@
 
                     <td><%=id%></td>
                     <td><%=name%></td>
-                    <td><%=mobile%></td>
+                    <td><%=mobile==null? "":mobile%></td>
                     <td><%=userName%></td>
                     <td><%=sex%></td>
                     <td><%=isManager%></td>

@@ -35,7 +35,7 @@
                 String createTime = resultSet.getDate("createTime")+" "+resultSet.getTime("createTime");
 %>
                     <tr id="tr<%=id%>">
-                        <td><%=title%></td>
+                        <td style="cursor:pointer" class="tdTitle" id="tdTitle<%=id%>"><%=title%></td>
                         <td><%=createTime%></td>
                         <td>
                             <a target="_blank" href="newsDetail.jsp?newsId=<%=id%>"><i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
@@ -88,8 +88,11 @@
                 }
             })
         });
-
-
     });
+
+    $(".tdTitle").click(function () {
+        var newsId = this.id.replace(/tdTitle/,"");
+        window.open("newsDetail.jsp?newsId="+newsId);
+    })
 
 </script>

@@ -35,7 +35,7 @@
                 String createTime = resultSet.getDate("createTime")+" "+resultSet.getTime("createTime");
 %>
                 <tr id="tr<%=id%>">
-                    <td><%=title%></td>
+                    <td style="cursor:pointer" class="tdTitle" id="tdTitle<%=id%>"><%=title%></td>
                     <td><%=createTime%></td>
                     <td>
                         <a target="_blank" href="achievementDetail.jsp?achievementId=<%=id%>"><i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
@@ -88,5 +88,10 @@
             })
         });
     });
+
+    $(".tdTitle").click(function () {
+        var achievementId = this.id.replace(/tdTitle/,"");
+        window.open("achievementDetail.jsp?achievementId="+achievementId);
+    })
 
 </script>

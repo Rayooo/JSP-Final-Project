@@ -44,7 +44,7 @@
                         <td><%=userName%></td>
                         <td><%=isManager%></td>
                         <td>
-                            <a class="pass" id="pass<%=id%>"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                            <a style="cursor:pointer" class="pass" id="pass<%=id%>"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
                         </td>
                     </tr>
 <%

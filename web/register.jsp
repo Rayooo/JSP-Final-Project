@@ -106,7 +106,7 @@
 <div class="container" id="vue">
 
     <h1 class="form-signin-heading">欢迎您的到来</h1>
-    <form class="form-horizontal" method="post" action="/register" onsubmit="return check();">
+    <form class="form-horizontal">
         <div class="form-group">
             <label for="userName" class="col-sm-3 control-label">用户名</label>
             <div class="col-sm-9 " v-bind:class="{'has-success':isOkUserName,'has-error':isErrorUserName}">
@@ -144,14 +144,14 @@
         <div class="form-group">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="isManager" value="manager"> 我要注册为管理员
+                    <input type="checkbox" name="isManager" value="manager" id="isManager"> 我要注册为管理员
                 </label>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-12">
-                <button class="btn btn-lg btn-success formButton" type="submit">注册</button>
+                <button class="btn btn-lg btn-success formButton" id="submitButton" type="button">注册</button>
                 <a class="btn btn-lg btn-default formButton" href="index.jsp">取消</a>
             </div>
         </div>
@@ -160,14 +160,30 @@
 
 
 <script>
-    function check() {
+    $("#submitButton").click(function () {
         if(registerData.isOkUserName && registerData.isOkPassword2 && registerData.isOkRealName){
-            return true;
+            var isManager = $("#isManager").is(':checked')==true? 1:0;
+            $.post("/register",{userName:registerData.userName,password:registerData.password,name:registerData.realName,isManager:isManager},function (data) {
+                if(data == "success"){
+                    swal({
+                        title: "成功",
+                        text: "提交注册成功,请等待管理员的审核",
+                        type: "success",
+                        confirmButtonColor: "#79c9e0",
+                        confirmButtonText: "确定",
+                        closeOnConfirm: false
+                    }, function(){
+                        window.location.href = "index.jsp";
+                    });
+                }
+                else{
+                    swal("对不起", data, "error");
+                }
+            })
         }else{
             swal("表单信息有误,请重新更改后重新提交", "请重新输入", "warning");
-            return false;
         }
-    }
+    });
 
     var registerData = new Vue({
         el: "#vue",

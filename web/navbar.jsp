@@ -154,7 +154,6 @@
         var indexArr = rawIndex.split('?');
         //地址栏最后一个值如 /index.jsp
         var location = indexArr[0];
-        console.log(location);
         if(location == "/" || location == "/index.jsp"){
             $("#navIndex").addClass("active");
         }

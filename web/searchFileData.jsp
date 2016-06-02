@@ -1,28 +1,31 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Ray
+  Date: 16/6/2
+  Time: 19:35
+  To change this template use File | Settings | File Templates.
+--%>
+
 <%@ page import="dbConnection.DbConnection" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.ResultSet" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Ray
-  Date: 16/5/24
-  Time: 21:21
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="confirmationLogin.jsp"%>
 <%
-    int currentPage = Integer.parseInt(request.getParameter("page"));
+    String fileName = request.getParameter("fileName");
     try {
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
         DbConnection userConnection = new DbConnection();
         Statement userStatement = userConnection.connection.createStatement();
 
-        String sql = "SELECT * FROM file  WHERE isDeleted=0 ORDER BY id DESC LIMIT "+ Integer.toString((currentPage-1)*10) +",10";//(页数-1)*每页条数,每页条数
+        String sql = "SELECT * FROM file WHERE isDeleted=0 AND fileName LIKE '%"+fileName+"%'";
         ResultSet resultSet = statement.executeQuery(sql);
         int fileCount = 1;
-        if (resultSet != null){
+        if(resultSet != null){
+            %>
+            <div class='container alert alert-success text-center' role='alert'>以下是文件名带有 <span class="text-primary"><%=fileName%></span> 的文件</div>
+<%
             while (resultSet.next()){
                 int fileId = resultSet.getInt("id");
                 String originalFileName = resultSet.getString("fileName");
@@ -31,6 +34,7 @@
                 String description = resultSet.getString("description");
 
                 String uploadFileUserId = Integer.toString(resultSet.getInt("userId"));
+
 
                 String userSql = "SELECT name FROM user WHERE id="+uploadFileUserId;
                 ResultSet userResultSet = userStatement.executeQuery(userSql);
@@ -86,13 +90,10 @@
                 fileCount++;
             }
         }
-        dbConnection.closeConnection();
-        userConnection.closeConnection();
     }catch (SQLException e){
         e.printStackTrace();
     }
 %>
-
 <script>
     $(".deleteButton").click(function () {
         var fileId = this.id.replace(/delete/,"");

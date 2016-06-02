@@ -20,12 +20,13 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="sweetalert/dist/sweetalert-dev.js"></script>
     <link rel="stylesheet" href="sweetalert/dist/sweetalert.css">
+    <script src="js/vue.js"></script>
 </head>
 <body>
 <%@include file="navbar.jsp"%>
 <%@include file="confirmationLogin.jsp"%>
 
-<div class="container bg-info" style="padding-top: 5%;padding-bottom: 5%;margin-bottom: 5%">
+<div class="container bg-info" style="padding-top: 5%;padding-bottom: 5%;margin-bottom: 2%">
     <h1 class="text-center">这里可以上传文件,与朋友们分享</h1>
     <form class="form-horizontal" method="post" action="/uploadFile" enctype="multipart/form-data">
         <div class="row" style="margin-top: 3%">
@@ -42,6 +43,22 @@
     </form>
 </div>
 
+
+<div class="container" style="margin-bottom: 4%">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control" placeholder="请输入文件名进行搜索" id="searchFile" v-model="fileName">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="searchButton">搜索</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--搜索结果,一开始不显示--%>
+<div class="container" id="searchResult" style="margin-bottom: 10%"></div>
 
 <%
     //记录有多少页
@@ -66,7 +83,7 @@
 
 
 <%--分页--%>
-<nav class="text-center">
+<nav class="text-center" id="footerNav">
     <ul class="pagination pagination-lg" style="cursor:pointer">
         <li id="previous"><a aria-label="Previous">&laquo;</a></li>
 
@@ -106,6 +123,7 @@
             checkPreviousAndNext();
         });
         $("#description").hide();
+        $("#searchResult").hide();
     });
 
     $(".pagingA").click(function () {
@@ -146,6 +164,32 @@
     $("body").on("change", "#uploadFile", function (){
         $("#description").show();
     });
+
+    //Vue优化查询,但是服务器压力会变大
+    var searchVue = new Vue({
+        el:"#searchFile",
+        data:{
+            fileName: ""
+        }
+    });
+    searchVue.$watch('fileName',function (val) {
+        if(val.length > 0){
+            $.post("searchFileData.jsp",{fileName:val},function (data) {
+                if(data != ""){
+                    var searchResult = $("#searchResult");
+                    searchResult.show();
+                    $("#fileListTable").hide();
+                    $("#footerNav").hide();
+                    searchResult.html(data);
+                }
+            })
+        }else{
+            $("#searchResult").hide();
+            $("#fileListTable").show();
+            $("#footerNav").show();
+        }
+
+    })
 
 </script>
 

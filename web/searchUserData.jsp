@@ -58,7 +58,7 @@
                         <td><%=isManager%></td>
                         <td><%=isPassed%></td>
                         <td>
-                            <a target="_blank" href="userInfo.jsp?id=<%=id%>"><i class="fa fa-child" aria-hidden="true"></i></a>
+                            <a style="cursor: pointer" class="showUserInfo" id="showUserInfo<%=id%>"><i class="fa fa-child" aria-hidden="true"></i></a>
                             <a target="_blank" href="userInfoEdit.jsp?id=<%=id%>"><i class="fa fa-cog" aria-hidden="true"></i></a>
                             <a class="delete" id="delete<%=id%>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         </td>
@@ -82,28 +82,48 @@
             e.printStackTrace();
         }
 %>
-        <script>
-            $(".delete").click(function () {
-                var userId = this.id.replace(/delete/,"");
-                swal({
-                    title: "警告",
-                    text: "您确定要删除此用户?",
-                    type: "warning",
-                    showCancelButton: true,
-                    cancelButtonText: "取消",
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "删除",
-                    closeOnConfirm: false
-                }, function(){
-                    $.post("/deleteUser",{userId:userId},function (data) {
-                        if(data == "success"){
-                            swal("成功", "已删除该用户", "success");
-                            $("#tr"+userId).remove();
-                        }
-                        else{
-                            swal("失败", "服务器异常", "error");
-                        }
-                    })
-                });
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="userInfoModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div style="max-width: 100%" id="userInfoModalContent">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(".delete").click(function () {
+        var userId = this.id.replace(/delete/,"");
+        swal({
+            title: "警告",
+            text: "您确定要删除此用户?",
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: "取消",
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "删除",
+            closeOnConfirm: false
+        }, function(){
+            $.post("/deleteUser",{userId:userId},function (data) {
+                if(data == "success"){
+                    swal("成功", "已删除该用户", "success");
+                    $("#tr"+userId).remove();
+                }
+                else{
+                    swal("失败", "服务器异常", "error");
+                }
             })
-        </script>
+        });
+    });
+    $(".showUserInfo").click(function () {
+        var userId = this.id.replace(/showUserInfo/,"");
+        $.post("userInfo.jsp",{userId:userId},function (data) {
+            if(data != ""){
+                $("#userInfoModalContent").html(data);
+                $("#userInfoModal").modal("show")
+            }
+        })
+
+    })
+</script>

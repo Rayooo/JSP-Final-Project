@@ -55,7 +55,7 @@
 
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="modalImage">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+        <div class="modal-content text-center">
             <img id="bigImage" src="" style="max-width: 100%">
         </div>
     </div>

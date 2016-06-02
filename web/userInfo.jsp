@@ -40,6 +40,7 @@
     String userName = null,password = null,headImage = null,mobile = null;
     int sex = 1;
     String name = null,introduction = null;
+    String createTime = null;
     try {
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
@@ -53,6 +54,7 @@
             sex = resultSet.getInt("sex");
             name = resultSet.getString("name");
             introduction = resultSet.getString("introduction");
+            createTime = resultSet.getDate("createTime") + " " + resultSet.getTime("createTime");
         }
         if(resultSet != null)
             resultSet.close();
@@ -106,6 +108,13 @@
         <label for="sex" class="col-md-3 control-label">性别</label>
         <div class= "col-md-8">
             <input type="text" id="sex" name="sex" class="form-control" value="<%=sex==1?"男":"女"%>" readonly>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="createTime" class="col-md-3 control-label">注册时间</label>
+        <div class= "col-md-8">
+            <input type="text" id="createTime" name="createTime" class="form-control" value="<%=createTime%>" readonly>
         </div>
     </div>
 

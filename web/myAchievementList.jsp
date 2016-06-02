@@ -53,7 +53,7 @@
                         <td>
                             <a href="achievementDetail.jsp?achievementId=<%=id%>"><i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
                             <a href="achievementEdit.jsp?achievementId=<%=id%>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a class="delete" id="delete<%=id%>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            <a style="cursor: pointer" class="delete" id="delete<%=id%>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         </td>
                     </tr>
             <%

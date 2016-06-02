@@ -41,10 +41,7 @@ Created by IntelliJ IDEA.
         ResultSet resultSet = statement.executeQuery(sql);
         if(resultSet != null){
             resultSet.next();
-            count = Math.ceil(resultSet.getInt("count(id)")/5.0);
-            if(count > 0){
-                count--;
-            }
+            count = Math.ceil(resultSet.getInt("count(id)")/10.0);
         }
         dbConnection.closeConnection();
     }catch (SQLException e) {

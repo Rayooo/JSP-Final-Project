@@ -17,7 +17,7 @@
     try{
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
-        String sql = "SELECT id,userName,sex,name,mobile,isManager,isPassed FROM user WHERE id!="+currentUserId+" AND isDeleted=0 LIMIT "+ Integer.toString((currentPage-1)*5) +",5";//(页数-1)*每页条数,每页条数
+        String sql = "SELECT id,userName,sex,name,mobile,isManager,isPassed FROM user WHERE id!="+currentUserId+" AND isDeleted=0 ORDER BY id DESC LIMIT "+ Integer.toString((currentPage-1)*10) +",10";//(页数-1)*每页条数,每页条数
         ResultSet resultSet = statement.executeQuery(sql);
 
         if(resultSet != null){
@@ -62,7 +62,7 @@
                     <td>
                         <a style="cursor: pointer" class="showUserInfo" id="showUserInfo<%=id%>"><i class="fa fa-child" aria-hidden="true"></i></a>
                         <a target="_blank" href="userInfoEdit.jsp?id=<%=id%>"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                        <a class="delete" id="delete<%=id%>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        <a style="cursor: pointer" class="delete" id="delete<%=id%>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                     </td>
                 </tr>
         <%

@@ -55,7 +55,7 @@ CREATE TABLE user
   userName VARCHAR(30) NOT NULL UNIQUE,
   password VARCHAR(30) NOT NULL,
   headImage VARCHAR(255),
-  sex SMALLINT,
+  sex SMALLINT DEFAULT 1,
   name VARCHAR(30) NOT NULL,
   createTime DATETIME NOT NULL,
   mobile VARCHAR(11),

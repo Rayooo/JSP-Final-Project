@@ -16,7 +16,7 @@
     try {
         DbConnection dbConnection = new DbConnection();
         Statement statement = dbConnection.connection.createStatement();
-        String sql = "SELECT id,userName,sex,name,mobile,isManager FROM user WHERE isPassed=0 ORDER BY id DESC LIMIT "+ Integer.toString((currentPage-1)*5) +",5";//(页数-1)*每页条数,每页条数
+        String sql = "SELECT id,userName,sex,name,mobile,isManager,createTime FROM user WHERE isPassed=0 ORDER BY id DESC LIMIT "+ Integer.toString((currentPage-1)*10) +",10";//(页数-1)*每页条数,每页条数
         ResultSet resultSet = statement.executeQuery(sql);
 
         if(resultSet != null){
@@ -28,6 +28,7 @@
                         <td>id</td>
                         <td>姓名</td>
                         <td>用户名</td>
+                        <td>注册时间</td>
                         <td>用户类别</td>
                         <td>确认通过</td>
                     </tr>
@@ -37,11 +38,13 @@
                     String userName = resultSet.getString("userName");
                     String name = resultSet.getString("name");
                     String isManager = resultSet.getInt("isManager") == 1? "管理员":"用户";
+                    String createTime = resultSet.getDate("createTime") + " " + resultSet.getTime("createTime");
           %>
                     <tr id="tr<%=id%>">
                         <td><%=id%></td>
                         <td><%=name%></td>
                         <td><%=userName%></td>
+                        <td><%=createTime%></td>
                         <td><%=isManager%></td>
                         <td>
                             <a style="cursor:pointer" class="pass" id="pass<%=id%>"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>

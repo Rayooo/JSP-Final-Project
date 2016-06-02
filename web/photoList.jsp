@@ -25,15 +25,16 @@
 <%@include file="navbar.jsp"%>
 <%@include file="confirmationLogin.jsp"%>
 
-<div class="container bg-success" style="padding-top: 5%;padding-bottom: 5%;margin-bottom: 5%">
+<div class="container bg-success text-center" style="padding-top: 5%;padding-bottom: 5%;margin-bottom: 5%">
     <h1 class="text-center">这里可以上传照片,记录我们的点滴</h1>
+    <img id="preview" style="max-width: 100%" src="">
     <form class="form-horizontal" method="post" action="/uploadImage" enctype="multipart/form-data">
         <div class="row" style="margin-top: 3%">
             <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 3%">
-                <input class="form-control" type="text" name="description" placeholder="可填写照片描述">
+                <input class="form-control" type="text" name="description" id="description" placeholder="可填写照片描述">
             </div>
-            <div class="col-xs-7 col-sm-7 col-md-7" style="padding-top: 1%">
-                <input type="file" style="float: right" accept="image/*" name="uploadImage" id="uploadImage" required>
+            <div class="col-xs-7 col-sm-7 col-md-7 text-left" style="padding-top: 1%">
+                <input type="file" style="float: right;" accept="image/*" name="uploadImage" id="uploadImage" required>
             </div>
             <div class="col-xs-5 col-sm-5 col-md-5">
                 <button type="submit" class="btn btn-info" id="uploadImageButton">上传</button>
@@ -41,6 +42,8 @@
         </div>
     </form>
 </div>
+
+
 
 <%
     //记录有多少页
@@ -102,7 +105,8 @@
         $.post("photoListTable.jsp",{page:1},function (data) {
             $("#photoListTable").html(data);
             checkPreviousAndNext();
-        })
+        });
+        $("#description").hide();
     });
 
     $(".pagingA").click(function () {
@@ -137,6 +141,23 @@
             });
             checkPreviousAndNext();
         }
+    });
+
+
+    //预览图片
+    function preview(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#preview').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+            $("#description").show();
+        }
+    }
+
+    $("body").on("change", "#uploadImage", function (){
+        preview(this);
     });
 
 </script>

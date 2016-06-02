@@ -30,10 +30,10 @@
     <form class="form-horizontal" method="post" action="/uploadFile" enctype="multipart/form-data">
         <div class="row" style="margin-top: 3%">
             <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 3%">
-                <input class="form-control" type="text" name="description" placeholder="可填写文件描述">
+                <input class="form-control" type="text" name="description" id="description" placeholder="可填写文件描述">
             </div>
             <div class="col-xs-7 col-sm-7 col-md-7" style="padding-top: 1%">
-                <input type="file" style="float: right" name="uploadImage" id="uploadImage" required>
+                <input type="file" style="float: right" name="uploadFile" id="uploadFile" required>
             </div>
             <div class="col-xs-5 col-sm-5 col-md-5">
                 <button type="submit" class="btn btn-info" id="uploadImageButton">上传</button>
@@ -104,7 +104,8 @@
         $.post("fileListTable.jsp",{page:1},function (data) {
             $("#fileListTable").html(data);
             checkPreviousAndNext();
-        })
+        });
+        $("#description").hide();
     });
 
     $(".pagingA").click(function () {
@@ -139,6 +140,11 @@
             });
             checkPreviousAndNext();
         }
+    });
+
+    //显示描述框
+    $("body").on("change", "#uploadFile", function (){
+        $("#description").show();
     });
 
 </script>

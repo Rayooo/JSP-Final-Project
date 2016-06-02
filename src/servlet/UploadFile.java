@@ -108,7 +108,7 @@ public class UploadFile extends HttpServlet {
             int userId = (Integer)session.getAttribute("userId");
 
             try {
-                //如果上传图片
+                //如果上传文件
                 DbConnection dbConnection = new DbConnection();
                 String sql = "INSERT INTO file (userId, description, url, createTime, fileName) " +
                         "VALUES ("+Integer.toString(userId)+",'"+description+"','"+relativePath+"','"+ SqlDate.getSQLDateTime()+"','"+originalFileName+"')";

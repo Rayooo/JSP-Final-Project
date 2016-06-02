@@ -134,6 +134,20 @@ CREATE TABLE achievementComment
   FOREIGN KEY (achievementId) REFERENCES achievement(id)
 );
 
+CREATE INDEX userNameIndex ON user(userName);
+CREATE INDEX nameIndex ON user(name);
+
+CREATE INDEX fileNameIndex ON file(fileName);
+
+CREATE INDEX titleIndex ON news(title);
+
+CREATE INDEX titleIndex ON achievement(title);
+CREATE INDEX userIdIndex ON achievement(userId);
+
+CREATE INDEX achievementIdIndex ON achievementComment(achievementId);
+
+CREATE INDEX newsIdIndex ON newsComment(newsId);
+
 INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
 VALUES("3","1","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",1,0,1);
 

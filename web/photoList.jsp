@@ -25,9 +25,11 @@
 <%@include file="navbar.jsp"%>
 <%@include file="confirmationLogin.jsp"%>
 
-<div class="container bg-success text-center" style="padding-top: 5%;padding-bottom: 5%;margin-bottom: 5%">
+<div class="container bg-success" style="padding-top: 5%;padding-bottom: 5%;margin-bottom: 5%">
     <h1 class="text-center">这里可以上传照片,记录我们的点滴</h1>
-    <img id="preview" style="max-width: 100%" src="">
+    <div class="text-center">
+        <img id="preview" style="max-width: 100%" src="">
+    </div>
     <form class="form-horizontal" method="post" action="/uploadImage" enctype="multipart/form-data">
         <div class="row" style="margin-top: 3%">
             <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 3%">

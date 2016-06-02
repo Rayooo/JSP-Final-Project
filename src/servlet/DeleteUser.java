@@ -42,6 +42,19 @@ public class DeleteUser extends HttpServlet {
                 //将其所有的成果都删除
                 sql = "UPDATE achievement SET isDeleted=1 WHERE userId="+userId;
                 statement.executeUpdate(sql);
+
+                sql = "UPDATE newscomment SET isDeleted=1 WHERE userId="+userId;
+                statement.executeUpdate(sql);
+
+                sql = "UPDATE achievementcomment SET isDeleted=1 WHERE userId="+userId;
+                statement.executeUpdate(sql);
+
+                sql = "UPDATE file SET isDeleted=1 WHERE userId="+userId;
+                statement.executeUpdate(sql);
+
+                sql = "UPDATE photo SET isDeleted=1 WHERE userId="+userId;
+                statement.executeUpdate(sql);
+
                 dbConnection.connection.commit();
                 writer.print("success");
                 isError = false;

@@ -41,12 +41,10 @@ public class DeleteUser extends HttpServlet {
             if(rs > 0){
                 //将其所有的成果都删除
                 sql = "UPDATE achievement SET isDeleted=1 WHERE userId="+userId;
-                int rs2 = statement.executeUpdate(sql);
-                if(rs2 > 0){
-                    writer.print("success");
-                    dbConnection.connection.commit();
-                    isError = false;
-                }
+                statement.executeUpdate(sql);
+                dbConnection.connection.commit();
+                writer.print("success");
+                isError = false;
             }
             if(isError){
                 writer.print("error");

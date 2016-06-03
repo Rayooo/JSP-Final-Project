@@ -149,28 +149,7 @@ CREATE INDEX achievementIdIndex ON achievementComment(achievementId);
 CREATE INDEX newsIdIndex ON newsComment(newsId);
 
 INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
-VALUES("3","1","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",1,0,1);
+VALUES("1","1","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",1,0,1);
 
 INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
-VALUES("4","2","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",0,0,1);
-
-INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
-VALUES("aa","bb","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",1,0,0);
-
-INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
-VALUES("23e","b2b","image/headImage.png",0,"Ray2","2016-05-16 20:02:05","1050123","asd",1,0,0);
-
-INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
-VALUES("23e3","b2w2b","image/headImage.png",0,"Ray2","2016-05-16 20:02:05","1050123","asd",1,0,0);
-
-INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
-VALUES("23e3223","b2w2b","image/headImage.png",0,"R43ay2","2016-05-16 20:02:05","34234","asdewq",1,0,0);
-
-INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
-VALUES("23e23223","b2w2b","image/headImage.png",0,"R43ay2","2016-05-16 20:02:05","34234","asdewq",1,0,0);
-
-INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
-VALUES("223223","b2w2b","image/headImage.png",0,"R43ay2","2016-05-16 20:02:05","34234","asdewq",0,1,1);
-
-INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
-VALUES("22334","b2w2b","image/headImage.png",0,"R43ay2","2016-05-16 20:02:05","34234","asdewq",0,1,0);
+VALUES("2","2","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",0,0,1);

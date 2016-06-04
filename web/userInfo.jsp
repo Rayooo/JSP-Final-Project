@@ -67,7 +67,7 @@
 %>
 
 
-<form class="form-register form-horizontal" id="editInfoForm" onsubmit="return check()" action="/editInfo" method="post" enctype="multipart/form-data">
+<form class="form-register form-horizontal" id="editInfoForm" >
     <h2 class="form-signin-heading text-center">用户信息</h2>
 
     <div class="form-group"  id="headImageDiv">

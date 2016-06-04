@@ -24,7 +24,7 @@
                     confirmButtonText: "确定",
                     closeOnConfirm: false
                 }, function(){
-                    window.location.href = "index.jsp";
+                    window.close();
                 });
             </script>
     <%
@@ -41,7 +41,7 @@
                     confirmButtonText: "确定",
                     closeOnConfirm: false
                 }, function(){
-                    window.location.href = "index.jsp";
+                    window.close();
                 });
             </script>
     <%

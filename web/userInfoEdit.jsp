@@ -55,7 +55,6 @@
 <%@include file="navbar.jsp"%>
 <%@include file="confirmationManager.jsp"%>
 <%
-    session.setAttribute("location","userInfoEdit");
     String userName = null,password = null,headImage = null,mobile = null;
     int sex = 1;
     String name = null,introduction = null;
@@ -158,11 +157,11 @@
                     <%
                         if(sex == 1){
                             out.println("<option value='1' selected>男</option>");
-                            out.println("<option value='0'>女</option>>");
+                            out.println("<option value='0'>女</option>");
                         }
                         else if(sex == 0){
                             out.println("<option value='1'>男</option>");
-                            out.println("<option value='0'selected>女</option>>");
+                            out.println("<option value='0' selected>女</option>");
                         }
                     %>
                 </select>

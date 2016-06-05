@@ -71,10 +71,11 @@
                 confirmButtonText: "确定",
                 closeOnConfirm: false
             }, function(){
-                window.close();
+                window.location = "index.jsp";
             });
         </script>
 <%
+        return;
     }
 %>
 

@@ -166,9 +166,12 @@ Created by IntelliJ IDEA.
                 }
             })
         }else{
-            $("#searchResult").hide();
-            $("#userListTable").show();
-            $("#footerNav").show();
+            $.post("userListTable.jsp",{page:currentPage},function (data) {
+                $("#userListTable").html(data).show();
+                checkPreviousAndNext();
+                $("#searchResult").hide();
+                $("#footerNav").show();
+            });
         }
 
     })

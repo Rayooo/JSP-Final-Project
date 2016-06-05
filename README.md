@@ -4,7 +4,7 @@ JSP Final Project
 copyright Ray 2016
 
 
-
+代码行数:6900
 
 使用了Bootstrap,Vue.js,sweetAlert,TinyMCE,jQuery和三个Canvas背景
 
@@ -14,13 +14,17 @@ copyright Ray 2016
 
 2.成员管理:成员,管理员注册审核,做一张表列出。成员信息,能够查询,修改,删除
 
-3.个人信息修改
+3.上传文件库,图片库
+
+4.个人信息修改
 
 用户功能:
 
 1.个人信息
 
 2.上传成果,修改成果,删除成果
+
+3.上传文件库,图片库
 
 未登录:能够看新闻,成果,用户
 

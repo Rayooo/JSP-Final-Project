@@ -40,7 +40,6 @@
             border-radius: 50%;
             -moz-border-radius: 50%;
             -webkit-border-radius: 50%;
-            transition: linear 0.25s;
         }
         #canvas{
             width: 100%;
@@ -123,8 +122,8 @@
 <div class="container" id="achievementBackground"><%=achievementContent%></div>
 
 <div class="container" style="margin-top: 5%;margin-bottom: 5%">
-    <a id="previousachievement" type="button" class="btn btn-info btn-lg">上一篇</a>
-    <a id="nextachievement" type="button" class="btn btn-info btn-lg" style="float: right">下一篇</a>
+    <a id="previousAchievement" type="button" class="btn btn-info btn-lg">上一篇</a>
+    <a id="nextAchievement" type="button" class="btn btn-info btn-lg" style="float: right">下一篇</a>
 </div>
 
 <%--评论--%>
@@ -228,7 +227,7 @@
 </div>
 <script>
     //前一篇成果
-    $("#previousachievement").click(function () {
+    $("#previousAchievement").click(function () {
         $.post("/previousNextAchievement",{choice:"previous",currentAchievementId:'<%=achievementId%>'},function (data) {
             if(data != "noAchievement" && data != "null"){
                 location.href = "achievementDetail.jsp?achievementId="+data;
@@ -243,7 +242,7 @@
     });
 
     //后一篇成果
-    $("#nextachievement").click(function () {
+    $("#nextAchievement").click(function () {
         $.post("/previousNextAchievement",{choice:"next",currentAchievementId:'<%=achievementId%>'},function (data) {
             if(data != "noAchievement" && data != "null"){
                 location.href = "achievementDetail.jsp?achievementId="+data;

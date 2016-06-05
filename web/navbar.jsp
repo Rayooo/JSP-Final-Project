@@ -153,23 +153,23 @@
         var rawIndex = url.substring(url.lastIndexOf('/'));
         var indexArr = rawIndex.split('?');
         //地址栏最后一个值如 /index.jsp
-        var location = indexArr[0];
-        if(location == "/" || location == "/index.jsp"){
+        var navLocation = indexArr[0];
+        if(navLocation == "/" || navLocation == "/index.jsp"){
             $("#navIndex").addClass("active");
         }
-        else if(location == "/editMyInfo.jsp"){
+        else if(navLocation == "/editMyInfo.jsp"){
             $("#navMyInfo").addClass("active");
         }
-        else if(location == "/verificationUserList.jsp" || location == "/userList.jsp" || location == "/achievementList.jsp" || location == "/userInfoEdit.jsp" || location == "/userInfo.jsp"){
+        else if(navLocation == "/verificationUserList.jsp" || navLocation == "/userList.jsp" || navLocation == "/achievementList.jsp" || navLocation == "/userInfoEdit.jsp" || navLocation == "/userInfo.jsp"){
             $("#navUser").addClass("active");
         }
-        else if(location == "/addNews.jsp" || location == "/newsList.jsp" || location == "/newsEdit.jsp"){
+        else if(navLocation == "/addNews.jsp" || navLocation == "/newsList.jsp" || navLocation == "/newsEdit.jsp"){
             $("#navNews").addClass("active");
         }
-        else if(location == "/photoList.jsp" || location == "/fileList.jsp"){
+        else if(navLocation == "/photoList.jsp" || navLocation == "/fileList.jsp"){
             $("#navShare").addClass("active");
         }
-        else if(location == "/addAchievement.jsp" || location == "/myAchievementList.jsp" || location == "/achievementEdit.jsp"){
+        else if(navLocation == "/addAchievement.jsp" || navLocation == "/myAchievementList.jsp" || navLocation == "/achievementEdit.jsp"){
             $("#navAchievement").addClass("active");
         }
     })

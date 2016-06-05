@@ -16,6 +16,11 @@
         if(isError){
     %>
             <script>
+                var url = document.referrer;
+                var rawIndex = url.substring(url.lastIndexOf('/'));
+                var indexArr = rawIndex.split('?');
+                var preLocation = indexArr[0];
+
                 swal({
                     title: "对不起",
                     text: "<%=message%>",
@@ -24,7 +29,11 @@
                     confirmButtonText: "确定",
                     closeOnConfirm: false
                 }, function(){
-                    window.close();
+                    if(preLocation == "/userInfoEdit.jsp"){
+                        window.close();
+                    }else if(preLocation == "/editMyInfo.jsp"){
+                        window.location = "editMyInfo.jsp";
+                    }
                 });
             </script>
     <%
@@ -33,6 +42,11 @@
         {
     %>
             <script>
+                var url = document.referrer;
+                var rawIndex = url.substring(url.lastIndexOf('/'));
+                var indexArr = rawIndex.split('?');
+                var preLocation = indexArr[0];
+
                 swal({
                     title: "成功",
                     text: "<%=message%>",
@@ -41,7 +55,11 @@
                     confirmButtonText: "确定",
                     closeOnConfirm: false
                 }, function(){
-                    window.close();
+                    if(preLocation == "/userInfoEdit.jsp"){
+                        window.close();
+                    }else if(preLocation == "/editMyInfo.jsp"){
+                        window.location = "editMyInfo.jsp";
+                    }
                 });
             </script>
     <%

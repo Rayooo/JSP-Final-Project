@@ -184,9 +184,12 @@
                 }
             })
         }else{
-            $("#searchResult").hide();
-            $("#fileListTable").show();
-            $("#footerNav").show();
+            $.post("fileListTable.jsp",{page:currentPage},function (data) {
+                $("#fileListTable").html(data).show();
+                checkPreviousAndNext();
+                $("#searchResult").hide();
+                $("#footerNav").show();
+            });
         }
 
     })

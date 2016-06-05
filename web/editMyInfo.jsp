@@ -49,7 +49,6 @@
             border-radius: 50%;	/* relative value */
             -moz-border-radius: 50%;
             -webkit-border-radius: 50%;
-            transition: linear 0.25s;
         }
     </style>
 
@@ -60,7 +59,6 @@
 <%@include file="confirmationLogin.jsp"%>
 
 <%
-    session.setAttribute("location","editMyInfo");
     String userName = null,password = null,headImage = null,mobile = null;
     int sex = 1;
     String name = null,introduction = null;
@@ -163,11 +161,11 @@
                     <%
                         if(sex == 1){
                             out.println("<option value='1' selected>男</option>");
-                            out.println("<option value='0'>女</option>>");
+                            out.println("<option value='0'>女</option>");
                         }
                         else if(sex == 0){
                             out.println("<option value='1'>男</option>");
-                            out.println("<option value='0'selected>女</option>>");
+                            out.println("<option value='0'selected>女</option>");
                         }
                     %>
                 </select>

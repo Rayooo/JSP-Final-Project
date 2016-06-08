@@ -31,7 +31,6 @@
         border-radius: 50%;	/* relative value */
         -moz-border-radius: 50%;
         -webkit-border-radius: 50%;
-        transition: linear 0.25s;
     }
 </style>
 

@@ -49,9 +49,9 @@ file记录用户管理员上传的文件
 以上两个一般在新闻和成果中引用
 
 
-CREATE DATABASE JSPFinalProject CHARACTER SET  utf8  COLLATE utf8_general_ci;
+CREATE DATABASE JavaFinalProject CHARACTER SET  utf8  COLLATE utf8_general_ci;
 
-USE JSPFinalProject;
+USE JavaFinalProject;
 
 CREATE TABLE user
 (

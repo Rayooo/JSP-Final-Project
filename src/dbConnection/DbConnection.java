@@ -16,15 +16,11 @@ public class DbConnection {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             //本地mysql
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:8889/JSPFinalProject?useUnicode=true&characterEncoding=utf-8","root","root");
-            //部署服务器的mysql
-//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/JSPFinalProject?useUnicode=true&characterEncoding=utf-8","root","");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/JavaFinalProject?useUnicode=true&characterEncoding=utf-8","root","root");
 
             System.out.println("连接数据库成功");
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }

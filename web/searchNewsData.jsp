@@ -13,7 +13,7 @@
     String newsTitle = request.getParameter("newsTitle");
     try {
         DbConnection dbconnection = new DbConnection();
-        Statement statement = dbconnection.connection.createStatement();
+        Statement statement = dbconnection.getConnection().createStatement();
         String sql = "SELECT * FROM news WHERE isDeleted=0 AND title LIKE '%"+ newsTitle +"%'";
         ResultSet resultSet = statement.executeQuery(sql);
 

@@ -27,7 +27,7 @@ public class VerificationUser extends HttpServlet {
         String userId = request.getParameter("userId");
         try {
             DbConnection dbConnection = new DbConnection();
-            Statement statement = dbConnection.connection.createStatement();
+            Statement statement = dbConnection.getConnection().createStatement();
             String sql = "UPDATE user SET isPassed=1 WHERE id="+ userId;
             int rs = statement.executeUpdate(sql);
             PrintWriter writer = response.getWriter();

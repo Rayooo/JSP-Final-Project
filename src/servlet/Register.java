@@ -42,7 +42,7 @@ public class Register extends HttpServlet {
         try {
             //插入数据库
             DbConnection dbConnection = new DbConnection();
-            Statement statement = dbConnection.connection.createStatement();
+            Statement statement = dbConnection.getConnection().createStatement();
             int rs = statement.executeUpdate(sql);
             if(rs > 0){
                 isError = false;

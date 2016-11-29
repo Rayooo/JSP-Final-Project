@@ -15,9 +15,9 @@
     int currentPage = Integer.parseInt(request.getParameter("page"));
     try {
         DbConnection dbConnection = new DbConnection();
-        Statement statement = dbConnection.connection.createStatement();
+        Statement statement = dbConnection.getConnection().createStatement();
         DbConnection userConnection = new DbConnection();
-        Statement userStatement = userConnection.connection.createStatement();
+        Statement userStatement = userConnection.getConnection().createStatement();
 
         String sql = "SELECT * FROM file  WHERE isDeleted=0 ORDER BY id DESC LIMIT "+ Integer.toString((currentPage-1)*10) +",10";//(页数-1)*每页条数,每页条数
         ResultSet resultSet = statement.executeQuery(sql);

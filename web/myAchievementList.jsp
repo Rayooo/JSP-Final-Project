@@ -28,7 +28,7 @@
     Integer userId = (Integer)session.getAttribute("userId");
     try {
         DbConnection dbConnection = new DbConnection();
-        Statement statement = dbConnection.connection.createStatement();
+        Statement statement = dbConnection.getConnection().createStatement();
         String sql = "SELECT * FROM achievement WHERE isDeleted=0 AND userId="+userId+" ORDER BY id DESC ";
         ResultSet resultSet = statement.executeQuery(sql);
         if(resultSet != null){

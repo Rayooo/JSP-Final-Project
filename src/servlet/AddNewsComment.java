@@ -30,7 +30,7 @@ public class AddNewsComment extends HttpServlet {
         String newsComment = request.getParameter("newsComment");
         try {
             DbConnection dbConnection = new DbConnection();
-            Statement statement = dbConnection.connection.createStatement();
+            Statement statement = dbConnection.getConnection().createStatement();
             String sql = "INSERT INTO newsComment (content, userId, newsId, createTime)" +
                     " VALUES ('"+newsComment+"',"+Integer.toString(userId)+","+newsId+",'"+ SqlDate.getSQLDateTime()+"')";
             int rs = statement.executeUpdate(sql);

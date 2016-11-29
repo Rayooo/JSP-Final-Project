@@ -9,7 +9,7 @@ import java.sql.SQLException;
  */
 public class DbConnection {
 
-    public Connection connection = null;
+    private Connection connection = null;
 
     //连接数据库
     public DbConnection(){
@@ -23,6 +23,10 @@ public class DbConnection {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Connection getConnection(){
+        return connection;
     }
 
     //关闭数据库

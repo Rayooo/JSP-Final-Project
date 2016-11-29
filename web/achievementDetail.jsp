@@ -71,7 +71,7 @@
     Integer achievementAuthor = null;
     try {
         DbConnection dbConnection = new DbConnection();
-        Statement statement = dbConnection.connection.createStatement();
+        Statement statement = dbConnection.getConnection().createStatement();
         String sql = "SELECT * FROM achievement WHERE isDeleted=0 AND id="+achievementId;
         ResultSet resultSet = statement.executeQuery(sql);
         if(resultSet != null){
@@ -90,7 +90,7 @@
     String authorImage = null;
     try {
         DbConnection dbConnection = new DbConnection();
-        Statement statement = dbConnection.connection.createStatement();
+        Statement statement = dbConnection.getConnection().createStatement();
         String sql = "SELECT headImage,name FROM user WHERE id="+achievementAuthor;
         ResultSet resultSet = statement.executeQuery(sql);
         if(resultSet != null){
@@ -137,7 +137,7 @@
                         boolean isExistComment = false;
                         try {
                             DbConnection existCommentDbConnection = new DbConnection();
-                            Statement existCommentStatement = existCommentDbConnection.connection.createStatement();
+                            Statement existCommentStatement = existCommentDbConnection.getConnection().createStatement();
                             String exitsCommentSql = "SELECT count(id) FROM achievementComment WHERE isDeleted=0 AND achievementId="+achievementId;
                             ResultSet existCommentResultSet = existCommentStatement.executeQuery(exitsCommentSql);
                             if(existCommentResultSet != null){
@@ -154,9 +154,9 @@
                         }else{
                             try {
                                 DbConnection dbConnection = new DbConnection();
-                                Statement statement = dbConnection.connection.createStatement();
+                                Statement statement = dbConnection.getConnection().createStatement();
                                 DbConnection userDbConnection = new DbConnection();
-                                Statement userStatement = userDbConnection.connection.createStatement();
+                                Statement userStatement = userDbConnection.getConnection().createStatement();
 
                                 String sql = "SELECT * FROM achievementComment WHERE isDeleted=0 AND achievementId="+achievementId;
                                 ResultSet resultSet = statement.executeQuery(sql);

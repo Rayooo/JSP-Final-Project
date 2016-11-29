@@ -36,7 +36,7 @@ public class DeleteFile extends HttpServlet {
         }else {
             try {
                 DbConnection dbConnection = new DbConnection();
-                Statement statement = dbConnection.connection.createStatement();
+                Statement statement = dbConnection.getConnection().createStatement();
                 String sql = "SELECT userId FROM file WHERE id="+fileId;
                 ResultSet resultSet = statement.executeQuery(sql);
                 if(resultSet != null){
@@ -57,7 +57,7 @@ public class DeleteFile extends HttpServlet {
         if(canDelete){
             try {
                 DbConnection dbConnection = new DbConnection();
-                Statement statement = dbConnection.connection.createStatement();
+                Statement statement = dbConnection.getConnection().createStatement();
                 String sql = "UPDATE file SET isDeleted=1 WHERE id="+fileId;
                 int rs = statement.executeUpdate(sql);
                 PrintWriter writer = response.getWriter();

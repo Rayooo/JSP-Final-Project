@@ -36,7 +36,7 @@ public class EditAchievement extends HttpServlet {
 
         DbConnection dbConnection = new DbConnection();
         try {
-            Statement statement = dbConnection.connection.createStatement();
+            Statement statement = dbConnection.getConnection().createStatement();
             String sql = "SELECT userId FROM achievement WHERE isDeleted=0 AND id="+achievementId;
             ResultSet resultSet = statement.executeQuery(sql);
             if(resultSet != null){
@@ -51,7 +51,7 @@ public class EditAchievement extends HttpServlet {
 
         if(canEdit){
             try {
-                Statement statement = dbConnection.connection.createStatement();
+                Statement statement = dbConnection.getConnection().createStatement();
                 String sql = "UPDATE achievement SET title='"+title+"',content='"+content+"' WHERE isDeleted=0 AND id="+achievementId;
                 int rs = statement.executeUpdate(sql);
                 PrintWriter writer = response.getWriter();

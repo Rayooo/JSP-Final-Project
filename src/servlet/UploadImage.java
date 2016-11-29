@@ -117,7 +117,7 @@ public class UploadImage extends HttpServlet {
                 DbConnection dbConnection = new DbConnection();
                 String sql = "INSERT INTO photo (userId, description, url, createTime) " +
                         "VALUES ("+Integer.toString(userId)+",'"+description+"','"+relativePath+"','"+SqlDate.getSQLDateTime()+"') ";
-                Statement statement = dbConnection.connection.createStatement();
+                Statement statement = dbConnection.getConnection().createStatement();
                 int rs = statement.executeUpdate(sql);
                 if(rs>0){
                     System.out.println("上传图片成功");

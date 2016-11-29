@@ -90,7 +90,7 @@
                         <%
                             try {
                                 DbConnection dbConnection = new DbConnection();
-                                Statement statement = dbConnection.connection.createStatement();
+                                Statement statement = dbConnection.getConnection().createStatement();
                                 String sql = "SELECT id,title,createTime FROM news WHERE isDeleted=0 ORDER BY id DESC LIMIT 10";
                                 ResultSet resultSet = statement.executeQuery(sql);
                                 if(resultSet != null){
@@ -121,7 +121,7 @@
                         <%
                             try {
                                 DbConnection dbConnection = new DbConnection();
-                                Statement statement = dbConnection.connection.createStatement();
+                                Statement statement = dbConnection.getConnection().createStatement();
                                 String sql = "SELECT id,title,createTime FROM achievement WHERE isDeleted=0 ORDER BY id DESC LIMIT 10";
                                 ResultSet resultSet = statement.executeQuery(sql);
                                 if(resultSet != null){
@@ -156,12 +156,12 @@
                             DbConnection dbConnection = new DbConnection();
                             DbConnection userDbconnection = new DbConnection();
 
-                            Statement statement = dbConnection.connection.createStatement();
+                            Statement statement = dbConnection.getConnection().createStatement();
                             String sql = "SELECT userId,count(id) FROM achievement WHERE isDeleted=0 GROUP BY userId ORDER BY count(id) DESC";
                             ResultSet resultSet = statement.executeQuery(sql);
                             if(resultSet != null){
                                 while (resultSet.next()){
-                                    Statement userStatement = userDbconnection.connection.createStatement();
+                                    Statement userStatement = userDbconnection.getConnection().createStatement();
                                     String userSql = "SELECT name,headImage,introduction FROM user WHERE isDeleted=0 AND isManager=0 AND isPassed=1 AND id="+resultSet.getString("userId");
                                     ResultSet userResultSet = userStatement.executeQuery(userSql);
                                     if(userResultSet != null){

@@ -38,7 +38,7 @@ public class DeleteAchievementComment extends HttpServlet {
             //发布该评论的用户有权限删除自己的评论
             try {
                 DbConnection dbConnection = new DbConnection();
-                Statement statement = dbConnection.connection.createStatement();
+                Statement statement = dbConnection.getConnection().createStatement();
                 String sql = "SELECT userId FROM achievementComment WHERE id="+achievementCommentId;
                 ResultSet resultSet = statement.executeQuery(sql);
                 if(resultSet != null){
@@ -58,7 +58,7 @@ public class DeleteAchievementComment extends HttpServlet {
         if(canDelete){
             try {
                 DbConnection dbConnection = new DbConnection();
-                Statement statement = dbConnection.connection.createStatement();
+                Statement statement = dbConnection.getConnection().createStatement();
                 String sql = "UPDATE achievementComment SET isDeleted=1 WHERE id="+achievementCommentId;
                 int rs = statement.executeUpdate(sql);
                 PrintWriter writer = response.getWriter();

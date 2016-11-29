@@ -15,9 +15,9 @@
     String fileName = request.getParameter("fileName");
     try {
         DbConnection dbConnection = new DbConnection();
-        Statement statement = dbConnection.connection.createStatement();
+        Statement statement = dbConnection.getConnection().createStatement();
         DbConnection userConnection = new DbConnection();
-        Statement userStatement = userConnection.connection.createStatement();
+        Statement userStatement = userConnection.getConnection().createStatement();
 
         String sql = "SELECT * FROM file WHERE isDeleted=0 AND fileName LIKE '%"+fileName+"%'";
         ResultSet resultSet = statement.executeQuery(sql);

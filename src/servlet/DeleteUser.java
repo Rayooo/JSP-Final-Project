@@ -32,9 +32,9 @@ public class DeleteUser extends HttpServlet {
         DbConnection dbConnection = new DbConnection();
         try {
             //开始一个事务
-            dbConnection.connection.setAutoCommit(false);
+            dbConnection.getConnection().setAutoCommit(false);
 
-            Statement statement = dbConnection.connection.createStatement();
+            Statement statement = dbConnection.getConnection().createStatement();
             String sql = "UPDATE user SET isDeleted=1 WHERE id="+ userId;
             int rs = statement.executeUpdate(sql);
 
@@ -55,13 +55,13 @@ public class DeleteUser extends HttpServlet {
                 sql = "UPDATE photo SET isDeleted=1 WHERE userId="+userId;
                 statement.executeUpdate(sql);
 
-                dbConnection.connection.commit();
+                dbConnection.getConnection().commit();
                 writer.print("success");
                 isError = false;
             }
             if(isError){
                 writer.print("error");
-                dbConnection.connection.rollback();
+                dbConnection.getConnection().rollback();
             }
             writer.flush();
             dbConnection.closeConnection();
@@ -71,7 +71,7 @@ public class DeleteUser extends HttpServlet {
             writer.print("error");
             writer.flush();
             try {
-                dbConnection.connection.rollback();
+                dbConnection.getConnection().rollback();
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }

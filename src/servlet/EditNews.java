@@ -31,7 +31,7 @@ public class EditNews extends HttpServlet {
 
         try {
             DbConnection dbConnection = new DbConnection();
-            Statement statement = dbConnection.connection.createStatement();
+            Statement statement = dbConnection.getConnection().createStatement();
             String sql = "UPDATE news SET title='"+title+"',content='"+content+"' WHERE isDeleted=0 AND id="+newsId;
             int rs = statement.executeUpdate(sql);
             PrintWriter writer = response.getWriter();

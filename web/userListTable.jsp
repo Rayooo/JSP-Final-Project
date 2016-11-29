@@ -16,7 +16,7 @@
     int currentUserId = (Integer)session.getAttribute("userId");
     try{
         DbConnection dbConnection = new DbConnection();
-        Statement statement = dbConnection.connection.createStatement();
+        Statement statement = dbConnection.getConnection().createStatement();
         String sql = "SELECT id,userName,sex,name,mobile,isManager,isPassed FROM user WHERE id!="+currentUserId+" AND isDeleted=0 ORDER BY id DESC LIMIT "+ Integer.toString((currentPage-1)*10) +",10";//(页数-1)*每页条数,每页条数
         ResultSet resultSet = statement.executeQuery(sql);
 

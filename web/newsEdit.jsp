@@ -45,7 +45,7 @@
     String content = null;
     try {
         DbConnection dbConnection = new DbConnection();
-        Statement statement = dbConnection.connection.createStatement();
+        Statement statement = dbConnection.getConnection().createStatement();
         String sql = "SELECT * FROM news WHERE isDeleted=0 AND id="+newsId;
         ResultSet resultSet = statement.executeQuery(sql);
         if(resultSet != null){

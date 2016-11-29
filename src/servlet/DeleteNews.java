@@ -27,7 +27,7 @@ public class DeleteNews extends HttpServlet {
         String newsId = request.getParameter("newsId");
         try {
             DbConnection dbConnection = new DbConnection();
-            Statement statement = dbConnection.connection.createStatement();
+            Statement statement = dbConnection.getConnection().createStatement();
             String sql = "UPDATE news SET isDeleted=1 WHERE id="+newsId;
             int rs = statement.executeUpdate(sql);
             PrintWriter writer = response.getWriter();

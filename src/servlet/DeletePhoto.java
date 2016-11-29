@@ -35,7 +35,7 @@ public class DeletePhoto extends HttpServlet {
         }else {
             try {
                 DbConnection dbConnection = new DbConnection();
-                Statement statement = dbConnection.connection.createStatement();
+                Statement statement = dbConnection.getConnection().createStatement();
                 String sql = "SELECT userId FROM photo WHERE id="+photoId;
                 ResultSet resultSet = statement.executeQuery(sql);
                 if(resultSet != null){
@@ -56,7 +56,7 @@ public class DeletePhoto extends HttpServlet {
         if(canDelete){
             try {
                 DbConnection dbConnection = new DbConnection();
-                Statement statement = dbConnection.connection.createStatement();
+                Statement statement = dbConnection.getConnection().createStatement();
                 String sql = "UPDATE photo SET isDeleted=1 WHERE id="+photoId;
                 int rs = statement.executeUpdate(sql);
                 PrintWriter writer = response.getWriter();

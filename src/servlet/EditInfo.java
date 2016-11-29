@@ -138,7 +138,7 @@ public class EditInfo extends HttpServlet {
                 //如果没有上传图片
                 DbConnection dbConnection = new DbConnection();
                 String sql = "UPDATE user SET userName=?,password=?,sex=?,name=?,introduction=?,mobile=? WHERE id=?";
-                PreparedStatement preparedStatement = dbConnection.connection.prepareStatement(sql);
+                PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);
                 preparedStatement.setString(1,userName);
                 preparedStatement.setString(2,password);
                 preparedStatement.setInt(3,sex);
@@ -168,7 +168,7 @@ public class EditInfo extends HttpServlet {
                 //如果上传图片
                 DbConnection dbConnection = new DbConnection();
                 String sql = "UPDATE user SET userName=?,password=?,sex=?,name=?,introduction=?,headImage=?,mobile=? WHERE id=?";
-                PreparedStatement preparedStatement = dbConnection.connection.prepareStatement(sql);
+                PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);
                 preparedStatement.setString(1,userName);
                 preparedStatement.setString(2,password);
                 preparedStatement.setInt(3,sex);

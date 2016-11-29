@@ -25,7 +25,7 @@ public class PreviousNextAchievement extends HttpServlet {
 
         try {
             DbConnection dbConnection = new DbConnection();
-            Statement statement = dbConnection.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            Statement statement = dbConnection.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT id FROM achievement WHERE isDeleted = 0";
             ResultSet resultSet = statement.executeQuery(sql);
             if(resultSet != null){

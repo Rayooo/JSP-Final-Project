@@ -36,7 +36,7 @@ public class DeleteNewsComment extends HttpServlet {
         }else {
             try {
                 DbConnection dbConnection = new DbConnection();
-                Statement statement = dbConnection.connection.createStatement();
+                Statement statement = dbConnection.getConnection().createStatement();
                 String sql = "SELECT userId FROM newsComment WHERE id="+newsCommentId;
                 ResultSet resultSet = statement.executeQuery(sql);
                 if(resultSet != null){
@@ -56,7 +56,7 @@ public class DeleteNewsComment extends HttpServlet {
         if(canDelete){
             try {
                 DbConnection dbConnection = new DbConnection();
-                Statement statement = dbConnection.connection.createStatement();
+                Statement statement = dbConnection.getConnection().createStatement();
                 String sql = "UPDATE newsComment SET isDeleted=1 WHERE id="+newsCommentId;
                 int rs = statement.executeUpdate(sql);
                 PrintWriter writer = response.getWriter();

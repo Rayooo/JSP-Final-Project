@@ -36,7 +36,7 @@ Created by IntelliJ IDEA.
     double count = 0;
     try {
         DbConnection dbConnection = new DbConnection();
-        Statement statement = dbConnection.connection.createStatement();
+        Statement statement = dbConnection.getConnection().createStatement();
         String sql = "SELECT count(id) FROM user WHERE isDeleted=0";
         ResultSet resultSet = statement.executeQuery(sql);
         if(resultSet != null){

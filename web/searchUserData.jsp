@@ -15,7 +15,7 @@
     int currentUserId = (Integer)session.getAttribute("userId");
     try{
         DbConnection dbConnection = new DbConnection();
-        Statement statement = dbConnection.connection.createStatement();
+        Statement statement = dbConnection.getConnection().createStatement();
         String sql = "SELECT * FROM user WHERE id!="+currentUserId+" AND isDeleted=0 AND (user.userName LIKE '%"+userInfo+"%' OR user.name LIKE '%"+userInfo+"%')";
         ResultSet resultSet = statement.executeQuery(sql);
 

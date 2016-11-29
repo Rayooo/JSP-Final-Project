@@ -67,7 +67,7 @@
         DbConnection dbConnection = new DbConnection();
         int id = (Integer) session.getAttribute("userId");
         String sql = "SELECT * FROM user WHERE id="+Integer.toString(id);
-        Statement statement = dbConnection.connection.createStatement();
+        Statement statement = dbConnection.getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
         if(resultSet.next()){
             userName = resultSet.getString("userName");

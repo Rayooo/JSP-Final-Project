@@ -28,7 +28,7 @@ public class AddAchievement extends HttpServlet {
         String userId = request.getParameter("userId");
         try {
             DbConnection dbConnection = new DbConnection();
-            Statement statement = dbConnection.connection.createStatement();
+            Statement statement = dbConnection.getConnection().createStatement();
             String sql = "INSERT INTO achievement (userId, title, content, createTime)" +
                     "VALUES ("+userId+",'"+achievementTitle+"','"+achievementContent+"','"+ SqlDate.getSQLDateTime()+"')";
 

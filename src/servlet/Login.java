@@ -31,7 +31,7 @@ public class Login extends HttpServlet {
         try {
             DbConnection dbConnection = new DbConnection();
             String sql = "SELECT * FROM user WHERE userName=? AND password=? AND user.isDeleted=0 ";
-            PreparedStatement preparedStatement = dbConnection.connection.prepareStatement(sql);
+            PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);
             preparedStatement.setString(1,userName);
             preparedStatement.setString(2,password);
 

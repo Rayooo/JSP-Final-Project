@@ -37,7 +37,7 @@ public class DeleteAchievement extends HttpServlet {
             canDelete = true;
         }else{
             try {
-                Statement statement = dbConnection.connection.createStatement();
+                Statement statement = dbConnection.getConnection().createStatement();
                 String sql = "SELECT userId FROM achievement WHERE isDeleted=0 AND id="+achievementId;
                 ResultSet resultSet = statement.executeQuery(sql);
                 if(resultSet != null){
@@ -53,7 +53,7 @@ public class DeleteAchievement extends HttpServlet {
         if(canDelete){
             try {
 
-                Statement statement = dbConnection.connection.createStatement();
+                Statement statement = dbConnection.getConnection().createStatement();
                 String sql = "UPDATE achievement SET isDeleted=1 WHERE id="+achievementId;
                 int rs = statement.executeUpdate(sql);
                 PrintWriter writer = response.getWriter();

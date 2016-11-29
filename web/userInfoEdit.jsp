@@ -60,7 +60,7 @@
     int userId = Integer.parseInt(request.getParameter("id"));
     try {
         DbConnection dbConnection = new DbConnection();
-        Statement statement = dbConnection.connection.createStatement();
+        Statement statement = dbConnection.getConnection().createStatement();
         String sql = "SELECT * FROM user WHERE id=" + Integer.toString(userId);
         ResultSet resultSet = statement.executeQuery(sql);
         if(resultSet.next()){

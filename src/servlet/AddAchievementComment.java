@@ -30,7 +30,7 @@ public class AddAchievementComment extends HttpServlet {
         String achievementComment = request.getParameter("achievementComment");
         try {
             DbConnection dbConnection = new DbConnection();
-            Statement statement = dbConnection.connection.createStatement();
+            Statement statement = dbConnection.getConnection().createStatement();
             String sql = "INSERT INTO achievementComment (content, userId, achievementId, createTime)" +
                     " VALUES ('"+achievementComment+"',"+Integer.toString(userId)+","+achievementId+",'"+ SqlDate.getSQLDateTime()+"')";
             int rs = statement.executeUpdate(sql);

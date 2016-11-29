@@ -26,7 +26,7 @@ public class DuplicationUserName extends HttpServlet {
         PrintWriter writer = response.getWriter();
         try {
             DbConnection dbConnection = new DbConnection();
-            Statement statement = dbConnection.connection.createStatement();
+            Statement statement = dbConnection.getConnection().createStatement();
             String sql = "SELECT count(id) FROM user WHERE userName='"+userName+"'";
             ResultSet resultSet = statement.executeQuery(sql);
             if(resultSet != null){

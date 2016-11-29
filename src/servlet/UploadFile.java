@@ -112,7 +112,7 @@ public class UploadFile extends HttpServlet {
                 DbConnection dbConnection = new DbConnection();
                 String sql = "INSERT INTO file (userId, description, url, createTime, fileName) " +
                         "VALUES ("+Integer.toString(userId)+",'"+description+"','"+relativePath+"','"+ SqlDate.getSQLDateTime()+"','"+originalFileName+"')";
-                Statement statement = dbConnection.connection.createStatement();
+                Statement statement = dbConnection.getConnection().createStatement();
                 int rs = statement.executeUpdate(sql);
                 if(rs>0){
                     System.out.println("上传文件成功");

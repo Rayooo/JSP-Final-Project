@@ -14,7 +14,7 @@
     int currentPage = Integer.parseInt(request.getParameter("page"));
     try {
         DbConnection dbConnection = new DbConnection();
-        Statement statement = dbConnection.connection.createStatement();
+        Statement statement = dbConnection.getConnection().createStatement();
         String sql = "SELECT * FROM photo WHERE isDeleted=0 ORDER BY id DESC LIMIT "+ Integer.toString((currentPage-1)*9) +",9";//(页数-1)*每页条数,每页条数
         ResultSet resultSet = statement.executeQuery(sql);
         if(resultSet != null){

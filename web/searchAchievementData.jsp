@@ -14,7 +14,7 @@
     String achievementTitle = request.getParameter("achievementTitle");
     try {
         DbConnection dbconnection = new DbConnection();
-        Statement statement = dbconnection.connection.createStatement();
+        Statement statement = dbconnection.getConnection().createStatement();
         String sql = "SELECT * FROM achievement WHERE isDeleted=0 AND title LIKE '%"+ achievementTitle +"%'";
         ResultSet resultSet = statement.executeQuery(sql);
 

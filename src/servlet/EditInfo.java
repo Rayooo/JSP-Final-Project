@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
+import static rayUtil.Password.getSaltedHash;
 /**
  * Created by Ray on 16/5/15.
  */
@@ -140,7 +140,7 @@ public class EditInfo extends HttpServlet {
                 String sql = "UPDATE user SET userName=?,password=?,sex=?,name=?,introduction=?,mobile=? WHERE id=?";
                 PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);
                 preparedStatement.setString(1,userName);
-                preparedStatement.setString(2,password);
+                preparedStatement.setString(2,getSaltedHash(password));
                 preparedStatement.setInt(3,sex);
                 preparedStatement.setString(4,name);
                 preparedStatement.setString(5,introduction);
@@ -161,6 +161,8 @@ public class EditInfo extends HttpServlet {
                 request.setAttribute("message","修改信息失败");
                 request.setAttribute("isError",true);
                 request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         else{
@@ -170,7 +172,7 @@ public class EditInfo extends HttpServlet {
                 String sql = "UPDATE user SET userName=?,password=?,sex=?,name=?,introduction=?,headImage=?,mobile=? WHERE id=?";
                 PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);
                 preparedStatement.setString(1,userName);
-                preparedStatement.setString(2,password);
+                preparedStatement.setString(2,getSaltedHash(password));
                 preparedStatement.setInt(3,sex);
                 preparedStatement.setString(4,name);
                 preparedStatement.setString(5,introduction);
@@ -192,6 +194,8 @@ public class EditInfo extends HttpServlet {
                 request.setAttribute("message","修改信息失败");
                 request.setAttribute("isError",true);
                 request.getRequestDispatcher("editInfoMessage.jsp").forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

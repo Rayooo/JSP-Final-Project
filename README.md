@@ -57,7 +57,7 @@ CREATE TABLE user
 (
   id INT AUTO_INCREMENT PRIMARY KEY,
   userName VARCHAR(30) NOT NULL UNIQUE,
-  password VARCHAR(30) NOT NULL,
+  password TEXT NOT NULL,
   headImage VARCHAR(255),
   sex SMALLINT DEFAULT 1,
   name VARCHAR(30) NOT NULL,
@@ -153,7 +153,7 @@ CREATE INDEX achievementIdIndex ON achievementComment(achievementId);
 CREATE INDEX newsIdIndex ON newsComment(newsId);
 
 INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
-VALUES("1","1","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",1,0,1);
+VALUES("1","sWx4VF4Ql3jq8S6LF1Zbl61HFl78xwxNkcO9J1neviI=$NbhuVoI9+tqduS+/VdFXO+YkviBgGwjkJOzAVfqNB1M=","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",1,0,1);
 
 INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
-VALUES("2","2","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",0,0,1);
+VALUES("2","IrZmsYjDFimu0uBMwov2uNKtMz+05G5v/jPqsUdwlbU=$/dw8gPgnHff40mcmQznpwqEQMvdp++p1QqcoXapptnU=","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",0,0,1);

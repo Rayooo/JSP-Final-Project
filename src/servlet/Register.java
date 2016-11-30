@@ -14,6 +14,8 @@ import java.util.Objects;
 
 import dbConnection.DbConnection;
 
+import static rayUtil.Password.getSaltedHash;
+
 /**
  * Created by Ray on 16/5/13.
  */
@@ -26,6 +28,8 @@ public class Register extends HttpServlet {
 
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
+
+
         String name = request.getParameter("name");
         int isManager = Integer.parseInt(request.getParameter("isManager"));         //0代表不是管理员,因为要插到数据库中,不用bool
 
@@ -37,9 +41,10 @@ public class Register extends HttpServlet {
         SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//24小时制
         String createTime = sdformat.format(date);
 
-        String sql = "INSERT INTO user (userName, password, name, createTime, isManager, headImage)" +
-                "VALUES('"+userName+"','"+password+"','"+name+"','"+createTime+"',"+isManager+",'image/headImage.png')";
         try {
+            password = getSaltedHash(password);
+            String sql = "INSERT INTO user (userName, password, name, createTime, isManager, headImage)" +
+                    "VALUES('"+userName+"','"+password+"','"+name+"','"+createTime+"',"+isManager+",'image/headImage.png')";
             //插入数据库
             DbConnection dbConnection = new DbConnection();
             Statement statement = dbConnection.getConnection().createStatement();
@@ -64,6 +69,8 @@ public class Register extends HttpServlet {
             e.printStackTrace();
             writer.print("服务器异常");
             writer.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 

@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import static rayUtil.Password.check;
 
 import dbConnection.DbConnection;
 
@@ -30,26 +31,33 @@ public class Login extends HttpServlet {
         //查询数据库中是否存在该用户
         try {
             DbConnection dbConnection = new DbConnection();
-            String sql = "SELECT * FROM user WHERE userName=? AND password=? AND user.isDeleted=0 ";
+            String sql = "SELECT * FROM user WHERE userName=? AND user.isDeleted=0 ";
+// TODO: 2016/11/29 检测hash后密码一致
+//            boolean checkPassword(String password, String stored)
+
             PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);
             preparedStatement.setString(1,userName);
-            preparedStatement.setString(2,password);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
-                isPassed = resultSet.getInt("isPassed");
-                if(isPassed == 1){
-                    HttpSession session = request.getSession();
-                    session.setAttribute("userId",resultSet.getInt("id"));
-                    session.setAttribute("userName",resultSet.getString("userName"));
-                    session.setAttribute("headImage",resultSet.getString("headImage"));
-                    session.setAttribute("name",resultSet.getString("name"));
-                    session.setAttribute("isManager",resultSet.getInt("isManager"));
-                    session.setAttribute("isPassed",resultSet.getInt("isPassed"));
-                    writer.print("success");
+                String hashedPassword = resultSet.getString("password");
+                if(check(password,hashedPassword)) {
+                    isPassed = resultSet.getInt("isPassed");
+                    if (isPassed == 1) {
+                        HttpSession session = request.getSession();
+                        session.setAttribute("userId", resultSet.getInt("id"));
+                        session.setAttribute("userName", resultSet.getString("userName"));
+                        session.setAttribute("headImage", resultSet.getString("headImage"));
+                        session.setAttribute("name", resultSet.getString("name"));
+                        session.setAttribute("isManager", resultSet.getInt("isManager"));
+                        session.setAttribute("isPassed", resultSet.getInt("isPassed"));
+                        writer.print("success");
+                    } else {
+                        writer.print("您未通过管理员验证,请联系管理员");
+                    }
                 }
                 else{
-                    writer.print("您未通过管理员验证,请联系管理员");
+                    writer.print("您输入的帐号密码错误");
                 }
             }
             else{
@@ -62,6 +70,8 @@ public class Login extends HttpServlet {
         } catch (SQLException e) {
             writer.print("服务器异常");
             writer.flush();
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

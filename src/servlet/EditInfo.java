@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -131,6 +133,22 @@ public class EditInfo extends HttpServlet {
             }
 
         }
+        try {
+            DbConnection dbConnection = new DbConnection();
+            String sql = "SELECT * FROM user WHERE id="+Integer.toString(id);
+            Statement statement = dbConnection.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            if(resultSet.next()){
+                String PasswordInDb = resultSet.getString("password");
+                if(!password.equals(PasswordInDb)){
+                    password = getSaltedHash(password);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
 //        HttpSession session = request.getSession();
 //        int id = (Integer)session.getAttribute("userId");
         if(relativePath == null){
@@ -140,7 +158,7 @@ public class EditInfo extends HttpServlet {
                 String sql = "UPDATE user SET userName=?,password=?,sex=?,name=?,introduction=?,mobile=? WHERE id=?";
                 PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);
                 preparedStatement.setString(1,userName);
-                preparedStatement.setString(2,getSaltedHash(password));
+                preparedStatement.setString(2,password);
                 preparedStatement.setInt(3,sex);
                 preparedStatement.setString(4,name);
                 preparedStatement.setString(5,introduction);
@@ -172,7 +190,7 @@ public class EditInfo extends HttpServlet {
                 String sql = "UPDATE user SET userName=?,password=?,sex=?,name=?,introduction=?,headImage=?,mobile=? WHERE id=?";
                 PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);
                 preparedStatement.setString(1,userName);
-                preparedStatement.setString(2,getSaltedHash(password));
+                preparedStatement.setString(2,password);
                 preparedStatement.setInt(3,sex);
                 preparedStatement.setString(4,name);
                 preparedStatement.setString(5,introduction);

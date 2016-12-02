@@ -228,16 +228,16 @@
                 return (this.userName.length >= 1 && this.userName.length <= 7) || this.userName.length >= 15 || this.duplicationUserName;
             },
             isOkPassword: function () {
-                return this.password.length > 7 && this.password.length < 15;
+                return this.password.length > 7;
             },
             isErrorPassword: function () {
-                return (this.password.length >= 1 && this.password.length <= 7) || this.password.length >= 15;
+                return (this.password.length >= 1 && this.password.length <= 7);
             },
             isOkPassword2: function () {
                 return this.password == this.password2 && this.password2.length > 7;
             },
             isErrorPassword2: function () {
-                return this.password2.length >= 1 && (this.password != this.password2 ||this.isErrorPassword);
+                return this.password2.length >= 1 && (this.password != this.password2 || this.isErrorPassword);
             },
             isOkName : function () {
                 return this.name.length > 1 && this.name.length < 15;

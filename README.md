@@ -1,10 +1,6 @@
 # JSP-Final-Project
 JSP Final Project
 
-copyright Ray 2016
-
-
-代码行数:6900
 
 使用了Bootstrap,Vue.js,sweetAlert,TinyMCE,jQuery和三个Canvas背景
 
@@ -138,22 +134,8 @@ CREATE TABLE achievementComment
   FOREIGN KEY (achievementId) REFERENCES achievement(id)
 );
 
-CREATE INDEX userNameIndex ON user(userName);
-CREATE INDEX nameIndex ON user(name);
-
-CREATE INDEX fileNameIndex ON file(fileName);
-
-CREATE INDEX titleIndex ON news(title);
-
-CREATE INDEX titleIndex ON achievement(title);
-CREATE INDEX userIdIndex ON achievement(userId);
-
-CREATE INDEX achievementIdIndex ON achievementComment(achievementId);
-
-CREATE INDEX newsIdIndex ON newsComment(newsId);
+INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
+VALUES("1","sWx4VF4Ql3jq8S6LF1Zbl61HFl78xwxNkcO9J1neviI=$NbhuVoI9+tqduS+/VdFXO+YkviBgGwjkJOzAVfqNB1M=","image/headImage.png",0,"Ray","2016-11-30 20:02:05","1050123","asd",1,0,1);
 
 INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
-VALUES("1","sWx4VF4Ql3jq8S6LF1Zbl61HFl78xwxNkcO9J1neviI=$NbhuVoI9+tqduS+/VdFXO+YkviBgGwjkJOzAVfqNB1M=","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",1,0,1);
-
-INSERT INTO user (userName, password, headImage, sex, name, createTime, mobile, introduction, isManager, isDeleted, isPassed)
-VALUES("2","IrZmsYjDFimu0uBMwov2uNKtMz+05G5v/jPqsUdwlbU=$/dw8gPgnHff40mcmQznpwqEQMvdp++p1QqcoXapptnU=","image/headImage.png",0,"Ray","2016-05-16 20:02:05","1050123","asd",0,0,1);
+VALUES("2","IrZmsYjDFimu0uBMwov2uNKtMz+05G5v/jPqsUdwlbU=$/dw8gPgnHff40mcmQznpwqEQMvdp++p1QqcoXapptnU=","image/headImage.png",0,"Ray","2016-11-30 20:02:05","1050123","asd",0,0,1);

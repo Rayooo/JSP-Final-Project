@@ -16,9 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by Ray on 16/5/26.
- */
+
 @WebServlet(name = "DeleteNewsComment",urlPatterns = {"/deleteNewsComment"})
 public class DeleteNewsComment extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

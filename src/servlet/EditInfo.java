@@ -24,9 +24,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import static rayUtil.Password.getSaltedHash;
-/**
- * Created by Ray on 16/5/15.
- */
+
 @WebServlet(name = "EditInfo",urlPatterns = {"/editInfo"})
 public class EditInfo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

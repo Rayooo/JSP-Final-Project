@@ -1,13 +1,7 @@
 <%@ page import="dbConnection.DbConnection" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="java.sql.ResultSet" %><%--
-  Created by IntelliJ IDEA.
-  User: Ray
-  Date: 16/5/28
-  Time: 15:53
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.sql.ResultSet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String newsTitle = request.getParameter("newsTitle");

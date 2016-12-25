@@ -4,9 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Created by Ray on 16/5/13.
- */
+
 public class DbConnection {
 
     private Connection connection = null;

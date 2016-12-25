@@ -13,9 +13,6 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by Ray on 16/5/22.
- */
 
 //将user中isPass的属性改成1,验证用户模块
 @WebServlet(name = "VerificationUser",urlPatterns = {"/verificationUser"})

@@ -16,9 +16,7 @@ import dbConnection.DbConnection;
 
 import static rayUtil.Password.getSaltedHash;
 
-/**
- * Created by Ray on 16/5/13.
- */
+
 @WebServlet(name = "Register",urlPatterns = {"/register"})
 public class Register extends HttpServlet {
     //注册模块

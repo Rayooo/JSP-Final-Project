@@ -1,13 +1,7 @@
 <%@ page import="dbConnection.DbConnection" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.SQLException" %><%--
-  Created by IntelliJ IDEA.
-  User: Ray
-  Date: 16/5/29
-  Time: 14:53
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

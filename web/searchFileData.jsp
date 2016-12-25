@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Ray
-  Date: 16/6/2
-  Time: 19:35
-  To change this template use File | Settings | File Templates.
---%>
+
 
 <%@ page import="dbConnection.DbConnection" %>
 <%@ page import="java.sql.Statement" %>

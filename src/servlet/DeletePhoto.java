@@ -15,9 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by Ray on 16/5/24.
- */
+
 @WebServlet(name = "DeletePhoto", urlPatterns = {"/deletePhoto"})
 public class DeletePhoto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

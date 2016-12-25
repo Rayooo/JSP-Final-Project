@@ -25,9 +25,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by Ray on 16/5/24.
- */
+
 @WebServlet(name = "UploadFile",urlPatterns = {"/uploadFile"})
 public class UploadFile extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

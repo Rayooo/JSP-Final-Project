@@ -15,9 +15,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by Ray on 16/5/28.
- */
+
 @WebServlet(name = "AddAchievementComment",urlPatterns = {"/addAchievementComment"})
 public class AddAchievementComment extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

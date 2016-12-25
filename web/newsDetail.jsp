@@ -2,13 +2,7 @@
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Date" %><%--
-  Created by IntelliJ IDEA.
-  User: Ray
-  Date: 16/5/22
-  Time: 15:40
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.sql.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

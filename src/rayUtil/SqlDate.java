@@ -2,9 +2,7 @@ package rayUtil;
 
 import java.text.SimpleDateFormat;
 
-/**
- * Created by Ray on 16/5/22.
- */
+
 public class SqlDate {
     public static String getSQLDateTime(){
         java.util.Date date = new java.util.Date();

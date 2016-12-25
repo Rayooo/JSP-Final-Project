@@ -13,9 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by Ray on 16/5/29.
- */
+
 @WebServlet(name = "PreviousNextAchievement",urlPatterns = {"/previousNextAchievement"})
 public class PreviousNextAchievement extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

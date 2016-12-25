@@ -13,9 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by Ray on 16/5/27.
- */
+
 @WebServlet(name = "PreviousNextNews",urlPatterns = {"/previousNextNews"})
 public class PreviousNextNews extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

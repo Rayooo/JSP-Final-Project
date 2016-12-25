@@ -13,9 +13,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by Ray on 16/5/22.
- */
+
 @WebServlet(name = "DeleteNews",urlPatterns = {"/deleteNews"})
 public class DeleteNews extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

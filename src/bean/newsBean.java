@@ -3,9 +3,7 @@ package bean;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by Ray on 2016/12/10.
- */
+
 public class newsBean implements Serializable {
     private int id;
     private int userId;

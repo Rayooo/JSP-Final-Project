@@ -3,9 +3,7 @@ package rayUtil;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-/**
- * Created by Ray on 16/5/22.
- */
+
 public class Confirmation {
     public static boolean isManager(HttpServletRequest request){
         HttpSession session = request.getSession();

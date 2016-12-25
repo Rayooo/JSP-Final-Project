@@ -15,9 +15,7 @@ import static rayUtil.Password.check;
 
 import dbConnection.DbConnection;
 
-/**
- * Created by Ray on 16/5/13.
- */
+
 @WebServlet(name = "Login",urlPatterns = {"/login"})
 public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,7 +30,7 @@ public class Login extends HttpServlet {
         try {
             DbConnection dbConnection = new DbConnection();
             String sql = "SELECT * FROM user WHERE userName=? AND user.isDeleted=0 ";
-// TODO: 2016/11/29 检测hash后密码一致
+
 //            boolean checkPassword(String password, String stored)
 
             PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);
@@ -41,6 +39,7 @@ public class Login extends HttpServlet {
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                 String hashedPassword = resultSet.getString("password");
+                //检测hash后密码一致
                 if(check(password,hashedPassword)) {
                     isPassed = resultSet.getInt("isPassed");
                     if (isPassed == 1) {

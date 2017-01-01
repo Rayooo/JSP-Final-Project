@@ -1,6 +1,3 @@
-# JSP-Final-Project
-JSP Final Project
-
 
 使用了Bootstrap,Vue.js,sweetAlert,TinyMCE,jQuery和三个Canvas背景
 
@@ -51,86 +48,86 @@ USE JavaFinalProject;
 
 CREATE TABLE user
 (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  userName VARCHAR(30) NOT NULL UNIQUE,
-  password TEXT NOT NULL,
-  headImage VARCHAR(255),
-  sex SMALLINT DEFAULT 1,
-  name VARCHAR(30) NOT NULL,
-  createTime DATETIME NOT NULL,
-  mobile VARCHAR(11),
-  introduction TEXT,
-  isManager SMALLINT NOT NULL,
-  isDeleted SMALLINT DEFAULT 0 NOT NULL,
-  isPassed SMALLINT DEFAULT 0
+  id INT AUTO_INCREMENT PRIMARY KEY,        # 主键
+  userName VARCHAR(30) NOT NULL UNIQUE,     # 用户名
+  password TEXT NOT NULL,                   # 密码
+  headImage VARCHAR(255),                   # 头像url
+  sex SMALLINT DEFAULT 1,                   # 性别
+  name VARCHAR(30) NOT NULL,                # 姓名
+  createTime DATETIME NOT NULL,             # 创建时间
+  mobile VARCHAR(11),                       # 手机号
+  introduction TEXT,                        # 介绍
+  isManager SMALLINT NOT NULL,              # 是否是管理员
+  isDeleted SMALLINT DEFAULT 0 NOT NULL,    # 是否删除
+  isPassed SMALLINT DEFAULT 0               # 是否通过验证
 );
 
 CREATE TABLE achievement
 (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  userId INT,
-  title VARCHAR(255) NOT NULL,
-  content TEXT NOT NULL,
-  isDeleted SMALLINT DEFAULT 0,
-  createTime DATETIME,
-  FOREIGN KEY (userId) REFERENCES user(id)
+  id INT AUTO_INCREMENT PRIMARY KEY,        # 主键
+  userId INT,                               # 外键，用户id
+  title VARCHAR(255) NOT NULL,              # 标题
+  content TEXT NOT NULL,                    # 内容
+  isDeleted SMALLINT DEFAULT 0,             # 是否删除
+  createTime DATETIME,                      # 创建时间
+  FOREIGN KEY (userId) REFERENCES user(id)  
 );
 
 CREATE TABLE news
 (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  userId INT,
-  title VARCHAR(255) NOT NULL,
-  content TEXT NOT NULL,
-  isDeleted SMALLINT DEFAULT 0,
-  createTime DATETIME,
-  FOREIGN KEY (userId) REFERENCES user(id)
+  id INT AUTO_INCREMENT PRIMARY KEY,        # 主键
+  userId INT,                               # 外键 用户id
+  title VARCHAR(255) NOT NULL,              # 标题
+  content TEXT NOT NULL,                    # 内容
+  isDeleted SMALLINT DEFAULT 0,             # 是否删除
+  createTime DATETIME,                      # 创建时间
+  FOREIGN KEY (userId) REFERENCES user(id)  # 外键
 );
 
 CREATE TABLE photo
 (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  userId INT NOT NULL ,
-  description VARCHAR(100),
-  url VARCHAR(50) NOT NULL,
-  isDeleted SMALLINT DEFAULT 0,
-  createTime DATETIME NOT NULL,
-  FOREIGN KEY (userId) REFERENCES user(id)
+  id INT AUTO_INCREMENT PRIMARY KEY,        # 主键
+  userId INT NOT NULL ,                     # 外键 用户id
+  description VARCHAR(100),                 # 描述
+  url VARCHAR(50) NOT NULL,                 # 图片相对路径
+  isDeleted SMALLINT DEFAULT 0,             # 是否删除  
+  createTime DATETIME NOT NULL,             # 创建时间
+  FOREIGN KEY (userId) REFERENCES user(id)  
 );
 
 CREATE TABLE file
 (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  userId INT NOT NULL ,
-  description VARCHAR(100),
-  url VARCHAR(50) NOT NULL ,
-  isDeleted SMALLINT DEFAULT 0,
-  fileName VARCHAR(100),
-  createTime DATETIME NOT NULL ,
+  id INT AUTO_INCREMENT PRIMARY KEY,        # 主键
+  userId INT NOT NULL ,                     # 外键用户id
+  description VARCHAR(100),                 # 描述
+  url VARCHAR(50) NOT NULL ,                # 文件相对路径
+  isDeleted SMALLINT DEFAULT 0,             # 是否删除  
+  fileName VARCHAR(100),                    # 文件名
+  createTime DATETIME NOT NULL ,            # 创建时间
   FOREIGN KEY (userId) REFERENCES user(id)
 );
 
 CREATE TABLE newsComment
 (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  content TEXT NOT NULL,
-  userId INT,
-  newsId INT,
-  createTime DATETIME,
-  isDeleted SMALLINT DEFAULT 0 NOT NULL,
+  id INT AUTO_INCREMENT PRIMARY KEY,        # 主键
+  content TEXT NOT NULL,                    # 内容
+  userId INT,                               # 外键用户id
+  newsId INT,                               # 外键新闻id
+  createTime DATETIME,                      # 创建时间
+  isDeleted SMALLINT DEFAULT 0 NOT NULL,    # 是否删除
   FOREIGN KEY (userId) REFERENCES user(id),
   FOREIGN KEY (newsId) REFERENCES news(id)
 );
 
 CREATE TABLE achievementComment
 (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  content TEXT NOT NULL,
-  userId INT,
-  achievementId INT,
-  createTime DATETIME,
-  isDeleted SMALLINT DEFAULT 0 NOT NULL,
-  FOREIGN KEY (userId) REFERENCES user(id),
+  id INT AUTO_INCREMENT PRIMARY KEY,        # 主键
+  content TEXT NOT NULL,                    # 内容
+  userId INT,                               # 外键用户id
+  achievementId INT,                        # 外键评论id
+  createTime DATETIME,                      # 创建时间
+  isDeleted SMALLINT DEFAULT 0 NOT NULL,    # 是否删除
+  FOREIGN KEY (userId) REFERENCES user(id), 
   FOREIGN KEY (achievementId) REFERENCES achievement(id)
 );
 
